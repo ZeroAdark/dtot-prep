@@ -1,0 +1,5 @@
+# Normalize line endings to LF in the repository and on checkout/export so
+# files run correctly in Linux containers (the deploy ships `git archive` to a
+# Docker host). Shell scripts MUST be LF or their shebang breaks.
+* text=auto eol=lf
+*.sh text eol=lf
