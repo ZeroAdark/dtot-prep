@@ -7,8 +7,9 @@ import {
   SESSION_STATUS,
   sectionDurationSec,
 } from "./constants";
-import { shuffle, pct } from "./utils";
+import { pct } from "./utils";
 import { parseOptions, fromJson, toJson } from "./serialize";
+import { selectQuestions, HistoryMap } from "./selection";
 
 // ── Config snapshot stored on TestSession.config ─────────────────────────────
 interface SectionConfig {
@@ -39,17 +40,31 @@ export async function createTestSession(args: CreateSessionArgs) {
   const orderedSections = SECTION_ORDER.filter((s) => args.sections.includes(s));
   if (orderedSections.length === 0) throw new Error("No sections selected.");
 
+  // Build the candidate's answer history so selection can favor unseen and
+  // previously-missed questions (see src/lib/selection.ts).
+  const priorResponses = await prisma.userResponse.findMany({
+    where: { userId: args.userId, selectedOptionId: { not: null } },
+    select: { questionId: true, isCorrect: true },
+  });
+  const history: HistoryMap = new Map();
+  for (const r of priorResponses) {
+    const h = history.get(r.questionId) ?? { seen: 0, wrong: 0 };
+    h.seen += 1;
+    if (r.isCorrect === false) h.wrong += 1;
+    history.set(r.questionId, h);
+  }
+
   const sectionConfig: SectionConfig[] = [];
   let totalDurationSec = 0;
 
   for (const section of orderedSections) {
     const meta = SECTIONS[section];
     const requested = args.countPerSection?.[section] ?? meta.defaultCount;
-    const ids = await prisma.question.findMany({
+    const pool = await prisma.question.findMany({
       where: { section },
-      select: { id: true },
+      select: { id: true, topic: true, difficulty: true },
     });
-    const chosen = shuffle(ids.map((q) => q.id)).slice(0, requested);
+    const chosen = selectQuestions(pool, requested, history);
     const durationSec = sectionDurationSec(section, chosen.length);
     totalDurationSec += durationSec;
     sectionConfig.push({ section, durationSec, questionIds: chosen });

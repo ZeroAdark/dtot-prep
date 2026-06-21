@@ -2,6 +2,7 @@
   "name": "dtot-prep",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "DTOT Study & Practice — timed test engine, auto-grading, STAR-L narratives, and a readiness dashboard for the Diplomatic Technology Officer Test.",
   "scripts": {
     "dev": "next dev",
