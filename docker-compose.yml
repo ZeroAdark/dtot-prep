@@ -1,27 +1,10 @@
-# DTOT Prep — container stack: app + Caddy reverse proxy, for a multi-app host.
+# DTOT Prep — app stack. The shared Caddy reverse proxy lives in its own "edge"
+# stack (separate compose); both attach to the external "edge" network, and
+# Caddy reaches this app by container name (dtot:3000).
 #
-#   docker network create edge       # once, shared across all app stacks
+#   docker network create edge   # once, shared across all stacks
 #   docker compose up -d --build
-#
-# Caddy terminates HTTP/HTTPS on the LAN and proxies to app containers over the
-# shared external "edge" network (by container name). Add more apps by attaching
-# their containers to "edge" and adding a site block to ./Caddyfile.
 services:
-  caddy:
-    image: caddy:2-alpine
-    container_name: caddy
-    restart: unless-stopped
-    ports:
-      # Bound to the LAN IP so exposure stays LAN-scoped (Docker bypasses ufw).
-      - "192.168.50.202:80:80"
-      - "192.168.50.202:443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy-data:/data
-      - caddy-config:/config
-    networks:
-      - edge
-
   app:
     build: .
     image: dtot-prep:latest
@@ -34,7 +17,7 @@ services:
       - dtot-data:/data
     networks:
       - edge
-    # No host ports: reached only via Caddy on the edge network (dtot:3000).
+    # No host ports: reached only via the edge Caddy (dtot:3000).
 
   db:
     image: postgres:16-alpine
@@ -56,7 +39,5 @@ networks:
 
 volumes:
   dtot-data:
-    external: true # holds the SQLite DB; created/migrated out of band
-  caddy-data:
-  caddy-config:
+    external: true # holds the SQLite DB
   dtot-pgdata:
