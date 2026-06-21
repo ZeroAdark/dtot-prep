@@ -23,18 +23,34 @@ datasource db {
 
 // ── Candidate / user ─────────────────────────────────────────────────────────
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  name         String   @unique // login identifier (also display name)
+  email        String?  @unique
+  passwordHash String? // scrypt: "scrypt$<salt>$<hash>"; null = legacy/passwordless (claimable on first login)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  testSessions TestSession[]
-  responses    UserResponse[]
-  narratives   Narrative[]
+  testSessions  TestSession[]
+  responses     UserResponse[]
+  narratives    Narrative[]
   studyProgress StudyProgress[]
+  sessions      Session[]
 
   @@map("users")
+}
+
+// ── Auth session (random bearer token in an httpOnly cookie) ─────────────────
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
 }
 
 // ── Question bank (Job Knowledge / Situational Judgment / English Expression) ─

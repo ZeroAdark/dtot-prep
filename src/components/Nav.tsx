@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import {
   LayoutDashboard,
   PencilRuler,
@@ -10,9 +9,9 @@ import {
   FileText,
   ListChecks,
   ShieldCheck,
-  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AccountMenu } from "@/components/AccountMenu";
 
 const LINKS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
@@ -24,24 +23,6 @@ const LINKS = [
 
 export function Nav({ user }: { user: { id: string; name: string } | null }) {
   const pathname = usePathname();
-  const [signingOut, setSigningOut] = useState(false);
-  const [signOutError, setSignOutError] = useState(false);
-
-  async function signOut() {
-    setSigningOut(true);
-    setSignOutError(false);
-    try {
-      const res = await fetch("/api/session", { method: "DELETE" });
-      if (!res.ok) throw new Error();
-      // Hard navigation guarantees a fresh server render with the cookie gone
-      // (a soft refresh can keep the stale logged-in tree mounted).
-      window.location.assign("/");
-    } catch {
-      // Only reached if the cookie was NOT cleared, so stay put and let the user retry.
-      setSigningOut(false);
-      setSignOutError(true);
-    }
-  }
 
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname === href || pathname.startsWith(href + "/");
@@ -87,28 +68,7 @@ export function Nav({ user }: { user: { id: string; name: string } | null }) {
           </nav>
         )}
 
-        {user && (
-          <div className="flex items-center gap-3">
-            <div className="hidden text-right sm:block">
-              <div className="text-sm font-medium leading-none">{user.name}</div>
-              <div className="text-[11px] text-muted-foreground">Candidate</div>
-            </div>
-            {signOutError && (
-              <span className="hidden text-xs text-destructive md:inline" role="alert">
-                Couldn’t log out — retry
-              </span>
-            )}
-            <button
-              onClick={signOut}
-              disabled={signingOut}
-              title="Log out and switch profile"
-              className="flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-60"
-            >
-              <LogOut className="h-4 w-4" />
-              <span className="hidden sm:inline">{signingOut ? "Logging out…" : "Log out"}</span>
-            </button>
-          </div>
-        )}
+        {user && <AccountMenu user={user} />}
       </div>
 
       {/* Mobile nav */}

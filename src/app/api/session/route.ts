@@ -1,48 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getCurrentUser,
-  signIn,
-  loginAs,
-  listProfiles,
-  clearSessionCookie,
-} from "@/lib/auth";
+import { getCurrentUser, register, login, logout } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/session → { user, profiles }
-// Current candidate (or null) plus all local profiles for the picker.
-export async function GET() {
-  const [user, profiles] = await Promise.all([getCurrentUser(), listProfiles()]);
-  return NextResponse.json({ user, profiles });
+// Set the Secure cookie flag only when the request actually arrived over HTTPS
+// (so LAN http:// access still works, while Cloudflare/LAN https get Secure).
+function isSecure(req: NextRequest): boolean {
+  if (req.headers.get("x-forwarded-proto")?.split(",")[0].trim() === "https") {
+    return true;
+  }
+  try {
+    return new URL(req.url).protocol === "https:";
+  } catch {
+    return false;
+  }
 }
 
-// POST /api/session  { name, email? } → create a NEW profile and sign in.
+// GET /api/session → { user } (current candidate, or null)
+export async function GET() {
+  const user = await getCurrentUser();
+  return NextResponse.json({ user });
+}
+
+// POST /api/session  { name, password } → register a new account + sign in
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const name = typeof body.name === "string" ? body.name : "";
-  if (!name.trim()) {
-    return NextResponse.json({ error: "Name is required." }, { status: 400 });
+  const password = typeof body.password === "string" ? body.password : "";
+  const result = await register(name, password, isSecure(req));
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: 400 });
   }
-  const user = await signIn(name, body.email);
-  return NextResponse.json({ user });
+  return NextResponse.json({ user: result.user });
 }
 
-// PUT /api/session  { userId } → sign in as an EXISTING profile (switch).
+// PUT /api/session  { name, password } → sign in to an existing account
 export async function PUT(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
-  const userId = typeof body.userId === "string" ? body.userId : "";
-  if (!userId) {
-    return NextResponse.json({ error: "userId is required." }, { status: 400 });
+  const name = typeof body.name === "string" ? body.name : "";
+  const password = typeof body.password === "string" ? body.password : "";
+  const result = await login(name, password, isSecure(req));
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: 401 });
   }
-  const user = await loginAs(userId);
-  if (!user) {
-    return NextResponse.json({ error: "Profile not found." }, { status: 404 });
-  }
-  return NextResponse.json({ user });
+  return NextResponse.json({ user: result.user, claimed: result.claimed });
 }
 
-// DELETE /api/session → sign out (clear cookie only; profiles are untouched).
+// DELETE /api/session → sign out (revoke session)
 export async function DELETE() {
-  clearSessionCookie();
+  await logout();
   return NextResponse.json({ ok: true });
 }
