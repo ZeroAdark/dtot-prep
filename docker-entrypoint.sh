@@ -16,6 +16,10 @@ else
   # are left untouched — only StudyMaterial rows are replaced).
   echo "[entrypoint] Refreshing study materials..."
   node_modules/.bin/tsx prisma/seed-study.ts
+  # Add any new-topic questions not yet present (idempotent; never deletes, so
+  # candidate responses are preserved).
+  echo "[entrypoint] Syncing extra questions..."
+  node_modules/.bin/tsx prisma/seed-questions-sync.ts
 fi
 
 exec "$@"

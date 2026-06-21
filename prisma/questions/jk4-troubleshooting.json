@@ -1,0 +1,322 @@
+[
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "EASY",
+    "prompt": "According to the CompTIA troubleshooting methodology, which step comes IMMEDIATELY after you identify the problem?",
+    "options": [
+      {"id": "A", "text": "Implement the solution or escalate as necessary"},
+      {"id": "B", "text": "Establish a theory of probable cause (question the obvious)"},
+      {"id": "C", "text": "Verify full system functionality and apply preventive measures"},
+      {"id": "D", "text": "Document findings, actions, and outcomes"}
+    ],
+    "correctId": "B",
+    "rationale": "The CompTIA order is: (1) identify the problem, (2) establish a theory of probable cause, (3) test the theory, (4) establish a plan of action, (5) implement the solution or escalate, (6) verify functionality and apply preventive measures, then document. After identifying the problem you form a theory before doing anything else.",
+    "optionNotes": {
+      "A": "Implementing is step 5; you cannot implement a fix before you have a tested theory and a plan.",
+      "C": "Verification is step 6, performed only after the solution is implemented.",
+      "D": "Documentation is the final activity, after the system is verified."
+    },
+    "reference": "IT Troubleshooting › CompTIA methodology"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "EASY",
+    "prompt": "A user reports that a desktop is completely dead: no fans spin, no lights, nothing happens when the power button is pressed. What is the BEST first thing to check?",
+    "options": [
+      {"id": "A", "text": "Reseat the RAM modules and clear CMOS"},
+      {"id": "B", "text": "Run a S.M.A.R.T. health check on the hard drive"},
+      {"id": "C", "text": "The power source: wall outlet/UPS, surge protector, and PSU connections"},
+      {"id": "D", "text": "Update the graphics card driver in Safe Mode"}
+    ],
+    "correctId": "C",
+    "rationale": "No power at all (no fans, no lights) points to the power source. Start with the simplest, most likely cause: verify the wall outlet/UPS, that the surge protector is not tripped, the PSU switch/voltage selector, and the 24-pin/8-pin connectors. Test with a PSU tester or a known-good PSU.",
+    "optionNotes": {
+      "A": "Reseating RAM and clearing CMOS addresses a POST failure (fans spin, no display), not a totally dead system.",
+      "B": "You cannot run any software diagnostic on a machine that will not power on.",
+      "D": "Safe Mode requires the system to boot, which it cannot do with no power."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "EASY",
+    "prompt": "A Windows PC pulls the IP address 169.254.18.42 and cannot reach the network. What does this address indicate?",
+    "options": [
+      {"id": "A", "text": "The DNS server is misconfigured"},
+      {"id": "B", "text": "The client failed to obtain an address from a DHCP server (APIPA)"},
+      {"id": "C", "text": "The default gateway is unreachable but DHCP succeeded"},
+      {"id": "D", "text": "The NIC is set to a valid static address on the LAN"}
+    ],
+    "correctId": "B",
+    "rationale": "An address in the 169.254.0.0/16 range is APIPA (Automatic Private IP Addressing). Windows self-assigns it only when the client requested a DHCP lease but received no reply, so the root cause is DHCP failure (dead/unreachable DHCP server, exhausted scope, switch/cable/VLAN problem, or service down).",
+    "optionNotes": {
+      "A": "DNS resolves names; it has nothing to do with how the interface obtained 169.254.x.x. A DNS problem still leaves a valid IP.",
+      "C": "If DHCP had succeeded the client would have a proper lease, not an APIPA address.",
+      "D": "169.254.x.x is never a deliberately assigned LAN static address; it is the self-assigned APIPA range."
+    },
+    "reference": "IT Troubleshooting › Network troubleshooting"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "EASY",
+    "prompt": "A user's PC keeps shutting itself off after a few minutes of heavy use, and you notice the case is hot and dusty. What is the MOST likely cause?",
+    "options": [
+      {"id": "A", "text": "A corrupt Windows user profile"},
+      {"id": "B", "text": "An expired antivirus subscription"},
+      {"id": "C", "text": "Overheating from dust-clogged fans/heatsink or dried thermal paste"},
+      {"id": "D", "text": "A DNS misconfiguration"}
+    ],
+    "correctId": "C",
+    "rationale": "Abrupt shutdowns or throttling under load with a hot, dusty case are classic thermal symptoms. The CPU/GPU hits its thermal limit and the board trips protection. Fix: blow out dust, confirm all fans spin, and clean/reapply thermal paste; ensure correct airflow.",
+    "optionNotes": {
+      "A": "A corrupt profile causes logon/desktop errors, not load-dependent hardware shutdowns.",
+      "B": "Antivirus status does not power off the machine.",
+      "D": "DNS affects name resolution, not power/thermal behavior."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A PC powers on (fans spin, lights come on) but there is no display and the motherboard emits a repeating pattern of beeps. What is the BEST next step?",
+    "options": [
+      {"id": "A", "text": "Replace the power supply, since the system is not getting power"},
+      {"id": "B", "text": "Look up the beep code and reseat/test the RAM and GPU"},
+      {"id": "C", "text": "Reinstall the operating system from recovery media"},
+      {"id": "D", "text": "Run chkdsk to repair the file system"}
+    ],
+    "correctId": "B",
+    "rationale": "Fans spinning with no display and beeps is a POST (Power-On Self-Test) failure, not a power failure. The beep code identifies the failing subsystem (repeating beeps commonly mean RAM; one long plus two/three short often means video). Diagnose by matching the code to the BIOS vendor and reseating/testing RAM and the GPU.",
+    "optionNotes": {
+      "A": "The system clearly has power (fans spin and it can beep), so the PSU is not the issue.",
+      "C": "An OS reinstall is pointless when the system never completes POST to reach the disk.",
+      "D": "chkdsk requires a booting OS; the machine never reaches the drive at POST."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "From a workstation you can successfully ping a remote server by its IP address (10.20.0.5) but pinging it by hostname returns 'could not find host.' What is the MOST likely cause?",
+    "options": [
+      {"id": "A", "text": "A duplex mismatch on the switch port"},
+      {"id": "B", "text": "A faulty network cable"},
+      {"id": "C", "text": "A name-resolution (DNS) problem"},
+      {"id": "D", "text": "The remote server's firewall is blocking ICMP"}
+    ],
+    "correctId": "C",
+    "rationale": "IP connectivity works (the IP ping succeeds), so Layers 1-3 and routing are fine. The only thing that fails is translating the name to an address, which is DNS. Verify with nslookup and check the configured DNS server / hosts file.",
+    "optionNotes": {
+      "A": "A duplex mismatch causes slowness/errors/collisions, not a clean IP ping succeeding while only name lookup fails.",
+      "B": "A faulty cable would also break the IP ping; that one succeeded.",
+      "D": "If ICMP were blocked, the IP-address ping would also fail; it succeeded."
+    },
+    "reference": "IT Troubleshooting › Network troubleshooting"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A technician wants to map every router (hop) along the path to an external host to find where traffic is being delayed or dropped. Which utility is designed for this?",
+    "options": [
+      {"id": "A", "text": "ipconfig /all"},
+      {"id": "B", "text": "tracert (traceroute)"},
+      {"id": "C", "text": "nslookup"},
+      {"id": "D", "text": "chkdsk"}
+    ],
+    "correctId": "B",
+    "rationale": "tracert (traceroute) sends packets with increasing TTL values to reveal each hop and its round-trip time, so it pinpoints where along the path latency rises or packets stop, which is exactly identifying a problem hop.",
+    "optionNotes": {
+      "A": "ipconfig /all shows the local interface configuration (IP, gateway, DNS, MAC), not the path to a remote host.",
+      "C": "nslookup queries DNS for name-to-IP resolution; it does not trace the route.",
+      "D": "chkdsk is a disk/file-system repair tool, unrelated to network paths."
+    },
+    "reference": "IT Troubleshooting › Network troubleshooting"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A Windows PC blue-screens randomly with stop codes such as MEMORY_MANAGEMENT and IRQL_NOT_LESS_OR_EQUAL, and occasionally crashes different applications. After reseating the modules the problem persists. What is the BEST next diagnostic step?",
+    "options": [
+      {"id": "A", "text": "Run a memory test (Windows Memory Diagnostic or MemTest86), testing one stick at a time"},
+      {"id": "B", "text": "Defragment the system drive"},
+      {"id": "C", "text": "Replace the CMOS battery"},
+      {"id": "D", "text": "Increase the size of the page file"}
+    ],
+    "correctId": "A",
+    "rationale": "Those stop codes plus random app crashes and corruption strongly suggest bad RAM. After reseating, the correct step is to run a memory diagnostic over multiple passes and isolate the faulty module by testing one stick at a time in a known-good slot; any errors mean replace that stick.",
+    "optionNotes": {
+      "B": "Defragmentation addresses HDD fragmentation/performance, not memory errors and BSODs.",
+      "C": "A dead CMOS battery causes lost BIOS settings/clock, not these RAM-pattern BSODs.",
+      "D": "Enlarging the page file does not fix physically failing memory; it can even crash more."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A user's mechanical hard drive has started making a repetitive clicking noise and Windows is slow and throwing read errors. What should you do FIRST?",
+    "options": [
+      {"id": "A", "text": "Defragment the drive to improve performance"},
+      {"id": "B", "text": "Run chkdsk /r repeatedly until the errors clear"},
+      {"id": "C", "text": "Back up / image the data immediately, then replace the drive"},
+      {"id": "D", "text": "Update the storage controller driver and continue using the drive"}
+    ],
+    "correctId": "C",
+    "rationale": "A clicking HDD ('click of death') with read errors signals imminent mechanical failure. The priority is to preserve data: image or back it up immediately before doing anything that adds wear, then replace the drive. Confirm health with S.M.A.R.T. (e.g., CrystalDiskInfo).",
+    "optionNotes": {
+      "A": "Defragmenting a dying drive adds heavy read/write stress and can hasten total failure and data loss.",
+      "B": "Repeated chkdsk /r passes hammer a failing drive and risk losing the data you still could have saved.",
+      "D": "A driver update will not fix mechanical failure; continued use risks losing everything."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A Windows PC will not boot normally and you suspect a recently installed driver. You want to start Windows with only essential drivers and services to test that theory. Which option should you use?",
+    "options": [
+      {"id": "A", "text": "Boot into Safe Mode"},
+      {"id": "B", "text": "Run sfc /scannow from a normal session"},
+      {"id": "C", "text": "Reset the BIOS to factory defaults"},
+      {"id": "D", "text": "Rebuild the BCD with bootrec /rebuildbcd"}
+    ],
+    "correctId": "A",
+    "rationale": "Safe Mode loads Windows with a minimal set of generic drivers and services, which is exactly how you isolate a problematic third-party driver or startup item. If the system is stable in Safe Mode you can roll back/uninstall the suspect driver.",
+    "optionNotes": {
+      "B": "sfc /scannow repairs corrupt system files but requires a working session and does not isolate a bad driver.",
+      "C": "Resetting the BIOS addresses firmware-level settings, not a Windows driver loaded at boot.",
+      "D": "bootrec /rebuildbcd fixes boot-configuration problems, not a driver that loads after Windows starts."
+    },
+    "reference": "IT Troubleshooting › OS and software"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "Following malware-removal best practice, after you have identified and verified the malware symptoms, what is the NEXT step?",
+    "options": [
+      {"id": "A", "text": "Schedule scans and re-enable System Restore"},
+      {"id": "B", "text": "Quarantine the infected system"},
+      {"id": "C", "text": "Educate the end user about prevention"},
+      {"id": "D", "text": "Remediate (run scans, remove the malware)"}
+    ],
+    "correctId": "B",
+    "rationale": "The best-practice order is: (1) identify and verify symptoms, (2) quarantine the infected system, (3) disable System Restore (in Windows), (4) remediate, (5) schedule scans and re-enable System Restore, (6) educate the user. Quarantining (isolating from the network) immediately after identification stops the malware from spreading.",
+    "optionNotes": {
+      "A": "Scheduling scans and re-enabling System Restore is the second-to-last step, performed after remediation.",
+      "C": "Educating the user is the final step, after the system is clean.",
+      "D": "Remediation comes after you have quarantined the system and disabled System Restore."
+    },
+    "reference": "IT Troubleshooting › Malware removal"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "HARD",
+    "prompt": "Two devices share a link where one end is set to full duplex and the other auto-negotiates to half duplex. Which symptom MOST strongly points to this duplex mismatch?",
+    "options": [
+      {"id": "A", "text": "The link is completely down with no carrier"},
+      {"id": "B", "text": "An APIPA 169.254.x.x address is assigned"},
+      {"id": "C", "text": "The link connects but is very slow with late collisions and CRC/runt errors"},
+      {"id": "D", "text": "Names will not resolve even though IPs ping fine"}
+    ],
+    "correctId": "C",
+    "rationale": "A duplex mismatch still passes traffic, but the half-duplex side detects late collisions and the full-duplex side logs CRC/runt/alignment errors, producing very poor throughput under load. The classic signature is a working-but-slow link with rising error counters, not a total outage.",
+    "optionNotes": {
+      "A": "A duplex mismatch leaves the link up; a fully down link with no carrier is a cabling/port fault.",
+      "B": "APIPA indicates DHCP failure, a separate Layer-2/3 addressing problem.",
+      "D": "Names failing while IPs ping is a DNS problem, unrelated to duplex settings."
+    },
+    "reference": "IT Troubleshooting › Network troubleshooting"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "MEDIUM",
+    "prompt": "A wall-jack network drop is intermittent, so you want to confirm whether the in-wall cabling has a wiring fault such as an open, short, or split pair. Which tool is the RIGHT choice?",
+    "options": [
+      {"id": "A", "text": "A cable tester (wire-map / continuity tester)"},
+      {"id": "B", "text": "nslookup"},
+      {"id": "C", "text": "A multimeter set to measure CPU voltage"},
+      {"id": "D", "text": "ping -t to the default gateway"}
+    ],
+    "correctId": "A",
+    "rationale": "A cable tester verifies the physical wiring: it checks continuity and the wire map to detect opens, shorts, reversed pairs, and split pairs on a copper run. That is precisely how you confirm a Layer-1 cabling fault behind a wall jack.",
+    "optionNotes": {
+      "B": "nslookup tests DNS name resolution, a Layer-7 service, not physical wiring.",
+      "C": "A multimeter measuring CPU voltage has nothing to do with twisted-pair wire mapping.",
+      "D": "A continuous ping shows packet loss but cannot tell you which pair is open/shorted in the wall."
+    },
+    "reference": "IT Troubleshooting › Network troubleshooting"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "HARD",
+    "prompt": "After a sudden power loss, a PC boots to a black screen reading 'No boot device found / Operating System not found,' yet the drive worked yesterday. Which sequence of checks is the BEST first-line approach?",
+    "options": [
+      {"id": "A", "text": "Immediately reinstall Windows from USB to recreate the partitions"},
+      {"id": "B", "text": "Confirm the drive is detected in BIOS/UEFI; if so, verify boot order and that boot mode (UEFI vs Legacy/CSM) matches the install, then repair the boot files with bootrec"},
+      {"id": "C", "text": "Replace the motherboard, since the firmware lost the OS"},
+      {"id": "D", "text": "Run a memory test, because RAM errors cause missing-OS messages"}
+    ],
+    "correctId": "B",
+    "rationale": "First determine whether the drive is even seen by firmware. If it is not detected, reseat SATA/power or the M.2 (or the drive is dead). If it is detected, the OS is likely fine but unbootable: confirm boot order, ensure boot mode matches the installation (UEFI vs Legacy/CSM), and repair boot records with bootrec (/fixmbr, /fixboot, /rebuildbcd). This preserves data and fixes the common power-loss boot corruption.",
+    "optionNotes": {
+      "A": "Reinstalling Windows destroys data and is premature before confirming the OS is actually gone.",
+      "C": "A 'no boot device' message rarely means a dead motherboard; replacing it skips the cheap, likely fixes.",
+      "D": "Bad RAM produces BSODs/POST failures, not specifically an 'operating system not found' boot-device message."
+    },
+    "reference": "IT Troubleshooting › OS and software"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "HARD",
+    "prompt": "An older PC has become unstable, randomly shutting down and sometimes failing to POST. Inspecting the motherboard you see several electrolytic capacitors with bulging, domed tops and crusty residue. What is the correct conclusion and action?",
+    "options": [
+      {"id": "A", "text": "It is a software driver conflict; reinstall Windows"},
+      {"id": "B", "text": "Swollen/failed capacitors are causing the instability; recap the board (specialist) or replace the board/PSU"},
+      {"id": "C", "text": "The CPU is overclocked; lower the multiplier in BIOS"},
+      {"id": "D", "text": "The RAM is failing; run MemTest86 and replace the DIMMs"}
+    ],
+    "correctId": "B",
+    "rationale": "Bulging/domed capacitors with leaked electrolyte are a clear hardware failure that causes power instability, random shutdowns, and no-POST. The board cannot deliver clean power. The fix is to recap the board (specialist soldering) or, more practically, replace the affected board or PSU.",
+    "optionNotes": {
+      "A": "Visible blown capacitors are a physical fault; no software reinstall can fix degraded power delivery.",
+      "C": "Overclocking does not make capacitors swell and leak; the visible damage is the root cause.",
+      "D": "While bad RAM can cause instability, the visible swollen caps are the obvious physical fault to address first."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT Troubleshooting",
+    "difficulty": "HARD",
+    "prompt": "A laptop's built-in screen is black, but when connected to an external monitor the desktop displays perfectly. Shining a flashlight at the laptop's panel reveals a very faint image of the desktop. What does this MOST likely indicate?",
+    "options": [
+      {"id": "A", "text": "The dedicated GPU has failed and must be replaced"},
+      {"id": "B", "text": "The operating system needs to be reinstalled"},
+      {"id": "C", "text": "A failed backlight/inverter (the panel data path is working)"},
+      {"id": "D", "text": "The RAM is faulty and is corrupting the framebuffer"}
+    ],
+    "correctId": "C",
+    "rationale": "The external monitor works, so the GPU and system are fine and the fault is in the laptop's panel path. A faint image visible under a flashlight means the panel is receiving and rendering data but is not lit, which points to a failed backlight or (on older units) inverter, not a dead panel or data cable.",
+    "optionNotes": {
+      "A": "If the GPU had failed, the external monitor would not display correctly; it does.",
+      "B": "The OS is clearly running (the external monitor shows the desktop), so a reinstall is irrelevant.",
+      "D": "Faulty RAM would corrupt or crash both displays, not selectively darken the internal panel while leaving a faint image."
+    },
+    "reference": "IT Troubleshooting › Hardware symptoms"
+  }
+]

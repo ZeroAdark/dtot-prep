@@ -8,6 +8,7 @@ import {
 import { JOB_KNOWLEDGE_EXTRA_2 } from "./seed-extra-2";
 import { JOB_KNOWLEDGE_EXTRA_3 } from "./seed-extra-3";
 import { STUDY } from "./study-data";
+import { EXTRA_QUESTIONS } from "./questions-extra";
 
 const prisma = new PrismaClient();
 const j = (v: unknown) => JSON.stringify(v);
@@ -930,6 +931,7 @@ const ALL_QUESTIONS: Q[] = [
   ...(JOB_KNOWLEDGE_EXTRA_3 as unknown as Q[]),
   ...(SITUATIONAL_EXTRA as unknown as Q[]),
   ...(ENGLISH_EXTRA as unknown as Q[]),
+  ...(EXTRA_QUESTIONS as unknown as Q[]),
 ];
 
 async function main() {

@@ -1,0 +1,362 @@
+[
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "prompt": "Which motherboard form factor is the largest of the common consumer sizes, measuring approximately 12 x 9.6 inches and offering the most expansion slots?",
+    "options": [
+      { "id": "A", "text": "Micro-ATX" },
+      { "id": "B", "text": "Mini-ITX" },
+      { "id": "C", "text": "ATX" },
+      { "id": "D", "text": "Nano-ITX" }
+    ],
+    "correctId": "C",
+    "rationale": "Standard ATX is roughly 12 x 9.6 inches and is the largest of the common mainstream consumer form factors, giving it the most room for PCIe slots, RAM slots, and connectors.",
+    "optionNotes": {
+      "A": "Micro-ATX is smaller (about 9.6 x 9.6 in) with fewer expansion slots.",
+      "B": "Mini-ITX is a very small 6.7 x 6.7 in board, typically with only one expansion slot.",
+      "D": "Nano-ITX is even smaller than Mini-ITX (4.7 x 4.7 in), used in embedded/SFF devices."
+    },
+    "reference": "Computer Hardware › Motherboards & Form Factors"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "prompt": "What does the acronym POST stand for in the context of a computer's startup process?",
+    "options": [
+      { "id": "A", "text": "Primary Operating System Transfer" },
+      { "id": "B", "text": "Power-On Self-Test" },
+      { "id": "C", "text": "Peripheral Output Status Test" },
+      { "id": "D", "text": "Program Order State Table" }
+    ],
+    "correctId": "B",
+    "rationale": "POST stands for Power-On Self-Test, a diagnostic sequence the firmware (BIOS/UEFI) runs at startup to verify core hardware such as CPU, RAM, and the video adapter before handing control to the bootloader.",
+    "optionNotes": {
+      "A": "There is no 'Primary Operating System Transfer'; the OS is loaded later by the bootloader, not by POST.",
+      "C": "POST tests core internal hardware, not just peripheral output.",
+      "D": "This is a fabricated term unrelated to the firmware startup test."
+    },
+    "reference": "Computer Hardware › BIOS/UEFI & POST"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "prompt": "Which RAID level mirrors data identically across two drives, providing redundancy but no usable capacity gain?",
+    "options": [
+      { "id": "A", "text": "RAID 0" },
+      { "id": "B", "text": "RAID 5" },
+      { "id": "C", "text": "RAID 1" },
+      { "id": "D", "text": "RAID 6" }
+    ],
+    "correctId": "C",
+    "rationale": "RAID 1 is disk mirroring: the same data is written to both drives, so the array survives a single drive failure but usable capacity equals that of one drive.",
+    "optionNotes": {
+      "A": "RAID 0 stripes data for performance/capacity with no redundancy; a single drive failure loses everything.",
+      "B": "RAID 5 uses striping with distributed single parity, not mirroring, and needs at least three drives.",
+      "D": "RAID 6 uses striping with double distributed parity (needs at least four drives), not mirroring."
+    },
+    "reference": "Computer Hardware › RAID"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "prompt": "Which connector is the main power connector that supplies power from the PSU to a modern ATX motherboard?",
+    "options": [
+      { "id": "A", "text": "24-pin ATX connector" },
+      { "id": "B", "text": "15-pin SATA power connector" },
+      { "id": "C", "text": "4-pin Molex connector" },
+      { "id": "D", "text": "6-pin PCIe connector" }
+    ],
+    "correctId": "A",
+    "rationale": "The 24-pin ATX connector is the primary motherboard power connector on modern ATX systems, delivering the main rails to the board.",
+    "optionNotes": {
+      "B": "The 15-pin SATA power connector powers SATA drives, not the motherboard.",
+      "C": "The 4-pin Molex connector is a legacy peripheral power connector for older drives and fans.",
+      "D": "The 6-pin PCIe connector supplies supplemental power to graphics cards, not the motherboard itself."
+    },
+    "reference": "Computer Hardware › Power Supplies & Connectors"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "prompt": "Which memory module is physically smaller and designed primarily for laptops and small-form-factor systems?",
+    "options": [
+      { "id": "A", "text": "DIMM" },
+      { "id": "B", "text": "SO-DIMM" },
+      { "id": "C", "text": "RIMM" },
+      { "id": "D", "text": "SIPP" }
+    ],
+    "correctId": "B",
+    "rationale": "SO-DIMM (Small Outline DIMM) is the compact memory module used in laptops, mini-PCs, and many all-in-ones because of its reduced length compared to a full-size DIMM.",
+    "optionNotes": {
+      "A": "A standard DIMM is the full-length module used in desktops and servers.",
+      "C": "RIMM is an obsolete Rambus (RDRAM) module, not the standard laptop form factor.",
+      "D": "SIPP is an obsolete single in-line pin package memory format from early PCs."
+    },
+    "reference": "Computer Hardware › RAM"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "What is the maximum theoretical data transfer rate of the SATA III (SATA 6Gb/s) interface?",
+    "options": [
+      { "id": "A", "text": "Approximately 150 MB/s" },
+      { "id": "B", "text": "Approximately 300 MB/s" },
+      { "id": "C", "text": "Approximately 600 MB/s" },
+      { "id": "D", "text": "Approximately 985 MB/s per lane" }
+    ],
+    "correctId": "C",
+    "rationale": "SATA III runs at a 6 Gb/s signaling rate; after 8b/10b encoding overhead the usable throughput is about 600 MB/s, which is why SATA SSDs plateau near that figure.",
+    "optionNotes": {
+      "A": "About 150 MB/s is the rate of the original SATA I (1.5 Gb/s).",
+      "B": "About 300 MB/s corresponds to SATA II (3 Gb/s).",
+      "D": "About 985 MB/s per lane describes a PCIe 3.0 lane (used by NVMe), not the SATA III bus."
+    },
+    "reference": "Computer Hardware › Storage"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "An NVMe M.2 SSD achieves dramatically higher speeds than a SATA SSD primarily because it communicates over which interface?",
+    "options": [
+      { "id": "A", "text": "The SATA III bus through the AHCI controller" },
+      { "id": "B", "text": "The PCI Express (PCIe) bus" },
+      { "id": "C", "text": "The USB 3.2 Gen 2 bus" },
+      { "id": "D", "text": "The legacy IDE/PATA channel" }
+    ],
+    "correctId": "B",
+    "rationale": "NVMe drives connect over PCIe lanes, providing far greater bandwidth and lower latency than the SATA bus. An M.2 slot can carry either SATA or PCIe/NVMe signaling, but it is the PCIe path that gives NVMe its speed.",
+    "optionNotes": {
+      "A": "Using the SATA bus with AHCI caps a drive at SATA III's ~600 MB/s; that is exactly what NVMe bypasses.",
+      "C": "USB is an external peripheral bus, not how internal NVMe drives connect to the system.",
+      "D": "IDE/PATA is an obsolete parallel interface far slower than even SATA."
+    },
+    "reference": "Computer Hardware › Storage"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "Which statement best describes the purpose of a TPM (Trusted Platform Module) in a modern PC?",
+    "options": [
+      { "id": "A", "text": "It accelerates 3D graphics rendering for games and CAD applications." },
+      { "id": "B", "text": "It is a dedicated cryptoprocessor that securely stores keys used for features like disk encryption and Secure Boot." },
+      { "id": "C", "text": "It increases the number of usable PCIe lanes available to the CPU." },
+      { "id": "D", "text": "It provides temporary high-speed cache shared between the CPU and GPU." }
+    ],
+    "correctId": "B",
+    "rationale": "A TPM is a hardware cryptoprocessor that generates, stores, and protects cryptographic keys. It underpins capabilities such as BitLocker drive encryption and platform-integrity measurements that support Secure Boot.",
+    "optionNotes": {
+      "A": "Graphics rendering is handled by the GPU, not the TPM.",
+      "C": "PCIe lane allocation is a function of the CPU and chipset, unrelated to the TPM.",
+      "D": "The TPM is not a performance cache; CPU/GPU caches are separate SRAM structures."
+    },
+    "reference": "Computer Hardware › BIOS/UEFI, TPM & Secure Boot"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "To enable dual-channel memory operation on a typical four-slot motherboard, how should two matched RAM modules normally be installed?",
+    "options": [
+      { "id": "A", "text": "Both modules in the two slots closest to the CPU, ignoring color coding" },
+      { "id": "B", "text": "In the two slots of the same color (matching channels), per the motherboard manual" },
+      { "id": "C", "text": "One module only, since dual-channel uses a single high-capacity stick" },
+      { "id": "D", "text": "Both modules in slots 1 and 2, which are always the same channel" }
+    ],
+    "correctId": "B",
+    "rationale": "Boards interleave two channels across the four slots and usually color-code the matched pairs (e.g., slots A2 and B2). Populating the two same-colored slots as directed by the manual enables dual-channel. Slot order alone does not guarantee correct channel pairing.",
+    "optionNotes": {
+      "A": "The two slots closest to the CPU are commonly the same channel, not opposite channels, so this often yields single-channel.",
+      "C": "Dual-channel requires two modules running in parallel across two channels, not one stick.",
+      "D": "Slots 1 and 2 are frequently the same color/channel, so this typically does not enable dual-channel."
+    },
+    "reference": "Computer Hardware › RAM"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "Which video interface is purely digital, supports audio over the same cable, and is the most common connector found on consumer TVs and monitors today?",
+    "options": [
+      { "id": "A", "text": "VGA" },
+      { "id": "B", "text": "DVI-D" },
+      { "id": "C", "text": "HDMI" },
+      { "id": "D", "text": "Composite (RCA) video" }
+    ],
+    "correctId": "C",
+    "rationale": "HDMI carries digital video and audio over a single cable and is the dominant connector on consumer displays and TVs. While DisplayPort and DVI-D are also digital, HDMI is the ubiquitous consumer standard that also natively carries audio.",
+    "optionNotes": {
+      "A": "VGA is an analog-only video interface that carries no audio.",
+      "B": "DVI-D is digital but does not natively carry audio (standard DVI carries no audio).",
+      "D": "Composite video is a low-resolution analog signal, not a modern digital interface."
+    },
+    "reference": "Computer Hardware › Video Standards"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "Which statement about ECC memory is correct?",
+    "options": [
+      { "id": "A", "text": "ECC RAM can detect and correct single-bit memory errors, making it common in servers and workstations." },
+      { "id": "B", "text": "ECC RAM is faster than non-ECC RAM because it skips parity calculation." },
+      { "id": "C", "text": "ECC is a cooling technology applied to memory modules." },
+      { "id": "D", "text": "ECC RAM works only in laptops and is incompatible with desktops." }
+    ],
+    "correctId": "A",
+    "rationale": "ECC (Error-Correcting Code) memory uses extra bits to detect and automatically correct single-bit errors (and detect many multi-bit errors), which is why it is favored where data integrity is critical, such as servers and workstations.",
+    "optionNotes": {
+      "B": "ECC adds a small overhead for its check bits, so it is typically slightly slower, not faster, than equivalent non-ECC.",
+      "C": "ECC is an error-correction scheme, not a cooling technology.",
+      "D": "ECC is mainly a server/workstation feature requiring supporting CPU and chipset; it is not laptop-only."
+    },
+    "reference": "Computer Hardware › RAM"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "A computer's CPU is described as 64-bit. What is the primary practical advantage this gives over a 32-bit CPU?",
+    "options": [
+      { "id": "A", "text": "It can address far more than 4 GB of RAM (well beyond the 32-bit limit)." },
+      { "id": "B", "text": "It always doubles the clock speed of the processor." },
+      { "id": "C", "text": "It eliminates the need for a cooling solution." },
+      { "id": "D", "text": "It removes the need for a chipset on the motherboard." }
+    ],
+    "correctId": "A",
+    "rationale": "A 32-bit CPU/OS can address only about 4 GB of memory (2^32 bytes). A 64-bit architecture can address vastly more RAM, which is its key practical benefit (along with wider registers).",
+    "optionNotes": {
+      "B": "Bit width relates to register size and addressable memory, not clock speed.",
+      "C": "All modern CPUs still require cooling regardless of bit width.",
+      "D": "A chipset is still needed; bit width does not change that."
+    },
+    "reference": "Computer Hardware › CPUs"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "Which RAID configuration combines mirroring and striping, requires a minimum of four drives, and offers both redundancy and improved performance?",
+    "options": [
+      { "id": "A", "text": "RAID 5" },
+      { "id": "B", "text": "RAID 0" },
+      { "id": "C", "text": "RAID 10 (1+0)" },
+      { "id": "D", "text": "RAID 1" }
+    ],
+    "correctId": "C",
+    "rationale": "RAID 10 stripes data across mirrored pairs, so it needs at least four drives and delivers the redundancy of mirroring plus the read/write performance of striping.",
+    "optionNotes": {
+      "A": "RAID 5 uses single distributed parity (min three drives), not mirroring + striping.",
+      "B": "RAID 0 is striping only, with no redundancy.",
+      "D": "RAID 1 is mirroring only and does not stripe."
+    },
+    "reference": "Computer Hardware › RAID"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "prompt": "Which power connector is most commonly used to provide supplemental power to the CPU near the top of an ATX motherboard?",
+    "options": [
+      { "id": "A", "text": "An 8-pin (EPS/ATX 12V) connector" },
+      { "id": "B", "text": "A 24-pin connector" },
+      { "id": "C", "text": "A 15-pin SATA power connector" },
+      { "id": "D", "text": "A 4-pin Molex connector" }
+    ],
+    "correctId": "A",
+    "rationale": "Modern boards use a 4+4 / 8-pin EPS12V connector at the top of the board to feed the CPU's voltage regulator with dedicated 12V power, separate from the 24-pin main connector.",
+    "optionNotes": {
+      "B": "The 24-pin connector is the main board power connector, not the dedicated CPU 12V feed.",
+      "C": "SATA power connectors feed drives, not the CPU VRM.",
+      "D": "Molex is a legacy peripheral connector, not the CPU power feed on modern boards."
+    },
+    "reference": "Computer Hardware › Power Supplies & Connectors"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "HARD",
+    "prompt": "In the laser printing imaging process, which step uses the laser to write a latent image by selectively neutralizing charge on the photosensitive drum?",
+    "options": [
+      { "id": "A", "text": "Charging" },
+      { "id": "B", "text": "Exposing (writing)" },
+      { "id": "C", "text": "Developing" },
+      { "id": "D", "text": "Fusing" }
+    ],
+    "correctId": "B",
+    "rationale": "In the seven-step process (processing, charging, exposing, developing, transferring, fusing, cleaning), the exposing/writing step is where the laser strikes the uniformly charged drum to discharge specific areas, forming the latent electrostatic image.",
+    "optionNotes": {
+      "A": "Charging applies a uniform charge to the drum before the laser writes; it does not form the image.",
+      "C": "Developing applies toner to the latent image already written by the laser.",
+      "D": "Fusing uses heat and pressure to bond toner permanently to the paper at the end."
+    },
+    "reference": "Computer Hardware › Printers"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "HARD",
+    "prompt": "A high-end GPU is installed in a PCIe x16 slot, but the system reports it is running at x8. Which is the most likely hardware-level explanation?",
+    "options": [
+      { "id": "A", "text": "The slot is physically x16 but electrically wired for only 8 lanes, or lanes are shared with another populated slot/M.2 device." },
+      { "id": "B", "text": "The GPU is defective and must be replaced because x16 cards cannot run at x8." },
+      { "id": "C", "text": "The power supply lacks an 8-pin connector, which forces the slot into x8 mode." },
+      { "id": "D", "text": "The motherboard BIOS has disabled the integrated GPU, halving the lanes." }
+    ],
+    "correctId": "A",
+    "rationale": "A physical x16 slot can be electrically wired for fewer lanes (x8 or x4), and on many boards installing a second card or populating certain M.2 slots causes the CPU's limited lanes to be split, dropping the primary slot to x8. This is normal lane allocation, not a fault.",
+    "optionNotes": {
+      "B": "x16 cards are designed to operate fine at x8 (with minor performance impact); link width dropping does not mean the card is defective.",
+      "C": "Missing supplemental power can prevent the card from working or throttle it, but it does not set the PCIe link width to x8.",
+      "D": "Disabling integrated graphics does not reduce a discrete card's PCIe lane count."
+    },
+    "reference": "Computer Hardware › Expansion (PCIe Lanes)"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "HARD",
+    "prompt": "Which statement most accurately describes Thunderbolt 3 connectivity?",
+    "options": [
+      { "id": "A", "text": "It uses the USB-C connector, can provide up to 40 Gb/s of bandwidth, and can carry PCIe and DisplayPort signals." },
+      { "id": "B", "text": "It uses a proprietary Mini DisplayPort connector and is limited to 10 Gb/s." },
+      { "id": "C", "text": "It is purely a video standard and cannot carry data or power." },
+      { "id": "D", "text": "It is electrically identical to USB 2.0 and caps out at 480 Mb/s." }
+    ],
+    "correctId": "A",
+    "rationale": "Thunderbolt 3 adopted the USB-C connector, delivers up to 40 Gb/s, and can tunnel PCIe and DisplayPort over the same cable, in addition to supplying power. This versatility is its defining trait.",
+    "optionNotes": {
+      "B": "The Mini DisplayPort connector and lower speeds describe earlier Thunderbolt 1/2, not Thunderbolt 3.",
+      "C": "Thunderbolt carries data, video, and power, not video alone.",
+      "D": "480 Mb/s is USB 2.0; Thunderbolt 3 is far faster at up to 40 Gb/s."
+    },
+    "reference": "Computer Hardware › USB & Thunderbolt"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "HARD",
+    "prompt": "A technician must explain why an inkjet printer differs fundamentally from an impact (dot-matrix) printer. Which comparison is correct?",
+    "options": [
+      { "id": "A", "text": "Inkjet sprays liquid ink droplets onto paper, while an impact printer strikes an inked ribbon against the paper to form characters." },
+      { "id": "B", "text": "Inkjet uses heat to fuse toner powder, while impact printers spray ink." },
+      { "id": "C", "text": "Both use a photosensitive drum and laser to create the image." },
+      { "id": "D", "text": "Impact printers are the only type that can print multipart (carbon-copy) forms because they spray ink through nozzles." }
+    ],
+    "correctId": "A",
+    "rationale": "Inkjet printers eject tiny liquid ink droplets through nozzles onto the page, whereas impact (dot-matrix) printers physically strike pins against an inked ribbon and the paper. The mechanical striking action is the defining difference.",
+    "optionNotes": {
+      "B": "Fusing toner powder describes a laser printer, not an inkjet; impact printers strike a ribbon, they do not spray ink.",
+      "C": "Drums and lasers describe laser printers, not inkjet or impact printers.",
+      "D": "Impact printers can indeed print multipart carbon forms, but precisely because they strike the paper, not because they 'spray ink through nozzles' (that statement is self-contradictory)."
+    },
+    "reference": "Computer Hardware › Printers"
+  }
+]

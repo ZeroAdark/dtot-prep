@@ -1,0 +1,282 @@
+[
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "EASY",
+    "prompt": "An embassy technician is about to replace RAM inside a workstation. Which practice best protects the components from electrostatic discharge (ESD)?",
+    "options": [
+      {"id": "A", "text": "Working on a thick carpet to cushion any drops"},
+      {"id": "B", "text": "Holding the modules by their gold contact pins for a firm grip"},
+      {"id": "C", "text": "Running a space heater nearby to keep the room very dry"},
+      {"id": "D", "text": "Wearing an anti-static wrist strap clipped to the chassis ground and handling parts by their edges"}
+    ],
+    "correctId": "D",
+    "rationale": "An ESD wrist strap connected to a grounded point keeps the technician at the same potential as the equipment so no damaging discharge occurs, and handling components by their edges avoids touching sensitive contacts and traces. This is the standard CompTIA-recommended ESD precaution.",
+    "optionNotes": {
+      "A": "Carpet generates static charge through friction, increasing ESD risk rather than reducing it.",
+      "B": "Touching the gold contacts deposits oils and can deliver a discharge directly to the most sensitive points.",
+      "C": "Low humidity actually increases static buildup; the recommended range is 40-60% relative humidity."
+    },
+    "reference": "Operational Procedures › ESD prevention"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "EASY",
+    "prompt": "Embassy server-room equipment caught fire due to an electrical fault in an energized power supply. Which fire extinguisher class is appropriate for energized electrical equipment?",
+    "options": [
+      {"id": "A", "text": "Class A"},
+      {"id": "B", "text": "Class C"},
+      {"id": "C", "text": "Class D"},
+      {"id": "D", "text": "Class K"}
+    ],
+    "correctId": "B",
+    "rationale": "Class C extinguishers are rated for fires involving energized electrical equipment and use a non-conductive agent, making them the correct choice for live electronics. Using a conductive or water-based agent on energized gear risks electrocution.",
+    "optionNotes": {
+      "A": "Class A is for ordinary combustibles such as paper, wood, and cloth, not energized electronics.",
+      "C": "Class D is for combustible metals like magnesium or lithium, not general electrical equipment.",
+      "D": "Class K is for cooking oils and fats in kitchens."
+    },
+    "reference": "Operational Procedures › electrical safety / fire extinguishers"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "EASY",
+    "prompt": "When lifting a heavy UPS battery unit out of an equipment rack, which technique reduces the risk of back injury?",
+    "options": [
+      {"id": "A", "text": "Bending at the waist and lifting with a quick jerk"},
+      {"id": "B", "text": "Twisting your torso to swing the load onto a nearby cart"},
+      {"id": "C", "text": "Bending your knees, keeping your back straight, and lifting with your legs"},
+      {"id": "D", "text": "Holding the load at arm's length to keep it away from your body"}
+    ],
+    "correctId": "C",
+    "rationale": "Proper lifting technique is to bend at the knees with a straight back and lift using the leg muscles, keeping the load close to the body. This minimizes strain on the spine.",
+    "optionNotes": {
+      "A": "Bending at the waist and jerking puts maximum strain on the lower back and is a common cause of injury.",
+      "B": "Twisting while loaded is a frequent cause of back injuries; you should pivot your feet instead.",
+      "D": "Holding a load away from the body greatly increases leverage on the spine and the chance of injury."
+    },
+    "reference": "Operational Procedures › lifting and safety"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "EASY",
+    "prompt": "Before working with a chemical cleaning solvent on embassy equipment, where should a technician look for handling, storage, and disposal precautions?",
+    "options": [
+      {"id": "A", "text": "The Safety Data Sheet (SDS/MSDS) for that product"},
+      {"id": "B", "text": "The configuration management database (CMDB)"},
+      {"id": "C", "text": "The network topology diagram"},
+      {"id": "D", "text": "The acceptable use policy (AUP)"}
+    ],
+    "correctId": "A",
+    "rationale": "A Safety Data Sheet (formerly MSDS) documents a chemical's hazards and provides handling, storage, first-aid, and disposal guidance. It is the authoritative reference for safe use of any chemical product.",
+    "optionNotes": {
+      "B": "A CMDB tracks IT assets and their relationships, not chemical safety information.",
+      "C": "A topology diagram shows how network devices interconnect, not chemical hazards.",
+      "D": "An AUP defines acceptable use of IT systems, not chemical handling."
+    },
+    "reference": "Operational Procedures › SDS/MSDS"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "A technician must service the internals of a CRT monitor and an older power supply unit. Why is it unsafe to start work immediately after unplugging them?",
+    "options": [
+      {"id": "A", "text": "Capacitors inside can retain a dangerous high-voltage charge even after the device is unplugged"},
+      {"id": "B", "text": "The devices need a wrist strap before they will power off"},
+      {"id": "C", "text": "Unplugging resets the device firmware, which must reload first"},
+      {"id": "D", "text": "The fuse must be removed before the chassis is safe to touch"}
+    ],
+    "correctId": "A",
+    "rationale": "CRTs and power supplies contain capacitors that store a high-voltage charge that can persist for a long time after disconnection, posing a serious shock hazard. Such capacitors must be properly discharged (or the device left to a qualified technician) before internal service.",
+    "optionNotes": {
+      "B": "A wrist strap is for ESD protection; it does not power devices off and would not protect against high-voltage capacitor shock (you should not wear one near CRTs/PSUs).",
+      "C": "Firmware reloading has nothing to do with the physical shock hazard from stored charge.",
+      "D": "Removing a fuse does not discharge the capacitors that retain the hazardous charge."
+    },
+    "reference": "Operational Procedures › electrical safety / capacitor hazards"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "A junior technician asks why an ESD wrist strap contains a 1 megohm resistor in series. What is the correct explanation?",
+    "options": [
+      {"id": "A", "text": "It boosts the static charge so it dissipates faster"},
+      {"id": "B", "text": "It limits current flow to protect the wearer if they accidentally contact a live circuit, while still safely draining static"},
+      {"id": "C", "text": "It blocks all current so the strap never grounds the technician"},
+      {"id": "D", "text": "It stores charge like a small battery for later discharge"}
+    ],
+    "correctId": "B",
+    "rationale": "The roughly 1 MΩ resistor in an ESD wrist strap limits current to a safe level if the wearer accidentally touches an energized circuit, while still providing a controlled, slow path for static to drain to ground. It is a safety feature for both the wearer and the components.",
+    "optionNotes": {
+      "A": "The resistor slows the discharge in a controlled way; it does not boost charge.",
+      "C": "If it blocked all current the strap could not drain static, defeating its purpose.",
+      "D": "A resistor dissipates energy as heat; it does not store charge like a capacitor or battery."
+    },
+    "reference": "Operational Procedures › ESD prevention"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "An embassy server room loses utility power for several seconds and the connected equipment keeps running without any interruption. Which power-protection device most likely provided this seamless ride-through, and how?",
+    "options": [
+      {"id": "A", "text": "A surge suppressor, by clamping voltage spikes"},
+      {"id": "B", "text": "A standby UPS, by switching to battery within a few milliseconds during the outage"},
+      {"id": "C", "text": "A standalone generator, by starting instantly with zero delay"},
+      {"id": "D", "text": "A power strip, by isolating the circuit"}
+    ],
+    "correctId": "B",
+    "rationale": "An uninterruptible power supply (UPS) holds equipment up on battery during a short outage; a standby UPS transfers to battery within a few milliseconds, fast enough that loads keep running without interruption. UPS units are sized to bridge brief outages or allow a graceful shutdown.",
+    "optionNotes": {
+      "A": "A surge suppressor only diverts voltage spikes; it provides no backup power during an outage.",
+      "C": "A generator takes seconds to start and assume load, so it cannot bridge an outage by itself without a UPS covering the gap.",
+      "D": "A basic power strip just distributes power and offers no battery backup."
+    },
+    "reference": "Operational Procedures › power protection (surge/UPS/generator)"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "An embassy in an area with frequent brownouts wants a UPS that corrects mild over- and under-voltage conditions using an autotransformer without draining the battery for every fluctuation. Which UPS topology best fits?",
+    "options": [
+      {"id": "A", "text": "Standby (offline) UPS"},
+      {"id": "B", "text": "Line-interactive UPS"},
+      {"id": "C", "text": "Double-conversion (online) UPS"},
+      {"id": "D", "text": "A simple surge suppressor"}
+    ],
+    "correctId": "B",
+    "rationale": "A line-interactive UPS uses an autotransformer (automatic voltage regulation) to correct moderate sags and swells without switching to battery, making it well suited to areas with frequent brownouts. This preserves battery life while still conditioning the power.",
+    "optionNotes": {
+      "A": "A standby UPS only switches to battery during an outage and does not regulate moderate voltage variations.",
+      "C": "An online UPS continuously regenerates power and is excellent but more costly and less efficient than needed just for brownout correction.",
+      "D": "A surge suppressor cannot raise low voltage during brownouts; it only clamps spikes."
+    },
+    "reference": "Operational Procedures › power protection (surge/UPS/generator)"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "Following the 3-2-1 backup rule for embassy data, which arrangement is compliant?",
+    "options": [
+      {"id": "A", "text": "Three copies of the data, stored on two different media types, with one copy kept off-site"},
+      {"id": "B", "text": "Three full backups taken once per day on the same server"},
+      {"id": "C", "text": "Two copies on one disk array, replicated to one folder on the same array"},
+      {"id": "D", "text": "One backup copy stored in three different folders on the same drive"}
+    ],
+    "correctId": "A",
+    "rationale": "The 3-2-1 rule states you should keep at least three copies of data, on two different types of media, with at least one copy stored off-site. This protects against device failure, media-specific failure, and site-level disasters.",
+    "optionNotes": {
+      "B": "Multiple backups on a single server fail the rule because they share one medium and one location.",
+      "C": "Replicating within the same array does not provide two media types or an off-site copy.",
+      "D": "Multiple folders on one drive are still a single copy on a single medium in one location."
+    },
+    "reference": "Operational Procedures › backups / 3-2-1 rule"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "HARD",
+    "prompt": "An embassy backup plan runs a full backup every Sunday and an incremental backup each weeknight. The server fails Thursday morning. To fully restore, which backups are needed and in what order?",
+    "options": [
+      {"id": "A", "text": "Only Wednesday night's incremental, because incrementals are self-contained"},
+      {"id": "B", "text": "Sunday's full, then Monday, Tuesday, and Wednesday incrementals in order"},
+      {"id": "C", "text": "Sunday's full plus only Wednesday's incremental"},
+      {"id": "D", "text": "Wednesday's incremental first, then Sunday's full"}
+    ],
+    "correctId": "B",
+    "rationale": "An incremental backup captures only data changed since the last backup of any type, so a full restore requires the last full backup followed by every incremental taken since it, applied in chronological order. Missing any incremental in the chain leaves gaps in the restored data.",
+    "optionNotes": {
+      "A": "Incrementals are not self-contained; each depends on the full and all prior incrementals.",
+      "C": "Restoring only the last incremental (plus full) describes a differential scheme, not incrementals.",
+      "D": "Order matters: the full must be restored first, then incrementals in chronological order."
+    },
+    "reference": "Operational Procedures › backups / backup types"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "A proposed change to a core embassy router is brought before the Change Advisory Board (CAB). Which element is essential in the change request to allow safe recovery if the change fails?",
+    "options": [
+      {"id": "A", "text": "A documented rollback (back-out) plan"},
+      {"id": "B", "text": "The vendor's marketing brochure for the router"},
+      {"id": "C", "text": "A list of every employee's personal phone number"},
+      {"id": "D", "text": "The retail price of the replacement hardware"}
+    ],
+    "correctId": "A",
+    "rationale": "A rollback (back-out) plan describes how to return the system to its prior working state if the change causes problems, and it is a required part of formal change management reviewed by the CAB. It limits downtime and risk when something goes wrong.",
+    "optionNotes": {
+      "B": "Marketing material is not part of change control and does not aid recovery.",
+      "C": "Personal phone numbers are not a change-management artifact and raise privacy concerns.",
+      "D": "Hardware pricing is a procurement detail, not a recovery mechanism."
+    },
+    "reference": "Operational Procedures › change management"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "MEDIUM",
+    "prompt": "An embassy responder arrives at a workstation suspected of an active compromise. Following incident-response best practice for preserving volatile evidence, what should they do first?",
+    "options": [
+      {"id": "A", "text": "Immediately power off the machine to stop the attack"},
+      {"id": "B", "text": "Reimage the drive right away to clean it"},
+      {"id": "C", "text": "Preserve the system's volatile state (such as memory) and document/photograph it before changing anything, maintaining chain of custody"},
+      {"id": "D", "text": "Delete the suspicious files so they cannot spread"}
+    ],
+    "correctId": "C",
+    "rationale": "Volatile data such as RAM contents, running processes, and network connections is lost when a machine is powered off, so responders should capture and document that state first and preserve evidence with a documented chain of custody. Acting to clean or shut down prematurely destroys evidence.",
+    "optionNotes": {
+      "A": "Powering off discards volatile evidence (memory, live connections) that may be critical.",
+      "B": "Reimaging destroys all evidence and is the opposite of preservation.",
+      "D": "Deleting files tampers with and destroys evidence, breaking chain of custody."
+    },
+    "reference": "Operational Procedures › incident response / chain of custody"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "HARD",
+    "prompt": "An embassy decommissions hard drives that held classified diplomatic data and the policy requires the media be destroyed so data cannot be recovered, even though the drives will be discarded. Which method provides assured destruction for magnetic hard drives?",
+    "options": [
+      {"id": "A", "text": "Performing a quick format of each drive"},
+      {"id": "B", "text": "Deleting all files and emptying the recycle bin"},
+      {"id": "C", "text": "Degaussing the drives or physically shredding them"},
+      {"id": "D", "text": "Assigning new drive letters and hiding the partitions"}
+    ],
+    "correctId": "C",
+    "rationale": "For magnetic hard drives, degaussing (using a strong magnetic field to erase the platters) or physical destruction such as shredding renders the data unrecoverable, which is required for highly sensitive media being retired. Logical deletion or formatting leaves recoverable data behind.",
+    "optionNotes": {
+      "A": "A quick format only clears the file table; the underlying data remains recoverable.",
+      "B": "Deleting files and emptying the recycle bin leaves the data on disk until overwritten.",
+      "D": "Renaming drives or hiding partitions does not remove the data at all."
+    },
+    "reference": "Operational Procedures › secure data destruction"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Operational Procedures",
+    "difficulty": "HARD",
+    "prompt": "An embassy administrator must enable encrypted remote command-line administration of Linux servers and disable insecure legacy remote access. Which configuration is correct?",
+    "options": [
+      {"id": "A", "text": "Allow SSH on TCP 22 and disable Telnet on TCP 23"},
+      {"id": "B", "text": "Allow Telnet on TCP 23 because it is faster than SSH"},
+      {"id": "C", "text": "Allow RDP on TCP 3389 for command-line Linux administration"},
+      {"id": "D", "text": "Allow Telnet on TCP 23 and SSH on TCP 22 so users can choose either"}
+    ],
+    "correctId": "A",
+    "rationale": "SSH (TCP port 22) provides encrypted remote command-line access and should be used, while Telnet (TCP port 23) transmits credentials and data in cleartext and must be disabled. Leaving Telnet enabled exposes sensitive traffic to interception.",
+    "optionNotes": {
+      "B": "Telnet is insecure regardless of any speed difference; cleartext credentials are unacceptable.",
+      "C": "RDP (3389) is for graphical Windows remote desktop, not Linux command-line administration.",
+      "D": "Leaving Telnet enabled alongside SSH still exposes an insecure cleartext path that must be closed."
+    },
+    "reference": "Operational Procedures › remote-access security"
+  }
+]
