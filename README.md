@@ -64,14 +64,31 @@ profile, and start practicing. (`npm install` already runs `prisma generate` via
 
 ---
 
+## Run with Docker
+
+A production image and `docker-compose.yml` are included. The app runs behind a
+reverse proxy and publishes only to the host loopback; SQLite persists in the
+named volume `dtot-data` (the entrypoint seeds it on first run, and preserves it
+across rebuilds).
+
+```bash
+docker compose up -d --build
+# app is now on http://127.0.0.1:3000  → front it with a reverse proxy
+```
+
+Update later with `docker compose up -d --build` (the volume keeps your data).
+Manage with `docker compose ps`, `docker compose logs -f`, `docker compose restart`.
+
+---
+
 ## Switching to PostgreSQL
 
 The schema is written to be portable — switching is a one-line change.
 
-1. Start Postgres (a compose file is included):
+1. Start Postgres (included as a compose profile):
 
    ```bash
-   docker compose up -d
+   docker compose --profile postgres up -d
    ```
 
 2. Point Prisma at Postgres — either edit the `datasource` `provider` in
