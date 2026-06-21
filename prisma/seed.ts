@@ -7,6 +7,7 @@ import {
 } from "./seed-extra";
 import { JOB_KNOWLEDGE_EXTRA_2 } from "./seed-extra-2";
 import { JOB_KNOWLEDGE_EXTRA_3 } from "./seed-extra-3";
+import { STUDY } from "./study-data";
 
 const prisma = new PrismaClient();
 const j = (v: unknown) => JSON.stringify(v);
@@ -931,158 +932,6 @@ const ALL_QUESTIONS: Q[] = [
   ...(ENGLISH_EXTRA as unknown as Q[]),
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STUDY MATERIALS
-// ─────────────────────────────────────────────────────────────────────────────
-interface SM {
-  section: string;
-  topic: string;
-  title: string;
-  summary: string;
-  content: string;
-  keyPoints: string[];
-  order: number;
-}
-
-const STUDY: SM[] = [
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "Cloud Computing",
-    title: "Cloud Service & Deployment Models",
-    summary: "IaaS vs. PaaS vs. SaaS, the shared responsibility model, and when each fits.",
-    content:
-      "Cloud computing delivers on-demand computing resources over a network. The three core service models differ by how much the provider manages:\n\n• IaaS (Infrastructure as a Service): provider runs the physical hardware, virtualization, and networking; you manage the OS, runtime, and apps. Example use: standing up virtual servers.\n• PaaS (Platform as a Service): provider also manages the OS and runtime; you manage only your application code and data. Example use: deploying a web app without patching servers.\n• SaaS (Software as a Service): provider manages everything including the application; you just use it. Example use: a hosted email or ticketing system.\n\nDeployment models: public, private, community, and hybrid. Governments often use private/community or dedicated 'government' clouds for sensitive workloads to meet sovereignty and compliance requirements.\n\nThe SHARED RESPONSIBILITY MODEL is essential: the provider secures the cloud (facilities, hardware, host); the customer secures what's in the cloud (data classification, identity & access management, configuration). Most cloud breaches stem from customer misconfiguration, not provider failure.\n\nKey characteristics: on-demand self-service, broad network access, resource pooling, rapid ELASTICITY (auto scale to demand), and measured service (pay per use).",
-    keyPoints: [
-      "IaaS → you manage OS+app; PaaS → you manage app+data; SaaS → you just use it.",
-      "Shared responsibility: provider secures 'of' the cloud, customer secures 'in' the cloud.",
-      "Elasticity = automatic real-time scaling; scalability = capacity to grow.",
-      "Sensitive government data often uses private/community/gov clouds.",
-    ],
-    order: 1,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "Cybersecurity",
-    title: "Cybersecurity Fundamentals",
-    summary: "The CIA triad, least privilege, defense in depth, and common threats.",
-    content:
-      "Security rests on the CIA TRIAD:\n• Confidentiality — only authorized parties can read data (encryption, access control).\n• Integrity — data is accurate and unaltered except by authorized action (hashing, checksums, signatures).\n• Availability — data and services are accessible when needed (redundancy, backups, DDoS protection).\n\nCore principles:\n• Least privilege — every user/process gets only the access it needs, limiting the blast radius of a compromise.\n• Defense in depth — layered controls (perimeter, network, host, application, data) so no single failure is catastrophic.\n• Separation of duties — no one person controls an entire sensitive process.\n\nCryptography: symmetric uses one shared secret (fast, bulk encryption); asymmetric/public-key uses a public/private key pair (solves key distribution, enables digital signatures). TLS combines both.\n\nCommon threats: phishing/social engineering (mitigate with awareness + MFA), malware/ransomware, insider threats, and ZERO-DAYS (vulnerabilities unknown to the vendor with no patch yet). MFA, patching, network segmentation, logging/monitoring, and user training are foundational defenses.",
-    keyPoints: [
-      "CIA: Confidentiality, Integrity, Availability.",
-      "Least privilege and defense in depth limit and contain compromise.",
-      "Symmetric = one shared key; asymmetric = public/private key pair.",
-      "Zero-day = no patch yet; MFA + user awareness blunt phishing.",
-    ],
-    order: 2,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "PBX / VoIP Convergence",
-    title: "PBX/VoIP Convergence & Voice Quality",
-    summary: "How voice moved onto the IP network: SIP, RTP, IP-PBX, and QoS.",
-    content:
-      "Traditional PBX (Private Branch Exchange) systems switched analog/TDM voice on a separate phone network. CONVERGENCE moves voice onto the data (IP) network, so a single infrastructure carries voice, video, and data — reducing cost and enabling unified communications.\n\nKey protocols:\n• SIP (Session Initiation Protocol) — signaling: sets up, modifies, and tears down calls.\n• RTP (Real-time Transport Protocol) — carries the actual media (audio/video) stream, usually over UDP, with sequence numbers and timestamps. RTCP reports on quality.\n\nAn IP-PBX provides PBX features (extensions, voicemail, call routing) over IP, often connecting to the PSTN via SIP trunks or gateways.\n\nVoice is real-time and sensitive to network conditions. QUALITY OF SERVICE (QoS) prioritizes voice packets. Key impairments:\n• Latency — end-to-end delay (target < ~150 ms one way).\n• Jitter — variation in packet arrival; smoothed by jitter buffers.\n• Packet loss — dropped packets cause gaps/robotic audio.\nQoS tagging (e.g., DSCP), adequate bandwidth, and jitter buffers keep calls clear.",
-    keyPoints: [
-      "SIP = signaling/setup; RTP = the actual media stream.",
-      "IP-PBX delivers PBX features over the converged IP network.",
-      "Latency, jitter, and packet loss are the enemies of VoIP quality.",
-      "QoS prioritizes voice traffic on a shared network.",
-    ],
-    order: 3,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "IT & Telecommunications",
-    title: "Networking Essentials: OSI, IP & DNS",
-    summary: "Layers, addressing, subnetting basics, and core services.",
-    content:
-      "The OSI MODEL has seven layers: Physical (1), Data Link (2), Network (3), Transport (4), Session (5), Presentation (6), Application (7). Quick anchors: switches operate at Layer 2 (MAC addresses), routers at Layer 3 (IP addresses), TCP/UDP at Layer 4.\n\nIP ADDRESSING: IPv4 addresses are 32 bits, written as four octets. A subnet mask (e.g., /24) separates the network portion from the host portion. A /24 has 8 host bits → 256 addresses, minus the network and broadcast addresses = 254 usable hosts.\n\nTCP vs UDP: TCP is connection-oriented and reliable (handshake, retransmission) — used for web, email, file transfer. UDP is connectionless and low-overhead — used for real-time voice/video and DNS queries.\n\nDNS resolves names to addresses. Common record types: A (name→IPv4), AAAA (name→IPv6), CNAME (alias), MX (mail servers), TXT (text, e.g., SPF/DKIM).\n\nTransmission media: copper (cheap, EMI-prone, limited distance, can carry PoE) vs. fiber (immune to EMI, long distance, higher bandwidth, costlier to terminate).",
-    keyPoints: [
-      "Switch = L2/MAC; Router = L3/IP; TCP/UDP = L4.",
-      "/24 = 254 usable hosts (256 − network − broadcast).",
-      "TCP reliable/connection-oriented; UDP fast/connectionless.",
-      "DNS records: A, AAAA, CNAME, MX, TXT.",
-    ],
-    order: 4,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "Radio Systems",
-    title: "Radio Systems Primer",
-    summary: "Bands, propagation, repeaters, and why HF endures for diplomacy.",
-    content:
-      "Radio communication remains a critical fallback for diplomatic and emergency operations because it needs no fixed infrastructure.\n\nBANDS & PROPAGATION:\n• HF (3–30 MHz) — can refract off the IONOSPHERE (skywave), enabling beyond-line-of-sight and intercontinental links. Conditions vary with time of day and solar activity.\n• VHF/UHF (30 MHz–3 GHz) — essentially LINE-OF-SIGHT; reliable for local/regional voice, often via repeaters.\n\nNETWORK ELEMENTS: A REPEATER receives on one frequency and retransmits on another (the offset) from a high vantage point to extend range between low-power handhelds.\n\nMODULATION encodes information on a carrier wave:\n• Analog: AM, FM, SSB.\n• Digital: PSK, FSK, QAM — pack more data and support encryption and error correction.\n\nDESIGN CONSIDERATIONS: frequency coordination/licensing, antenna height and type, power, encryption for sensitive traffic, and interoperability with satellite (SATCOM) for global reach. Layered comms (VoIP + cellular + radio + satellite) provide resilience when one path fails.",
-    keyPoints: [
-      "HF uses ionospheric skywave for beyond-line-of-sight links.",
-      "VHF/UHF are line-of-sight; repeaters extend their range.",
-      "Analog: AM/FM/SSB; Digital: PSK/FSK/QAM.",
-      "Layered comms (radio + satellite + cellular) provide resilience.",
-    ],
-    order: 5,
-  },
-  {
-    section: "SITUATIONAL_JUDGMENT",
-    topic: "Diplomatic Problem-Solving",
-    title: "A Decision Framework for Situational Judgment",
-    summary: "How to reason through embassy scenarios and pick the best response.",
-    content:
-      "Situational Judgment questions rarely have a single 'rule' answer — they test judgment. Use a consistent framework:\n\n1. SAFETY & SECURITY FIRST. Protect people, classified information, and critical systems before convenience or speed.\n2. FOLLOW POLICY & PROPER AUTHORITY. Established procedures (change management, on-call, reporting) exist for good reasons; don't make unilateral exceptions, even under pressure or rank.\n3. COMMUNICATE & ESCALATE APPROPRIATELY. Inform the right people, set expectations, and route issues to the correct owner — neither hoarding problems nor dumping them without action.\n4. PRIORITIZE BY MISSION IMPACT & URGENCY. Address high-impact, time-critical issues first; schedule the rest and tell stakeholders.\n5. ACT WITH INTEGRITY. Document decisions; never conceal actions, falsify records, or accept anything that creates a conflict of interest.\n6. BUILD RELATIONSHIPS. Prefer private, constructive, capability-building responses over public blame or doing others' work for them.\n\nWhen choosing among options, the BEST answer usually: protects security, respects process, communicates proactively, balances competing goods (e.g., security vs. availability), and preserves trust. The WORST answers are unilateral, concealing, disproportionate, or convenience-driven.",
-    keyPoints: [
-      "Order of priorities: safety/security → policy → communicate/escalate → impact → integrity → relationships.",
-      "Decline unauthorized exceptions politely AND offer an approved alternative.",
-      "Report spills/incidents; never conceal or handle them ad hoc.",
-      "Balance competing goods (security vs. availability) via risk assessment + change mgmt.",
-    ],
-    order: 6,
-  },
-  {
-    section: "ENGLISH_EXPRESSION",
-    topic: "Professional Communication",
-    title: "English Expression Quick Reference",
-    summary: "High-yield grammar, usage, and concision rules for the exam.",
-    content:
-      "AGREEMENT: Match the verb to the true subject; ignore intervening phrases ('The list of vendors IS…').\n\nPRONOUN CASE: Use 'who'/'I'/'he' as subjects, 'whom'/'me'/'him' as objects ('Whom should I contact?' — object of 'contact').\n\nMODIFIERS: An introductory phrase must logically modify the subject that follows ('After we installed the update, the network ran…').\n\nPARALLELISM: Items in a series share the same form ('configuring, troubleshooting, documenting').\n\nPUNCTUATION:\n• Comma splice — don't join two independent clauses with only a comma; use a period, semicolon, or comma + conjunction.\n• Semicolon — joins related independent clauses ('finished early; therefore, we tested').\n• Apostrophes — singular possessive 's; plural ending in -s takes just an apostrophe (technicians').\n\nCOMMONLY CONFUSED: affect (verb) / effect (noun); its (possessive) / it's (it is); principal (main/chief) / principle (rule); fewer (countable) / less (uncountable).\n\nCONCISION & TONE: Prefer active voice and cut filler ('due to the fact that' → 'because'). Match formality to audience; official correspondence is courteous and direct, never slangy.",
-    keyPoints: [
-      "Verb agrees with the real subject, not intervening nouns.",
-      "who/I (subject) vs whom/me (object).",
-      "Fix comma splices; semicolons join independent clauses.",
-      "affect=verb, effect=noun; its=possessive, it's='it is'.",
-      "Be concise and active; match tone to the audience.",
-    ],
-    order: 7,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "Data Analytics",
-    title: "Data Analytics Basics",
-    summary: "Data types, the ETL pipeline, and choosing the right chart.",
-    content:
-      "DATA TYPES:\n• Structured — fits rows/columns with a defined schema (databases, spreadsheets, CSV).\n• Semi-structured — has tags/markers but no rigid table (JSON, XML).\n• Unstructured — free text, email bodies, images, audio.\n\nETL PIPELINE: Extract (pull from sources) → Transform (clean, standardize, deduplicate, aggregate) → Load (write to a warehouse or lake). Modern variants do ELT, transforming after loading into scalable storage.\n\nANALYTICS MATURITY: descriptive (what happened) → diagnostic (why) → predictive (what will happen) → prescriptive (what to do).\n\nCHOOSING A VISUAL:\n• Trend over time → line chart.\n• Comparison across categories → bar chart.\n• Part-to-whole at one moment → pie/stacked bar (use sparingly).\n• Relationship between two variables → scatter plot.\n• Distribution → histogram/box plot.\n\nGOOD PRACTICE: ensure data quality (accuracy, completeness, consistency), label axes, avoid misleading scales, and protect sensitive data (aggregate/anonymize) consistent with security policy.",
-    keyPoints: [
-      "Structured (tables) vs semi-structured (JSON/XML) vs unstructured (free text).",
-      "ETL = Extract, Transform, Load (ELT transforms after load).",
-      "Line=trend, bar=comparison, pie=part-to-whole, scatter=relationship.",
-      "Mind data quality and protect/anonymize sensitive data.",
-    ],
-    order: 8,
-  },
-  {
-    section: "JOB_KNOWLEDGE",
-    topic: "Systems Integration",
-    title: "Systems Integration & APIs",
-    summary: "REST, HTTP semantics, middleware, and integration patterns.",
-    content:
-      "Systems integration connects disparate applications so they work as a whole.\n\nAPIs (Application Programming Interfaces) define how systems talk. REST is the dominant style:\n• STATELESS — each request carries all needed context; the server keeps no session between calls.\n• Uses standard HTTP methods: GET (read), POST (create), PUT/PATCH (update), DELETE (remove).\n• IDEMPOTENCY — GET, PUT, DELETE yield the same result if repeated; POST is NOT idempotent (repeats create duplicates).\n• Commonly exchanges JSON.\n\nMIDDLEWARE / ESB (Enterprise Service Bus) mediates between incompatible systems — translating protocols and data formats, routing and queuing messages. Message queues (e.g., publish/subscribe) decouple producers from consumers for resilience.\n\nINTEGRATION PATTERNS: point-to-point (simple but brittle at scale), hub-and-spoke/ESB (centralized mediation), and event-driven (services react to events). Good integration emphasizes loose coupling, well-defined contracts, error handling/retries, and security (authentication, authorization, encryption in transit).",
-    keyPoints: [
-      "REST is stateless and uses standard HTTP methods.",
-      "GET/PUT/DELETE are idempotent; POST is not.",
-      "Middleware/ESB translates and routes between incompatible systems.",
-      "Favor loose coupling, clear contracts, retries, and secure transport.",
-    ],
-    order: 9,
-  },
-];
-
 async function main() {
   console.log("Resetting data…");
   await prisma.userResponse.deleteMany();
@@ -1121,6 +970,7 @@ async function main() {
         summary: s.summary,
         content: s.content,
         keyPoints: j(s.keyPoints),
+        flashcards: j(s.flashcards),
         order: s.order,
       },
     });

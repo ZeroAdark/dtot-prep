@@ -12,6 +12,10 @@ if [ ! -f /data/app.db ]; then
 else
   echo "[entrypoint] Existing database found — ensuring schema is current..."
   node_modules/.bin/prisma db push --skip-generate
+  # Refresh study-guide content on every deploy (questions and candidate data
+  # are left untouched — only StudyMaterial rows are replaced).
+  echo "[entrypoint] Refreshing study materials..."
+  node_modules/.bin/tsx prisma/seed-study.ts
 fi
 
 exec "$@"

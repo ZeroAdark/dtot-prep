@@ -29,6 +29,7 @@ model User {
   testSessions TestSession[]
   responses    UserResponse[]
   narratives   Narrative[]
+  studyProgress StudyProgress[]
 
   @@map("users")
 }
@@ -55,18 +56,32 @@ model Question {
 }
 
 model StudyMaterial {
-  id        String   @id @default(cuid())
-  section   String
-  topic     String
-  title     String
-  summary   String
-  content   String
-  keyPoints String
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  section    String
+  topic      String
+  title      String
+  summary    String
+  content    String
+  keyPoints  String
+  flashcards String   @default("[]")
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
 
   @@index([section])
   @@map("study_materials")
+}
+
+model StudyProgress {
+  id         String   @id @default(cuid())
+  userId     String
+  materialId String
+  studiedAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, materialId])
+  @@index([userId])
+  @@map("study_progress")
 }
 
 model TestSession {

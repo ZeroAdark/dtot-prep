@@ -36,6 +36,38 @@ export interface ClientSection {
   questions: ClientQuestionItem[];
 }
 
+// ── Study hub ────────────────────────────────────────────────────────────────
+export interface StudyFlashcard {
+  front: string;
+  back: string;
+}
+
+export interface StudyGuideData {
+  id: string;
+  section: SectionKey;
+  topic: string;
+  title: string;
+  summary: string;
+  content: string;
+  keyPoints: string[];
+  flashcards: StudyFlashcard[];
+  studied: boolean;
+}
+
+/** A quick-check question served in study mode (answer revealed on selection). */
+export interface StudyQuizItem {
+  id: string;
+  topic: string;
+  difficulty: string;
+  prompt: string;
+  scenario: string | null;
+  options: ClientOption[];
+  correctId: string;
+  rationale: string;
+  optionNotes: Record<string, string> | null;
+  reference: string | null;
+}
+
 export interface ClientSession {
   id: string;
   mode: string;

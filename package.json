@@ -11,6 +11,7 @@
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
+    "db:seed:study": "tsx prisma/seed-study.ts",
     "db:reset": "prisma db push --force-reset --accept-data-loss && tsx prisma/seed.ts",
     "setup": "prisma generate && prisma db push && tsx prisma/seed.ts",
     "postinstall": "prisma generate"

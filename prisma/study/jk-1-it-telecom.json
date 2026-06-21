@@ -1,0 +1,112 @@
+[
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT & Telecommunications",
+    "title": "Network Models, Addressing & Subnetting (OSI/TCP-IP, IPv4, IPv6)",
+    "summary": "Covers the OSI and TCP/IP layered models, IPv4 addressing and subnetting (/24, /26, /30), RFC1918 private ranges, NAT/PAT, and IPv6 fundamentals.",
+    "content": "Networking is organized into layers so that each function can be designed and troubleshot independently. The OSI model has seven layers (use the mnemonic \"Please Do Not Throw Sausage Pizza Away\"): 1-Physical (cables, voltages, hubs, bits), 2-Data Link (MAC addresses, switches, frames), 3-Network (IP addresses, routers, packets), 4-Transport (TCP/UDP, ports, segments), 5-Session, 6-Presentation (encryption, encoding), and 7-Application (HTTP, DNS, end-user services).\n\nThe TCP/IP model is the practical implementation and collapses OSI into four layers: Network Access/Link (OSI 1-2), Internet (OSI 3, IP/ICMP), Transport (OSI 4, TCP/UDP), and Application (OSI 5-7). For the exam, be able to map a device or protocol to its layer: a switch is Layer 2, a router is Layer 3, a firewall can be Layer 3-4 (or Layer 7 for next-gen).\n\nAn IPv4 address is 32 bits written as four dotted-decimal octets (e.g., 192.168.1.10) with a subnet mask that separates the network portion from the host portion. The mask in CIDR notation counts the network bits: /24 = 255.255.255.0, /26 = 255.255.255.192, /30 = 255.255.255.252. Usable hosts = 2^(host bits) - 2 (subtract network and broadcast addresses).\n\nKey subnetting results to memorize: A /24 gives 256 addresses and 254 usable hosts. A /26 borrows 2 bits, creating 4 subnets of 64 addresses each (62 usable hosts), with block size 64 (subnets at .0, .64, .128, .192). A /30 has 4 addresses and only 2 usable hosts — ideal for point-to-point router links such as a site-to-site VPN tunnel between two embassy gateways.\n\nRFC1918 defines the private ranges that are not routed on the public Internet: 10.0.0.0/8, 172.16.0.0/12 (172.16.0.0–172.31.255.255), and 192.168.0.0/16. Embassy LANs almost always use these internally. The APIPA range 169.254.0.0/16 is self-assigned when a host fails to get a DHCP lease — a useful troubleshooting clue. The loopback is 127.0.0.1.\n\nNAT (Network Address Translation) lets many private hosts share public IPs. PAT (Port Address Translation, also called NAT overload) is the common form where many internal hosts share ONE public IP, distinguished by unique source port numbers. This conserves IPv4 space and hides the internal embassy network topology.\n\nIPv6 uses 128-bit addresses written in eight hextets of hexadecimal (e.g., 2001:0db8:85a3::8a2e:0370:7334), with double-colon (::) compressing one run of consecutive zero groups. Link-local addresses start with FE80::/10 and are auto-configured on every interface for local-segment communication. SLAAC (Stateless Address Autoconfiguration) lets a host build its own global address from a Router Advertisement prefix without a DHCP server. IPv6 has no broadcast (it uses multicast) and no NAT by design because address space is effectively unlimited.",
+    "keyPoints": [
+      "OSI 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application; switch=L2, router=L3",
+      "TCP/IP 4 layers: Link, Internet, Transport, Application",
+      "IPv4 = 32 bits; usable hosts = 2^(host bits) - 2",
+      "/24=254 hosts, /26=62 hosts (4 subnets, block 64), /30=2 hosts (point-to-point links)",
+      "RFC1918 private: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16",
+      "APIPA 169.254.0.0/16 means no DHCP lease; loopback 127.0.0.1",
+      "PAT/NAT overload = many private hosts behind one public IP via unique ports",
+      "IPv6 = 128 bits, :: compresses zeros, link-local FE80::/10",
+      "SLAAC builds an address from Router Advertisements, no DHCP needed",
+      "IPv6 has no broadcast (uses multicast) and no NAT"
+    ],
+    "flashcards": [
+      {"front": "OSI layer of a switch vs a router", "back": "Switch = Layer 2 (Data Link, MAC); Router = Layer 3 (Network, IP)"},
+      {"front": "Order of OSI layers 1-7", "back": "Physical, Data Link, Network, Transport, Session, Presentation, Application"},
+      {"front": "Four layers of the TCP/IP model", "back": "Network Access/Link, Internet, Transport, Application"},
+      {"front": "Formula for usable hosts in a subnet", "back": "2^(number of host bits) - 2 (minus network and broadcast addresses)"},
+      {"front": "Usable hosts and block size for /26", "back": "62 usable hosts; block size 64; 4 subnets at .0/.64/.128/.192"},
+      {"front": "Why use a /30?", "back": "Only 2 usable hosts — perfect for point-to-point router/WAN links"},
+      {"front": "The three RFC1918 private ranges", "back": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"},
+      {"front": "What does a 169.254.x.x address indicate?", "back": "APIPA self-assignment — the host failed to obtain a DHCP lease"},
+      {"front": "Difference between NAT and PAT", "back": "NAT maps private to public IPs; PAT (overload) maps many hosts to one public IP using unique ports"},
+      {"front": "IPv6 address length and notation", "back": "128 bits, eight hex hextets; :: compresses one run of consecutive zero groups"},
+      {"front": "IPv6 link-local prefix", "back": "FE80::/10, auto-configured on every interface for local-segment use"},
+      {"front": "What is SLAAC?", "back": "Stateless Address Autoconfiguration — host builds a global IPv6 address from a Router Advertisement prefix, no DHCP"},
+      {"front": "Subnet mask for /24, /26, /30", "back": "/24=255.255.255.0, /26=255.255.255.192, /30=255.255.255.252"},
+      {"front": "Loopback address (IPv4)", "back": "127.0.0.1"}
+    ]
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT & Telecommunications",
+    "title": "Core Protocols & Services: TCP/UDP/ICMP, Ports, DNS, DHCP, ARP, Switching & Routing",
+    "summary": "Covers the transport protocols, well-known ports, DNS and DHCP operation, ARP, default gateways, and Layer 2/3 concepts including VLANs, STP, and broadcast/collision domains.",
+    "content": "At the Transport layer, TCP is connection-oriented and reliable: it uses a three-way handshake (SYN, SYN-ACK, ACK), sequence numbers, acknowledgements, and retransmission. UDP is connectionless and \"fire-and-forget\" — faster but with no delivery guarantee, used for DNS queries, DHCP, VoIP, and streaming. ICMP is neither; it is a Layer 3 control/diagnostic protocol used by ping and traceroute (echo request/reply, time-exceeded messages).\n\nMemorize the well-known ports: 21 FTP (control), 22 SSH/SCP/SFTP, 23 Telnet (insecure), 25 SMTP, 53 DNS (UDP for queries, TCP for zone transfers), 80 HTTP, 443 HTTPS/TLS, 389 LDAP, 3389 RDP, and 161 SNMP. Note the secure-vs-insecure pairs an exam loves: use SSH (22) instead of Telnet (23), HTTPS (443) instead of HTTP (80), and LDAPS (636) instead of plain LDAP (389). In an embassy, RDP (3389) for remote desktop should be exposed only through a VPN, never directly to the Internet.\n\nDNS resolves human-readable names to IP addresses. Common record types: A (name to IPv4), AAAA (name to IPv6), CNAME (alias to another name), MX (mail exchanger), PTR (reverse lookup, IP to name), NS (name server), TXT (text, e.g., SPF/DKIM), and SOA (start of authority). Resolution is hierarchical: the resolver queries root, then TLD, then the authoritative server, caching answers for the duration of each record's TTL to speed up future lookups and reduce load.\n\nDHCP automatically assigns IP configuration using the DORA process: Discover (client broadcast), Offer (server proposes a lease), Request (client accepts), Acknowledge (server confirms). A DHCP lease provides the IP address, subnet mask, default gateway, and DNS servers. The default gateway is the router IP a host sends traffic to when the destination is on a different subnet.\n\nARP (Address Resolution Protocol) maps a known IP address to its MAC address on the local segment. A host broadcasts \"who has this IP?\" and the owner replies with its MAC; the result is cached in the ARP table. ARP operates only within a single broadcast domain — to reach another subnet, a host ARPs for the default gateway's MAC, not the remote host's.\n\nSwitching (Layer 2) forwards frames within a LAN using a MAC address table, while routing (Layer 3) moves packets between different networks using IP and a routing table. A switch creates a separate collision domain per port (so full-duplex eliminates collisions), but by default all ports share one broadcast domain. A router (or a VLAN boundary) separates broadcast domains.\n\nVLANs (Virtual LANs) logically segment one physical switch into multiple broadcast domains — for example, isolating embassy guest Wi-Fi from the secure staff network. Traffic between VLANs requires a router or Layer 3 switch (\"router-on-a-stick\" using 802.1Q tagging). STP (Spanning Tree Protocol, 802.1D) prevents Layer 2 loops in a network with redundant switch links by blocking redundant paths until they are needed, avoiding broadcast storms.",
+    "keyPoints": [
+      "TCP = reliable, connection-oriented, 3-way handshake (SYN/SYN-ACK/ACK); UDP = fast, connectionless; ICMP = diagnostics (ping/traceroute)",
+      "Ports: 21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 389 LDAP, 3389 RDP, 161 SNMP",
+      "Secure swaps: SSH>Telnet, HTTPS>HTTP, LDAPS(636)>LDAP(389)",
+      "DNS records: A, AAAA, CNAME, MX, PTR, NS, TXT, SOA; answers cached per TTL",
+      "DHCP DORA = Discover, Offer, Request, Acknowledge; lease gives IP, mask, gateway, DNS",
+      "Default gateway = router used to reach other subnets",
+      "ARP maps IP to MAC within one broadcast domain; cached in the ARP table",
+      "Switch = L2 (MAC table); router = L3 (routing table)",
+      "Each switch port = own collision domain; a router/VLAN separates broadcast domains",
+      "VLANs segment broadcast domains; inter-VLAN routing needs a router/L3 switch (802.1Q); STP prevents L2 loops"
+    ],
+    "flashcards": [
+      {"front": "TCP three-way handshake steps", "back": "SYN, SYN-ACK, ACK"},
+      {"front": "TCP vs UDP", "back": "TCP = reliable, connection-oriented, ordered with ACKs; UDP = connectionless, fast, no guarantee (DNS, VoIP, streaming)"},
+      {"front": "What protocol do ping and traceroute use?", "back": "ICMP (echo request/reply, time-exceeded)"},
+      {"front": "Ports 22 and 23", "back": "22 = SSH (secure); 23 = Telnet (insecure plaintext)"},
+      {"front": "Ports 80 and 443", "back": "80 = HTTP; 443 = HTTPS (TLS-encrypted)"},
+      {"front": "Port 53 and its protocols", "back": "DNS — UDP for normal queries, TCP for zone transfers/large responses"},
+      {"front": "Ports 389 and 3389", "back": "389 = LDAP; 3389 = RDP (Remote Desktop)"},
+      {"front": "Port 161", "back": "SNMP (network device monitoring/management)"},
+      {"front": "DNS A vs AAAA vs CNAME record", "back": "A = name to IPv4; AAAA = name to IPv6; CNAME = alias to another name"},
+      {"front": "DNS MX vs PTR record", "back": "MX = mail server for a domain; PTR = reverse lookup (IP to name)"},
+      {"front": "DHCP DORA process", "back": "Discover, Offer, Request, Acknowledge"},
+      {"front": "What does ARP do?", "back": "Resolves a known IP to its MAC address on the local segment; cached in ARP table"},
+      {"front": "What is the default gateway?", "back": "The router IP a host uses to send traffic to other subnets/networks"},
+      {"front": "Purpose of a VLAN", "back": "Logically segments a switch into separate broadcast domains for isolation/security"},
+      {"front": "What does STP prevent?", "back": "Layer 2 switching loops and broadcast storms by blocking redundant paths"},
+      {"front": "Collision domain vs broadcast domain boundary", "back": "Each switch port = its own collision domain; a router or VLAN bounds a broadcast domain"}
+    ]
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT & Telecommunications",
+    "title": "Physical Layer, Wireless, VPNs, Performance & Troubleshooting",
+    "summary": "Covers cabling and PoE, Wi-Fi standards and security, VPN types and split tunneling, performance metrics (bandwidth, throughput, latency, jitter, duplex), and the CompTIA troubleshooting methodology with its core tools.",
+    "content": "Copper cabling is rated by category: Cat5e supports 1 Gbps up to 100 m, Cat6 supports 1 Gbps (and 10 Gbps up to ~55 m), and Cat6a supports 10 Gbps to the full 100 m. Twisted pairs reduce crosstalk; shielded (STP) cable helps in high-interference environments. The 100 m limit applies to copper Ethernet runs; beyond that, use fiber.\n\nFiber optic cable comes in two types. Single-mode (SMF, usually yellow jacket) uses a tiny core and a laser for long distances (kilometers) — ideal for links between embassy buildings or to a data center. Multimode (MMF, orange/aqua) uses a larger core and LED/VCSEL light for shorter runs within a building. Fiber is immune to electromagnetic interference and cannot be tapped as easily as copper, a security plus for sensitive sites. PoE (Power over Ethernet, 802.3af/at/bt) delivers both data and electrical power over one cable to devices like IP phones, wireless access points, and security cameras.\n\nWi-Fi standards: 802.11n (Wi-Fi 4) uses 2.4/5 GHz, 802.11ac (Wi-Fi 5) is 5 GHz only, and 802.11ax (Wi-Fi 6/6E) adds efficiency and the 6 GHz band. The 2.4 GHz band has only three non-overlapping channels (1, 6, 11) and travels farther but is slower and more congested; 5 GHz has more channels, more speed, and shorter range. For security, use WPA2 (AES/CCMP) at minimum; WPA3 is the current standard, adding SAE (Simultaneous Authentication of Equals) to resist offline password cracking. Never use WEP or WPA (TKIP) — both are broken.\n\nA VPN creates an encrypted tunnel over an untrusted network. Site-to-site VPNs permanently connect two networks (e.g., an embassy to its home ministry) via gateways, transparent to end users. Remote-access VPNs let an individual traveling diplomat connect a laptop securely back to the network. Split tunneling sends only corporate-bound traffic through the VPN while other traffic goes direct to the Internet — it improves performance but reduces security/visibility; full tunneling routes everything through the VPN for maximum control.\n\nPerformance terms are often confused. Bandwidth is the maximum theoretical capacity of a link (e.g., 1 Gbps); throughput is the actual data rate achieved, always lower due to overhead and congestion. Latency is the delay for data to travel (round-trip time, measured in ms); jitter is the variation in latency, which badly degrades VoIP and video calls. Duplex describes direction: half-duplex sends or receives one at a time (collisions possible); full-duplex sends and receives simultaneously. A duplex/speed mismatch is a classic cause of slow links.\n\nThe CompTIA troubleshooting methodology has seven steps: (1) Identify the problem (gather info, question users, check recent changes); (2) Establish a theory of probable cause (question the obvious); (3) Test the theory to determine cause; (4) Establish a plan of action; (5) Implement the solution or escalate; (6) Verify full system functionality and implement preventive measures; (7) Document findings, actions, and outcomes. Always change one thing at a time and document everything — essential in a controlled embassy environment.\n\nCore command-line tools: ping tests reachability and latency via ICMP; traceroute/tracert maps the hop-by-hop path and shows where delay or failure occurs; nslookup (or dig) queries DNS to verify name resolution; ipconfig (Windows) / ifconfig or ip (Linux) shows and renews IP configuration (ipconfig /all, /release, /renew, /flushdns); netstat shows active connections and listening ports. A logical flow: ping the loopback, then the gateway, then a remote IP, then a name — isolating the layer where it breaks.",
+    "keyPoints": [
+      "Cat5e=1Gbps/100m, Cat6=10Gbps to ~55m, Cat6a=10Gbps/100m; copper limit 100 m",
+      "Single-mode fiber = long distance (laser); multimode = shorter, in-building (LED); fiber immune to EMI",
+      "PoE (802.3af/at/bt) delivers power+data to APs, IP phones, cameras",
+      "2.4 GHz: channels 1/6/11 non-overlapping, longer range; 5 GHz: faster, more channels, shorter range",
+      "Use WPA2 (AES) minimum; WPA3 adds SAE; never WEP/WPA-TKIP",
+      "Site-to-site VPN links networks via gateways; remote-access VPN connects an individual device",
+      "Split tunneling = only corporate traffic over VPN (faster, less secure); full tunnel = all traffic",
+      "Bandwidth = max capacity; throughput = actual rate; latency = delay; jitter = latency variation (hurts VoIP)",
+      "Full-duplex = simultaneous send/receive; duplex mismatch causes slowness",
+      "CompTIA 7 steps: Identify, Theory, Test, Plan, Implement, Verify+prevent, Document",
+      "Tools: ping (ICMP reachability), traceroute (path), nslookup (DNS), ipconfig (config), netstat (connections/ports)"
+    ],
+    "flashcards": [
+      {"front": "Max distance and speed of Cat6a", "back": "10 Gbps up to the full 100 m"},
+      {"front": "Single-mode vs multimode fiber", "back": "Single-mode = laser, long distance (km); multimode = LED, shorter in-building runs"},
+      {"front": "What is PoE used for?", "back": "Power over Ethernet delivers data + power on one cable to APs, IP phones, cameras (802.3af/at/bt)"},
+      {"front": "Non-overlapping 2.4 GHz Wi-Fi channels", "back": "1, 6, and 11"},
+      {"front": "2.4 GHz vs 5 GHz tradeoff", "back": "2.4 GHz = longer range, slower, congested; 5 GHz = faster, more channels, shorter range"},
+      {"front": "WPA2 vs WPA3 key difference", "back": "WPA2 uses AES/CCMP with PSK; WPA3 adds SAE to resist offline password cracking"},
+      {"front": "Which Wi-Fi security must never be used?", "back": "WEP and WPA (TKIP) — both are cryptographically broken"},
+      {"front": "Site-to-site vs remote-access VPN", "back": "Site-to-site links whole networks via gateways; remote-access connects an individual device"},
+      {"front": "What is split tunneling?", "back": "Only corporate-bound traffic goes through the VPN; rest goes direct — faster but less secure"},
+      {"front": "Bandwidth vs throughput", "back": "Bandwidth = max theoretical capacity; throughput = actual achieved rate (lower)"},
+      {"front": "Latency vs jitter", "back": "Latency = delay (ms); jitter = variation in latency — jitter degrades VoIP/video most"},
+      {"front": "Half-duplex vs full-duplex", "back": "Half = send or receive one at a time (collisions); full = both simultaneously"},
+      {"front": "The 7 CompTIA troubleshooting steps", "back": "Identify, Establish theory, Test theory, Plan of action, Implement/escalate, Verify+prevent, Document"},
+      {"front": "What does traceroute show?", "back": "The hop-by-hop path to a destination and where latency or failure occurs"},
+      {"front": "Which tool flushes the DNS cache on Windows?", "back": "ipconfig /flushdns"},
+      {"front": "What does netstat display?", "back": "Active network connections and listening ports on the host"}
+    ]
+  }
+]
