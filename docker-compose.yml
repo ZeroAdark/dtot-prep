@@ -1,15 +1,27 @@
-# DTOT Prep — container deployment.
+# DTOT Prep — container stack: app + Caddy reverse proxy, for a multi-app host.
 #
+#   docker network create edge       # once, shared across all app stacks
 #   docker compose up -d --build
 #
-# The app publishes only to the host loopback (127.0.0.1:3000); a front-end
-# reverse proxy (e.g. Caddy) terminates HTTP/HTTPS and proxies to it. The
-# SQLite database persists in the named volume "dtot-data" across rebuilds.
-#
-# Optional PostgreSQL instead of SQLite:
-#   docker compose --profile postgres up -d
-#   # then point DATABASE_URL at postgres and switch the prisma provider.
+# Caddy terminates HTTP/HTTPS on the LAN and proxies to app containers over the
+# shared external "edge" network (by container name). Add more apps by attaching
+# their containers to "edge" and adding a site block to ./Caddyfile.
 services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      # Bound to the LAN IP so exposure stays LAN-scoped (Docker bypasses ufw).
+      - "192.168.50.202:80:80"
+      - "192.168.50.202:443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - edge
+
   app:
     build: .
     image: dtot-prep:latest
@@ -20,8 +32,9 @@ services:
       NODE_ENV: "production"
     volumes:
       - dtot-data:/data
-    ports:
-      - "127.0.0.1:3000:3000"
+    networks:
+      - edge
+    # No host ports: reached only via Caddy on the edge network (dtot:3000).
 
   db:
     image: postgres:16-alpine
@@ -34,13 +47,16 @@ services:
       POSTGRES_DB: dtot
     volumes:
       - dtot-pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dtot -d dtot"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+    networks:
+      - edge
+
+networks:
+  edge:
+    external: true
 
 volumes:
   dtot-data:
-    name: dtot-data
+    external: true # holds the SQLite DB; created/migrated out of band
+  caddy-data:
+  caddy-config:
   dtot-pgdata:
