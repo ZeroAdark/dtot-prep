@@ -9,6 +9,8 @@ if [ ! -f /data/app.db ]; then
   echo "[entrypoint] No database found — creating schema and seeding..."
   node_modules/.bin/prisma db push --skip-generate
   node_modules/.bin/tsx prisma/seed.ts
+  # Prune any out-of-scope questions the base seed may include.
+  node_modules/.bin/tsx prisma/seed-cleanup.ts
 else
   echo "[entrypoint] Existing database found — ensuring schema is current..."
   node_modules/.bin/prisma db push --skip-generate
@@ -20,6 +22,9 @@ else
   # candidate responses are preserved).
   echo "[entrypoint] Syncing extra questions..."
   node_modules/.bin/tsx prisma/seed-questions-sync.ts
+  # Remove out-of-scope questions (idempotent; e.g. Systems Integration).
+  echo "[entrypoint] Pruning out-of-scope questions..."
+  node_modules/.bin/tsx prisma/seed-cleanup.ts
 fi
 
 exec "$@"

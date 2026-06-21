@@ -12,7 +12,7 @@ readiness dashboard.
 ## Features
 
 - **Four DTOT components**
-  - **Job Knowledge** — IT & telecom, radio systems, cloud, systems integration, cybersecurity, PBX/VoIP convergence, data analytics.
+  - **Job Knowledge** — computer hardware, operating systems, IT & telecom/networking, cybersecurity, mobile devices, troubleshooting, operational procedures, radio systems, PBX/VoIP, cloud, and data analytics (CompTIA A+/Network+/Security+ scope).
   - **Situational Judgment** — embassy crisis, ethics, and prioritization scenarios.
   - **English Expression** — grammar, syntax, usage, and professional communication.
   - **Personal Narratives** — the six required essays with a **STAR-L** self-scoring rubric.
