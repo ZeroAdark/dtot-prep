@@ -14,6 +14,8 @@ ENV DATABASE_URL="file:/data/app.db"
 # Install all dependencies (dev deps are needed for the build and for the
 # migrate/seed step the entrypoint runs).
 COPY package.json package-lock.json ./
+# Schema is needed because the postinstall hook runs `prisma generate`.
+COPY prisma/schema.prisma ./prisma/schema.prisma
 RUN npm ci --include=dev --no-audit --no-fund
 
 # Build (the build script runs `prisma generate && next build`).
