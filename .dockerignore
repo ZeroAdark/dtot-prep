@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.gitignore
+prisma/*.db
+prisma/*.db-journal
+prisma/dev.db*
+.env
+.env*.local
+npm-debug.log*
+*.tsbuildinfo
+.claude
+dev-preview.cmd
+README.md

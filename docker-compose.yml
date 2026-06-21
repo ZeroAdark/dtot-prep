@@ -1,21 +1,39 @@
-# Optional PostgreSQL service for "production-style" runs.
-# Usage:
-#   docker compose up -d
-#   # then switch prisma datasource provider to "postgresql" and set DATABASE_URL
-#   npm run setup
+# DTOT Prep — container deployment.
+#
+#   docker compose up -d --build
+#
+# The app publishes only to the host loopback (127.0.0.1:3000); a front-end
+# reverse proxy (e.g. Caddy) terminates HTTP/HTTPS and proxies to it. The
+# SQLite database persists in the named volume "dtot-data" across rebuilds.
+#
+# Optional PostgreSQL instead of SQLite:
+#   docker compose --profile postgres up -d
+#   # then point DATABASE_URL at postgres and switch the prisma provider.
 services:
+  app:
+    build: .
+    image: dtot-prep:latest
+    container_name: dtot
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "file:/data/app.db"
+      NODE_ENV: "production"
+    volumes:
+      - dtot-data:/data
+    ports:
+      - "127.0.0.1:3000:3000"
+
   db:
     image: postgres:16-alpine
+    profiles: ["postgres"]
     container_name: dtot-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: dtot
       POSTGRES_PASSWORD: dtot
       POSTGRES_DB: dtot
-    ports:
-      - "5432:5432"
     volumes:
-      - dtot_pgdata:/var/lib/postgresql/data
+      - dtot-pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U dtot -d dtot"]
       interval: 5s
@@ -23,4 +41,6 @@ services:
       retries: 5
 
 volumes:
-  dtot_pgdata:
+  dtot-data:
+    name: dtot-data
+  dtot-pgdata:
