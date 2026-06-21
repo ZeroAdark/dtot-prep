@@ -1,6 +1,8 @@
 {
 	# Internal CA for LAN certs; don't force-redirect HTTP→HTTPS (both work).
 	auto_https disable_redirects
+	# Clients reaching the bare IP send no SNI — serve the IP's cert by default.
+	default_sni 192.168.50.202
 }
 
 # HTTP (any host) → the app container over the shared "edge" network.
