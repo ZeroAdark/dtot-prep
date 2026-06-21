@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   ClipboardList,
 } from "lucide-react";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, listProfiles } from "@/lib/auth";
 import { getDashboardStats } from "@/lib/stats";
 import { Welcome } from "@/components/Welcome";
 import { ReadinessRing } from "@/components/ReadinessRing";
@@ -38,7 +38,7 @@ const toneBar: Record<string, string> = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  if (!user) return <Welcome />;
+  if (!user) return <Welcome profiles={await listProfiles()} />;
 
   const stats = await getDashboardStats(user.id);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   LayoutDashboard,
@@ -24,14 +24,23 @@ const LINKS = [
 
 export function Nav({ user }: { user: { id: string; name: string } | null }) {
   const pathname = usePathname();
-  const router = useRouter();
   const [signingOut, setSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState(false);
 
   async function signOut() {
     setSigningOut(true);
-    await fetch("/api/session", { method: "DELETE" });
-    router.refresh();
-    router.push("/");
+    setSignOutError(false);
+    try {
+      const res = await fetch("/api/session", { method: "DELETE" });
+      if (!res.ok) throw new Error();
+      // Hard navigation guarantees a fresh server render with the cookie gone
+      // (a soft refresh can keep the stale logged-in tree mounted).
+      window.location.assign("/");
+    } catch {
+      // Only reached if the cookie was NOT cleared, so stay put and let the user retry.
+      setSigningOut(false);
+      setSignOutError(true);
+    }
   }
 
   const isActive = (href: string, exact?: boolean) =>
@@ -84,13 +93,19 @@ export function Nav({ user }: { user: { id: string; name: string } | null }) {
               <div className="text-sm font-medium leading-none">{user.name}</div>
               <div className="text-[11px] text-muted-foreground">Candidate</div>
             </div>
+            {signOutError && (
+              <span className="hidden text-xs text-destructive md:inline" role="alert">
+                Couldn’t log out — retry
+              </span>
+            )}
             <button
               onClick={signOut}
               disabled={signingOut}
-              title="Sign out"
-              className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              title="Log out and switch profile"
+              className="flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-60"
             >
               <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">{signingOut ? "Logging out…" : "Log out"}</span>
             </button>
           </div>
         )}
