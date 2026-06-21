@@ -1,0 +1,26 @@
+# Optional PostgreSQL service for "production-style" runs.
+# Usage:
+#   docker compose up -d
+#   # then switch prisma datasource provider to "postgresql" and set DATABASE_URL
+#   npm run setup
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: dtot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dtot
+      POSTGRES_PASSWORD: dtot
+      POSTGRES_DB: dtot
+    ports:
+      - "5432:5432"
+    volumes:
+      - dtot_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dtot -d dtot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  dtot_pgdata:

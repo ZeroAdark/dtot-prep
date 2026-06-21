@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Deep diplomatic navy */
+    --primary: 215 64% 23%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 18%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 64% 32%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 35 92% 45%;
+    --warning-foreground: 222 47% 11%;
+
+    --border: 214 26% 86%;
+    --input: 214 26% 84%;
+    --ring: 215 64% 33%;
+
+    --radius: 0.6rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  /* Subtle government-style top banner stripe */
+  .gov-stripe {
+    background: linear-gradient(
+      90deg,
+      hsl(215 64% 23%) 0%,
+      hsl(199 89% 38%) 100%
+    );
+  }
+  .card-base {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+  }
+}
+
+/* Monospace timer that doesn't reflow as digits change */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Narrative editor scrollbar polish */
+.prose-editor:focus {
+  outline: none;
+}

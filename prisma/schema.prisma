@@ -1,0 +1,171 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// DTOT Prep — Prisma schema
+//
+// Default provider is SQLite so the app runs with zero external services.
+// To use PostgreSQL, change `provider` below to "postgresql" (or copy
+// prisma/schema.postgres.prisma over this file) and update DATABASE_URL.
+//
+// NOTE: JSON-shaped data (option lists, key points, rubric state, section
+// arrays) is stored in `String` columns as serialized JSON. This keeps the
+// schema byte-for-byte portable between SQLite and PostgreSQL — the only line
+// that differs between the two is the datasource `provider`. Use the helpers in
+// src/lib/serialize.ts to read/write these fields.
+// ─────────────────────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ── Candidate / user ─────────────────────────────────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  testSessions TestSession[]
+  responses    UserResponse[]
+  narratives   Narrative[]
+
+  @@map("users")
+}
+
+// ── Question bank (Job Knowledge / Situational Judgment / English Expression) ─
+model Question {
+  id          String   @id @default(cuid())
+  section     String // "JOB_KNOWLEDGE" | "SITUATIONAL_JUDGMENT" | "ENGLISH_EXPRESSION"
+  topic       String // e.g. "Cybersecurity", "Cloud Computing", "Crisis Response"
+  difficulty  String   @default("MEDIUM") // "EASY" | "MEDIUM" | "HARD"
+  prompt      String
+  scenario    String? // extra situational context (Situational Judgment)
+  options     String // JSON: [{ "id": "A", "text": "..." }, ...]
+  correctId   String // the id of the correct option ("A".."E")
+  rationale   String // detailed explanation shown after grading
+  optionNotes String? // JSON: { "A": "why A is wrong", ... } (optional)
+  reference   String? // study pointer, e.g. "Cloud Computing › Service models"
+  createdAt   DateTime @default(now())
+
+  responses UserResponse[]
+
+  @@index([section])
+  @@index([section, topic])
+  @@map("questions")
+}
+
+// ── Study hub content ────────────────────────────────────────────────────────
+model StudyMaterial {
+  id        String   @id @default(cuid())
+  section   String
+  topic     String
+  title     String
+  summary   String
+  content   String // long-form body (markdown-ish)
+  keyPoints String // JSON: ["point 1", "point 2", ...]
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([section])
+  @@map("study_materials")
+}
+
+// ── Test session (full exam, single section, or quick practice) ──────────────
+model TestSession {
+  id               String    @id @default(cuid())
+  userId           String
+  mode             String // "FULL_EXAM" | "SECTION" | "PRACTICE"
+  sections         String // JSON: ["JOB_KNOWLEDGE", ...] sections in scope
+  status           String    @default("IN_PROGRESS") // IN_PROGRESS | COMPLETED | EXPIRED | ABANDONED
+  startTime        DateTime  @default(now()) // start_time
+  deadlineAt       DateTime // authoritative global end = startTime + total duration
+  totalDurationSec Int // total allotted seconds
+  elapsedTime      Int       @default(0) // elapsed_time checkpoint (seconds), server-updated
+  currentSection   String?
+  config           String? // JSON snapshot of per-section timer config
+  score            Float? // overall percent (0-100) once graded
+  correctCount     Int       @default(0)
+  totalCount       Int       @default(0)
+  completedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  responses     UserResponse[]
+  sectionStates SectionState[]
+
+  @@index([userId, status])
+  @@map("test_sessions")
+}
+
+// ── Per-section timer + lock state inside a session ──────────────────────────
+model SectionState {
+  id          String    @id @default(cuid())
+  sessionId   String
+  section     String
+  status      String    @default("NOT_STARTED") // NOT_STARTED | IN_PROGRESS | LOCKED | SUBMITTED
+  durationSec Int // allotted seconds for this section
+  startedAt   DateTime?
+  deadlineAt  DateTime? // absolute lock time for this section
+  submittedAt DateTime?
+  elapsedTime Int       @default(0)
+  correctCount Int      @default(0)
+  totalCount  Int       @default(0)
+  scorePct    Float?
+
+  session TestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, section])
+  @@map("section_states")
+}
+
+// ── A candidate's answer to a question (auto-graded MC) ──────────────────────
+model UserResponse {
+  id               String    @id @default(cuid())
+  userId           String
+  sessionId        String
+  questionId       String
+  section          String
+  selectedOptionId String?
+  isCorrect        Boolean?
+  timeSpentSec     Int       @default(0)
+  flagged          Boolean   @default(false)
+  answeredAt       DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session  TestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, questionId])
+  @@index([userId])
+  @@index([sessionId])
+  @@index([questionId])
+  @@map("user_responses")
+}
+
+// ── Personal Narrative essays + STAR-L self-scoring ──────────────────────────
+model Narrative {
+  id         String   @id @default(cuid())
+  userId     String
+  competency String // SUBSTANTIVE_KNOWLEDGE | INTELLECTUAL | INTERPERSONAL | COMMUNICATION | LEADERSHIP | MANAGEMENT
+  prompt     String
+  content    String   @default("")
+  wordCount  Int      @default(0)
+  rubric     String   @default("{}") // JSON: STAR-L checklist state
+  rubricScore Int     @default(0)
+  rubricMax  Int      @default(0)
+  status     String   @default("DRAFT") // DRAFT | COMPLETE
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, competency])
+  @@map("narratives")
+}

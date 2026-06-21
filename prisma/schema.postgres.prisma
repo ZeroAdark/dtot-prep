@@ -1,0 +1,162 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// PostgreSQL variant of the DTOT Prep schema.
+//
+// This file is IDENTICAL to schema.prisma except for the datasource provider
+// below. To switch to Postgres:
+//   1. docker compose up -d
+//   2. copy this file over prisma/schema.prisma  (or just change the provider
+//      line in schema.prisma to "postgresql")
+//   3. set DATABASE_URL to the postgresql:// URL in .env
+//   4. npm run setup
+// ─────────────────────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  testSessions TestSession[]
+  responses    UserResponse[]
+  narratives   Narrative[]
+
+  @@map("users")
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  section     String
+  topic       String
+  difficulty  String   @default("MEDIUM")
+  prompt      String
+  scenario    String?
+  options     String
+  correctId   String
+  rationale   String
+  optionNotes String?
+  reference   String?
+  createdAt   DateTime @default(now())
+
+  responses UserResponse[]
+
+  @@index([section])
+  @@index([section, topic])
+  @@map("questions")
+}
+
+model StudyMaterial {
+  id        String   @id @default(cuid())
+  section   String
+  topic     String
+  title     String
+  summary   String
+  content   String
+  keyPoints String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([section])
+  @@map("study_materials")
+}
+
+model TestSession {
+  id               String    @id @default(cuid())
+  userId           String
+  mode             String
+  sections         String
+  status           String    @default("IN_PROGRESS")
+  startTime        DateTime  @default(now())
+  deadlineAt       DateTime
+  totalDurationSec Int
+  elapsedTime      Int       @default(0)
+  currentSection   String?
+  config           String?
+  score            Float?
+  correctCount     Int       @default(0)
+  totalCount       Int       @default(0)
+  completedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  responses     UserResponse[]
+  sectionStates SectionState[]
+
+  @@index([userId, status])
+  @@map("test_sessions")
+}
+
+model SectionState {
+  id           String    @id @default(cuid())
+  sessionId    String
+  section      String
+  status       String    @default("NOT_STARTED")
+  durationSec  Int
+  startedAt    DateTime?
+  deadlineAt   DateTime?
+  submittedAt  DateTime?
+  elapsedTime  Int       @default(0)
+  correctCount Int       @default(0)
+  totalCount   Int       @default(0)
+  scorePct     Float?
+
+  session TestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, section])
+  @@map("section_states")
+}
+
+model UserResponse {
+  id               String    @id @default(cuid())
+  userId           String
+  sessionId        String
+  questionId       String
+  section          String
+  selectedOptionId String?
+  isCorrect        Boolean?
+  timeSpentSec     Int       @default(0)
+  flagged          Boolean   @default(false)
+  answeredAt       DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session  TestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, questionId])
+  @@index([userId])
+  @@index([sessionId])
+  @@index([questionId])
+  @@map("user_responses")
+}
+
+model Narrative {
+  id          String   @id @default(cuid())
+  userId      String
+  competency  String
+  prompt      String
+  content     String   @default("")
+  wordCount   Int      @default(0)
+  rubric      String   @default("{}")
+  rubricScore Int      @default(0)
+  rubricMax   Int      @default(0)
+  status      String   @default("DRAFT")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, competency])
+  @@map("narratives")
+}
