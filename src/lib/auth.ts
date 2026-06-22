@@ -91,8 +91,16 @@ async function createSession(userId: string): Promise<string> {
   const token = randomBytes(32).toString("hex"); // 256-bit, unguessable
   const expiresAt = new Date(Date.now() + SESSION_TTL_SEC * 1000);
   await prisma.session.create({ data: { token, userId, expiresAt } });
+  // Record activity so a returning user isn't a sweep target.
+  await prisma.user
+    .update({ where: { id: userId }, data: { lastSeenAt: new Date() } })
+    .catch(() => {});
   return token;
 }
+
+// How stale lastSeenAt may get before getCurrentUser refreshes it. Throttles the
+// write to ~once/hour per active user instead of one per request.
+const ACTIVITY_REFRESH_MS = 60 * 60 * 1000;
 
 /**
  * The signed-in candidate (only safe public fields), or null. Read-only — safe
@@ -104,10 +112,22 @@ export async function getCurrentUser() {
   if (!token) return null;
   const session = await prisma.session.findUnique({
     where: { token },
-    select: { expiresAt: true, user: { select: { id: true, name: true } } },
+    select: {
+      expiresAt: true,
+      user: { select: { id: true, name: true, lastSeenAt: true } },
+    },
   });
   if (!session || session.expiresAt.getTime() < Date.now()) return null;
-  return session.user;
+
+  const { id, name, lastSeenAt } = session.user;
+  // Throttled activity bump (drives the inactive-account sweep). Fire-and-forget
+  // so it never adds latency to the request.
+  if (!lastSeenAt || Date.now() - lastSeenAt.getTime() > ACTIVITY_REFRESH_MS) {
+    prisma.user
+      .update({ where: { id }, data: { lastSeenAt: new Date() } })
+      .catch(() => {});
+  }
+  return { id, name };
 }
 
 export async function getCurrentUserId(): Promise<string | null> {

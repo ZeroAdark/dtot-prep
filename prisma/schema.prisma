@@ -26,9 +26,13 @@ model User {
   id           String   @id @default(cuid())
   name         String   @unique // login identifier (also display name)
   email        String?  @unique
-  passwordHash String? // scrypt: "scrypt$<salt>$<hash>"; null = legacy/passwordless (claimable on first login)
+  passwordHash String? // scrypt: "scrypt$<salt>$<hash>"; null = no password set (NOT loginable)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  // Bumped (throttled) on any authenticated activity. Drives the inactive-account
+  // sweep. Nullable with no DB default so adding the column is a plain SQLite
+  // ADD COLUMN (existing rows backfilled at startup); new rows set it in code.
+  lastSeenAt   DateTime?
 
   testSessions  TestSession[]
   responses     UserResponse[]
@@ -36,6 +40,7 @@ model User {
   studyProgress StudyProgress[]
   sessions      Session[]
 
+  @@index([lastSeenAt])
   @@map("users")
 }
 

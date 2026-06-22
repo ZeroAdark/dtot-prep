@@ -8,6 +8,8 @@ It pairs a **timed, server-authoritative test engine** (with instant auto-gradin
 and a readiness dashboard) with a deep, **interactive study hub** — 71 guides and
 1,100+ flashcards spanning every Job Knowledge topic.
 
+**Live:** [https://www.fedlibrary.org](https://www.fedlibrary.org) (open registration).
+
 > Independent study tool. Not affiliated with or endorsed by any government
 > agency. The exam's actual content is confidential; this app is built from the
 > public role description and the CompTIA knowledge domains it maps to.
@@ -52,10 +54,13 @@ and a readiness dashboard) with a deep, **interactive study hub** — 71 guides 
 - **Mark-as-studied progress** per profile, with per-section and per-topic
   progress bars, plus guide search.
 
-### Profiles & dashboard
-- **Multiple local profiles** — a profile picker to create a new candidate, log
-  in to an existing one, or delete one (with confirmation). Proper login/logout.
-  No password — these are local practice profiles on your device.
+### Accounts & dashboard
+- **Built-in authentication** — create an account (name + password) and log in.
+  Passwords are hashed with scrypt; sessions are server-side, random bearer tokens
+  in an httpOnly cookie. Each account's data is fully isolated, and you can delete
+  your own account anytime (password re-entry required).
+- **Automatic retention** — accounts with **no activity for 30 days** are deleted
+  automatically, along with their tests, answers, narratives, and progress.
 - **Dashboard** — per-section readiness scores, an overall readiness ring,
   accuracy, recent activity, and narrative progress.
 - **Mistake review** — every wrong or skipped question collects in one place.
@@ -70,9 +75,28 @@ and a readiness dashboard) with a deep, **interactive study hub** — 71 guides 
 
 ---
 
+## Security
+
+Built to be safely exposed to the public internet:
+
+- **Password auth** — scrypt hashing (async, length-capped); server-side sessions
+  (256-bit tokens) in an httpOnly / SameSite=lax / Secure cookie; expired sessions
+  pruned automatically.
+- **Rate limiting** — per-IP throttling on login/registration and per-account on
+  account-deletion, returning `429` once tripped.
+- **CSRF / same-origin guard** on every state-changing API route.
+- **Security headers** — `X-Frame-Options`, CSP `frame-ancestors`,
+  `X-Content-Type-Options`, `Referrer-Policy`, and HSTS.
+- **Strict data isolation** — every query is scoped to the signed-in account
+  (no cross-account access).
+- **Hardened container** — the Docker image runs as a non-root user.
+- **Auto-expiry** — inactive accounts (30 days) are purged.
+
+---
+
 ## Tech stack
 
-- **Next.js 14** (App Router) + **TypeScript**
+- **Next.js 15** (App Router, **React 19**) + **TypeScript**
 - **Tailwind CSS** with a shadcn/ui-style component layer
 - **Prisma ORM** — **SQLite** by default (zero setup); **PostgreSQL**-ready
 - **lucide-react** icons
@@ -81,7 +105,7 @@ and a readiness dashboard) with a deep, **interactive study hub** — 71 guides 
 
 ## Getting started
 
-Requirements: **Node.js 18+** (developed on Node 20/24).
+Requirements: **Node.js 20+** (Next 15 / React 19; developed on Node 24).
 
 ```bash
 npm install          # installs deps and generates the Prisma client
@@ -89,10 +113,9 @@ npm run setup        # creates the SQLite DB schema and seeds questions/study co
 npm run dev          # start the dev server
 ```
 
-Open <http://localhost:3000>, create a candidate profile (or pick an existing
-one — no password required), and start practicing. (`npm install` runs
-`prisma generate` via `postinstall`; `npm run setup` runs generate + `db push` +
-seed.)
+Open <http://localhost:3000>, create an account (name + password), and start
+practicing. (`npm install` runs `prisma generate` via `postinstall`; `npm run
+setup` runs generate + `db push` + seed.)
 
 ### Scripts
 
@@ -156,6 +179,22 @@ data (profiles, responses, narratives) is preserved across deploys.
 Update later with `docker compose up -d --build`; manage with
 `docker compose ps`, `docker compose logs -f`, `docker compose restart`.
 
+### Environment
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | Prisma connection string (defaults to the SQLite file at `/data/app.db`). |
+| `NODE_ENV` | `production` sets the Secure cookie flag and production behavior. |
+| `APP_ORIGIN` | Public origin (e.g. `https://www.fedlibrary.org`) the CSRF / same-origin guard trusts, in addition to the forwarded `Host`. |
+
+### Public access (Cloudflare Tunnel)
+
+The production instance is exposed with a **Cloudflare Tunnel**: a `cloudflared`
+container dials out to Cloudflare (no inbound ports opened, home IP hidden) and a
+public hostname routes to the app over the shared `edge` network. TLS, DDoS
+protection, and bot mitigation are handled at Cloudflare's edge, with the
+app-level hardening above behind it — no router port-forwarding required.
+
 ---
 
 ## Switching to PostgreSQL
@@ -199,7 +238,7 @@ databases except for the `provider` line.
 prisma/
   schema.prisma            SQLite schema (default)
   schema.postgres.prisma   Identical schema, postgresql provider
-  seed.ts                  Base seed: question bank + study materials + demo user
+  seed.ts                  Base seed: question bank + study materials + a locked demo placeholder
   seed-extra*.ts, jk3-*.ts Additional question banks (spread into the base seed)
   study-data.ts            Loads study guides from prisma/study/*.json
   study/*.json             Study-guide content (one file per topic)
@@ -215,25 +254,31 @@ src/
     selection.ts           Stratified, history-weighted question selection
     grading.ts             MC auto-grading, rubric scoring, readiness bands
     stats.ts               Dashboard aggregation
-    auth.ts                Cookie-based local profiles (list / login / delete)
+    auth.ts                Password auth: scrypt, server-side sessions, register/login/logout/delete
+    rate-limit.ts          In-memory per-IP / per-account auth throttling
+    request-guard.ts       Same-origin (CSRF) check for mutating routes
+    maintenance.ts         Daily sweep that deletes inactive (30-day) accounts
     sectionStyle.ts, types.ts, serialize.ts, useCountdown.ts, prisma.ts, utils.ts
+  instrumentation.ts       Boot hook — starts the inactive-account sweep
   app/
-    page.tsx               Dashboard (signed in) or profile picker (signed out)
+    page.tsx               Dashboard (signed in) or login / register (signed out)
     test/                  Test setup + live runner + results
     study/                 Study hub + interactive per-section guides
     narratives/            STAR-L narrative workspace
     review/                Mistake review
-    api/                   session, profiles/[id], tests, tests/[id], responses,
-                           narratives, study/quiz, study/progress
+    api/                   session (register/login/logout), account (self-delete),
+                           tests, tests/[id], responses, narratives, study/quiz,
+                           study/progress
   components/              UI primitives + feature components (TestRunner,
-                          StudyGuide, Flashcards, StudyQuickCheck, profile picker…)
+                          StudyGuide, Flashcards, StudyQuickCheck, AccountMenu…)
 Dockerfile, docker-entrypoint.sh, docker-compose.yml
 ```
 
 ### Data model
 
-`users`, `questions`, `study_materials`, `study_progress` (per-profile
-mark-as-studied), `test_sessions` (with `start_time`, `deadline_at`,
+`users` (with `last_seen_at`, which drives inactive-account cleanup), `sessions`
+(auth bearer tokens), `questions`, `study_materials`, `study_progress`
+(per-account mark-as-studied), `test_sessions` (with `start_time`, `deadline_at`,
 `elapsed_time`, `total_duration_sec`), `section_states` (per-section timer + lock
 state), `user_responses`, and `narratives`.
 

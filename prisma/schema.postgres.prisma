@@ -26,6 +26,7 @@ model User {
   passwordHash String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  lastSeenAt   DateTime? // bumped on authenticated activity; drives inactive-account cleanup
 
   testSessions  TestSession[]
   responses     UserResponse[]
@@ -33,6 +34,7 @@ model User {
   studyProgress StudyProgress[]
   sessions      Session[]
 
+  @@index([lastSeenAt])
   @@map("users")
 }
 
