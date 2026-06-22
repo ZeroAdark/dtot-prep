@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { PrismaClient } from "@prisma/client";
+import { randomBytes, scryptSync } from "crypto";
 import {
   JOB_KNOWLEDGE_EXTRA,
   SITUATIONAL_EXTRA,
@@ -978,13 +979,20 @@ async function main() {
     });
   }
 
-  // A demo candidate to make the dashboard explorable immediately.
+  // A demo candidate placeholder. It is given a strong RANDOM, never-disclosed
+  // password (same scrypt format as auth.ts) rather than left passwordless — a
+  // passwordless account would otherwise be a takeover target on a public
+  // deployment. Nobody can sign in as it; real visitors create their own login.
   const existingDemo = await prisma.user.findFirst({
     where: { name: "Demo Candidate" },
   });
   if (!existingDemo) {
     console.log("Creating demo candidate…");
-    await prisma.user.create({ data: { name: "Demo Candidate" } });
+    const salt = randomBytes(16).toString("hex");
+    const hash = scryptSync(randomBytes(32).toString("hex"), salt, 64).toString("hex");
+    await prisma.user.create({
+      data: { name: "Demo Candidate", passwordHash: `scrypt$${salt}$${hash}` },
+    });
   }
 
   const counts = {

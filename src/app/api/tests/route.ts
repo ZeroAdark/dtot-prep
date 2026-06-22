@@ -3,6 +3,7 @@ import { getCurrentUserId } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { createTestSession } from "@/lib/engine";
 import { SECTION_ORDER, SectionKey, TestMode } from "@/lib/constants";
+import { sameOrigin } from "@/lib/request-guard";
 
 // GET /api/tests → this candidate's sessions (most recent first)
 export async function GET() {
@@ -20,6 +21,7 @@ export async function GET() {
 
 // POST /api/tests  { mode, sections, countPerSection? } → { id }
 export async function POST(req: NextRequest) {
+  if (!sameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const userId = await getCurrentUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -44,7 +46,9 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({ id });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "Failed to create test.";
-    return NextResponse.json({ error: msg }, { status: 400 });
+    // Log the real error server-side; return a generic message so internal
+    // (e.g. Prisma) details aren't disclosed to clients.
+    console.error("createTestSession failed", e);
+    return NextResponse.json({ error: "Failed to create test." }, { status: 400 });
   }
 }

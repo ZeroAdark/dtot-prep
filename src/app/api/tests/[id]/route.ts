@@ -7,6 +7,7 @@ import {
   submitSession,
 } from "@/lib/engine";
 import { SESSION_STATUS } from "@/lib/constants";
+import { sameOrigin } from "@/lib/request-guard";
 
 // GET /api/tests/[id] → full session DTO (runs timer enforcement first)
 export async function GET(
@@ -26,6 +27,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } },
 ) {
+  if (!sameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const userId = await getCurrentUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

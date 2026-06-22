@@ -9,6 +9,7 @@ import {
   STARL_TOTAL_ITEMS,
 } from "@/lib/constants";
 import { toJson } from "@/lib/serialize";
+import { sameOrigin } from "@/lib/request-guard";
 
 // GET /api/narratives → all of this candidate's narratives (one per competency)
 export async function GET() {
@@ -25,6 +26,7 @@ export async function GET() {
 // POST /api/narratives  { competency, content, rubric, status? }
 // Upserts the single narrative per competency (so progress resumes).
 export async function POST(req: NextRequest) {
+  if (!sameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const userId = await getCurrentUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

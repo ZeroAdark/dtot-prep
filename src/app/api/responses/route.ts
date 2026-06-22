@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUserId } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { saveResponse } from "@/lib/engine";
+import { sameOrigin } from "@/lib/request-guard";
 
 // POST /api/responses
 // { sessionId, questionId, selectedOptionId, flagged?, timeSpentSec? }
 export async function POST(req: NextRequest) {
+  if (!sameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const userId = await getCurrentUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -35,7 +37,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "Failed to save.";
-    return NextResponse.json({ error: msg }, { status: 400 });
+    console.error("saveResponse failed", e);
+    return NextResponse.json({ error: "Failed to save." }, { status: 400 });
   }
 }

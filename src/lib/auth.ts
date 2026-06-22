@@ -1,23 +1,41 @@
 import { cookies } from "next/headers";
-import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
+import { randomBytes, scrypt as scryptCb, timingSafeEqual } from "crypto";
+import { promisify } from "util";
 import { prisma } from "./prisma";
+
+// Async scrypt: the sync variant blocks the single Node event loop for the full
+// (deliberately expensive) hash, so every login/register would stall the whole
+// app. The promisified version runs the work on libuv's threadpool instead.
+const scrypt = promisify(scryptCb) as (
+  password: string | Buffer,
+  salt: string | Buffer,
+  keylen: number,
+) => Promise<Buffer>;
 
 export const SESSION_COOKIE = "dtot_session";
 const SESSION_TTL_DAYS = 30;
 const SESSION_TTL_SEC = SESSION_TTL_DAYS * 24 * 60 * 60;
 export const MIN_PASSWORD_LENGTH = 8;
+// Cap the accepted password length. scrypt first runs PBKDF2 over the whole
+// input, so an unbounded password lets an attacker make each (blocking) hash
+// arbitrarily expensive — a cheap DoS. 256 is far longer than any real
+// passphrase.
+export const MAX_PASSWORD_LENGTH = 256;
 
 // ── Password hashing (Node built-in scrypt — no external deps) ────────────────
 // Stored format: "scrypt$<saltHex>$<hashHex>".
 const SCRYPT_KEYLEN = 64;
 
-export function hashPassword(password: string): string {
+export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString("hex");
-  const hash = scryptSync(password, salt, SCRYPT_KEYLEN).toString("hex");
+  const hash = (await scrypt(password, salt, SCRYPT_KEYLEN)).toString("hex");
   return `scrypt$${salt}$${hash}`;
 }
 
-export function verifyPassword(password: string, stored: string | null): boolean {
+export async function verifyPassword(
+  password: string,
+  stored: string | null,
+): Promise<boolean> {
   if (!stored) return false;
   const [scheme, salt, hash] = stored.split("$");
   if (scheme !== "scrypt" || !salt || !hash) return false;
@@ -30,11 +48,23 @@ export function verifyPassword(password: string, stored: string | null): boolean
   if (expected.length !== SCRYPT_KEYLEN) return false;
   let actual: Buffer;
   try {
-    actual = scryptSync(password, salt, SCRYPT_KEYLEN);
+    actual = await scrypt(password, salt, SCRYPT_KEYLEN);
   } catch {
     return false;
   }
   return timingSafeEqual(expected, actual);
+}
+
+// A fixed dummy hash, computed once. login() verifies against it on the
+// "no such user" / "no password set" paths so a failed attempt always pays the
+// same scrypt cost as a real one — removing the timing oracle that would
+// otherwise reveal which names are registered.
+let dummyHashPromise: Promise<string> | null = null;
+function getDummyHash(): Promise<string> {
+  if (!dummyHashPromise) {
+    dummyHashPromise = hashPassword(randomBytes(32).toString("hex"));
+  }
+  return dummyHashPromise;
 }
 
 // ── Session cookie (random bearer token mapped to a DB Session row) ───────────
@@ -53,6 +83,11 @@ export function clearSessionCookie() {
 }
 
 async function createSession(userId: string): Promise<string> {
+  // Opportunistically garbage-collect expired sessions so the table stays
+  // bounded without any scheduled job (expiry is still enforced on every read).
+  await prisma.session
+    .deleteMany({ where: { expiresAt: { lt: new Date() } } })
+    .catch(() => {});
   const token = randomBytes(32).toString("hex"); // 256-bit, unguessable
   const expiresAt = new Date(Date.now() + SESSION_TTL_SEC * 1000);
   await prisma.session.create({ data: { token, userId, expiresAt } });
@@ -86,7 +121,6 @@ export interface AuthResult {
   ok: boolean;
   error?: string;
   user?: { id: string; name: string };
-  claimed?: boolean; // a legacy passwordless profile just had its password set
 }
 
 /** Create a new account (name must be unique) and sign in. */
@@ -103,10 +137,16 @@ export async function register(
       error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`,
     };
   }
+  if (password.length > MAX_PASSWORD_LENGTH) {
+    return {
+      ok: false,
+      error: `Password must be at most ${MAX_PASSWORD_LENGTH} characters.`,
+    };
+  }
   let user;
   try {
     user = await prisma.user.create({
-      data: { name: trimmed, passwordHash: hashPassword(password) },
+      data: { name: trimmed, passwordHash: await hashPassword(password) },
     });
   } catch (e) {
     // Prisma P2002 = unique constraint (name already taken).
@@ -128,32 +168,29 @@ export async function login(
 ): Promise<AuthResult> {
   const trimmed = name.trim();
   const generic: AuthResult = { ok: false, error: "Incorrect name or password." };
-  if (!trimmed || !password) return generic;
-
-  const user = await prisma.user.findUnique({ where: { name: trimmed } });
-  if (!user) return generic;
-
-  let claimed = false;
-  if (!user.passwordHash) {
-    // Legacy passwordless profile: first sign-in sets (claims) its password.
-    if (password.length < MIN_PASSWORD_LENGTH) {
-      return {
-        ok: false,
-        error: `This profile has no password yet — set one of at least ${MIN_PASSWORD_LENGTH} characters.`,
-      };
-    }
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { passwordHash: hashPassword(password) },
-    });
-    claimed = true;
-  } else if (!verifyPassword(password, user.passwordHash)) {
+  if (!trimmed || !password || password.length > MAX_PASSWORD_LENGTH) {
+    // Still pay the hash cost on obviously-bad input so timing stays flat.
+    await verifyPassword(password, await getDummyHash());
     return generic;
   }
 
+  const user = await prisma.user.findUnique({ where: { name: trimmed } });
+  // ALWAYS run a scrypt verification — against the real hash if the account
+  // exists and has a password, otherwise against a dummy hash — so the response
+  // time is the same whether or not the name exists. An account with no password
+  // set is never auto-claimed: it simply fails like a wrong password. (There is
+  // no "first login wins" path; that was an unauthenticated account-takeover.)
+  let ok = false;
+  if (user?.passwordHash) {
+    ok = await verifyPassword(password, user.passwordHash);
+  } else {
+    await verifyPassword(password, await getDummyHash());
+  }
+  if (!user || !ok) return generic;
+
   const token = await createSession(user.id);
   await setSessionCookie(token, secure);
-  return { ok: true, user: { id: user.id, name: user.name }, claimed };
+  return { ok: true, user: { id: user.id, name: user.name } };
 }
 
 /** Sign out: revoke the current session and clear the cookie. */
@@ -171,11 +208,12 @@ export async function deleteAccountWithPassword(
   userId: string,
   password: string,
 ): Promise<boolean> {
+  if (!password || password.length > MAX_PASSWORD_LENGTH) return false;
   const user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) return false;
   // Fail closed: require a set password and a correct match (never allow
   // deletion of a passwordless account without re-auth).
-  if (!user.passwordHash || !verifyPassword(password, user.passwordHash)) {
+  if (!user.passwordHash || !(await verifyPassword(password, user.passwordHash))) {
     return false;
   }
   await prisma.user.delete({ where: { id: userId } });

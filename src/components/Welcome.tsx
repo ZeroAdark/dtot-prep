@@ -221,8 +221,8 @@ export function Welcome() {
 
             <p className="mt-4 text-center text-xs text-muted-foreground">
               {mode === "login"
-                ? "Local practice profile. First time on an existing profile? Enter a new password to set it."
-                : "No email required — this is a local practice profile on this server."}
+                ? "Practice profile on this server. New here? Switch to “Create account.”"
+                : "No email required — this is a practice profile on this server."}
             </p>
           </CardContent>
         </Card>

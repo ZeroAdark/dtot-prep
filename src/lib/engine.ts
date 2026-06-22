@@ -345,6 +345,16 @@ export async function submitSession(sessionId: string) {
 // ── Building the client DTO ──────────────────────────────────────────────────
 
 export async function getSessionDTO(sessionId: string, userId: string) {
+  // Verify ownership BEFORE enforceTimers runs — enforceTimers loads the session
+  // by id only and can write (lock/expire/advance), so calling it first would
+  // let an authenticated user trigger state changes on another user's session
+  // just by guessing its id. Non-owners get the same 404 as a missing session.
+  const owned = await prisma.testSession.findFirst({
+    where: { id: sessionId, userId },
+    select: { id: true },
+  });
+  if (!owned) return null;
+
   await enforceTimers(sessionId);
   const session = await prisma.testSession.findFirst({
     where: { id: sessionId, userId },
