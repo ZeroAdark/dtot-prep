@@ -16,12 +16,13 @@ export const dynamic = "force-dynamic";
 export default async function StudySectionPage({
   params,
 }: {
-  params: { section: string };
+  params: Promise<{ section: string }>;
 }) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
-  const section = params.section as SectionKey;
+  const { section: sectionParam } = await params;
+  const section = sectionParam as SectionKey;
   if (!SECTION_ORDER.includes(section)) notFound();
 
   const meta = SECTIONS[section];

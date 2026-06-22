@@ -69,7 +69,7 @@ function getDummyHash(): Promise<string> {
 
 // ── Session cookie (random bearer token mapped to a DB Session row) ───────────
 export async function setSessionCookie(token: string, secure: boolean) {
-  cookies().set(SESSION_COOKIE, token, {
+  (await cookies()).set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
     secure,
@@ -78,8 +78,8 @@ export async function setSessionCookie(token: string, secure: boolean) {
   });
 }
 
-export function clearSessionCookie() {
-  cookies().delete(SESSION_COOKIE);
+export async function clearSessionCookie() {
+  (await cookies()).delete(SESSION_COOKIE);
 }
 
 async function createSession(userId: string): Promise<string> {
@@ -100,7 +100,7 @@ async function createSession(userId: string): Promise<string> {
  * any caller (e.g. the GET /api/session response).
  */
 export async function getCurrentUser() {
-  const token = cookies().get(SESSION_COOKIE)?.value;
+  const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!token) return null;
   const session = await prisma.session.findUnique({
     where: { token },
@@ -195,9 +195,9 @@ export async function login(
 
 /** Sign out: revoke the current session and clear the cookie. */
 export async function logout() {
-  const token = cookies().get(SESSION_COOKIE)?.value;
+  const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (token) await prisma.session.deleteMany({ where: { token } });
-  clearSessionCookie();
+  await clearSessionCookie();
 }
 
 /**
@@ -217,6 +217,6 @@ export async function deleteAccountWithPassword(
     return false;
   }
   await prisma.user.delete({ where: { id: userId } });
-  clearSessionCookie();
+  await clearSessionCookie();
   return true;
 }

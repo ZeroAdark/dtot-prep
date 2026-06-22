@@ -1,4 +1,4 @@
-# DTOT Prep — production image (Next.js 14 + Prisma/SQLite)
+# DTOT Prep — production image (Next.js 15 + Prisma/SQLite)
 FROM node:22-slim
 
 # OpenSSL + CA certs are required by Prisma's query engine.

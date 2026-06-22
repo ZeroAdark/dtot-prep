@@ -18,14 +18,15 @@ export const dynamic = "force-dynamic";
 export default async function ReviewPage({
   searchParams,
 }: {
-  searchParams: { section?: string };
+  searchParams: Promise<{ section?: string }>;
 }) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
+  const { section: sectionParam } = await searchParams;
   const filter =
-    searchParams.section && SECTION_ORDER.includes(searchParams.section as SectionKey)
-      ? (searchParams.section as SectionKey)
+    sectionParam && SECTION_ORDER.includes(sectionParam as SectionKey)
+      ? (sectionParam as SectionKey)
       : null;
 
   // Missed = wrong or unanswered, from finished sessions.

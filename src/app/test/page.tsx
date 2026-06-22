@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function TestPage({
   searchParams,
 }: {
-  searchParams: { section?: string };
+  searchParams: Promise<{ section?: string }>;
 }) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
@@ -37,9 +37,10 @@ export default async function TestPage({
     },
   });
 
+  const { section: sectionParam } = await searchParams;
   const presetSection =
-    searchParams.section && SECTION_ORDER.includes(searchParams.section as SectionKey)
-      ? (searchParams.section as SectionKey)
+    sectionParam && SECTION_ORDER.includes(sectionParam as SectionKey)
+      ? (sectionParam as SectionKey)
       : null;
 
   return (
