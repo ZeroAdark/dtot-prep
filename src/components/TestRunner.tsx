@@ -28,12 +28,21 @@ function timerTone(remaining: number | null, total: number): string {
   return "text-foreground";
 }
 
+type ConfirmConfig = {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  variant: "default" | "destructive";
+  action: () => Promise<void>;
+};
+
 export function TestRunner({ initial }: { initial: ClientSession }) {
   const router = useRouter();
   const [session, setSession] = useState<ClientSession>(initial);
   const [qIndex, setQIndex] = useState(0);
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [pendingConfirm, setPendingConfirm] = useState<ConfirmConfig | null>(null);
   const pendingSaves = useRef(0);
 
   const active: ClientSection | undefined = useMemo(
@@ -152,36 +161,56 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
     persist(questionId, { flagged: !current });
   }
 
-  async function submitSection() {
-    if (!active) return;
-    const unanswered = active.questions.filter((q) => q.selectedOptionId == null).length;
-    const msg =
-      unanswered > 0
-        ? `Submit ${SECTIONS[active.section].label}? ${unanswered} question(s) are unanswered and will be marked incorrect.`
-        : `Submit ${SECTIONS[active.section].label}? You won't be able to change answers.`;
-    if (!confirm(msg)) return;
-    setSubmitting(true);
+  async function patchSession(body: Record<string, unknown>) {
     const res = await fetch(`/api/tests/${session.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "submitSection", section: active.section }),
+      body: JSON.stringify(body),
     });
     const data = await res.json();
     if (data.session) setSession(data.session as ClientSession);
-    setSubmitting(false);
   }
 
-  async function submitEntireTest() {
-    if (!confirm("End and submit the entire test now? All sections will be graded.")) return;
-    setSubmitting(true);
-    const res = await fetch(`/api/tests/${session.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "submit" }),
+  // Open an in-app confirmation dialog. (Replaces native confirm(), which mobile
+  // browsers often suppress — there the action would silently never fire.)
+  function submitSection() {
+    if (!active) return;
+    const section = active.section;
+    const label = SECTIONS[section].label;
+    const unanswered = active.questions.filter((q) => q.selectedOptionId == null).length;
+    const idx = session.sections.findIndex((s) => s.section === section);
+    const isLast = idx + 1 === session.sections.length;
+    setPendingConfirm({
+      title: `Submit ${label}?`,
+      message:
+        unanswered > 0
+          ? `${unanswered} question(s) are unanswered and will be marked incorrect. You can't change answers after submitting.`
+          : "You won't be able to change your answers after submitting.",
+      confirmLabel: isLast ? "Submit & finish" : "Submit section",
+      variant: "default",
+      action: () => patchSession({ action: "submitSection", section }),
     });
-    const data = await res.json();
-    if (data.session) setSession(data.session as ClientSession);
-    setSubmitting(false);
+  }
+
+  function submitEntireTest() {
+    setPendingConfirm({
+      title: "End the entire test?",
+      message: "All sections will be graded now and you won't be able to continue.",
+      confirmLabel: "End test",
+      variant: "destructive",
+      action: () => patchSession({ action: "submit" }),
+    });
+  }
+
+  async function runConfirm() {
+    if (!pendingConfirm || submitting) return;
+    setSubmitting(true);
+    try {
+      await pendingConfirm.action();
+    } finally {
+      setSubmitting(false);
+      setPendingConfirm(null);
+    }
   }
 
   if (session.finished) return <TestResults session={session} />;
@@ -386,6 +415,20 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
           </Button>
         </aside>
       </div>
+
+      {pendingConfirm && (
+        <ConfirmDialog
+          title={pendingConfirm.title}
+          message={pendingConfirm.message}
+          confirmLabel={pendingConfirm.confirmLabel}
+          variant={pendingConfirm.variant}
+          busy={submitting}
+          onConfirm={runConfirm}
+          onCancel={() => {
+            if (!submitting) setPendingConfirm(null);
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -421,6 +464,70 @@ function Legend({ className, label }: { className: string; label: string }) {
     <div className="flex items-center gap-2">
       <span className={cn("h-3.5 w-3.5 rounded border", className)} />
       {label}
+    </div>
+  );
+}
+
+// Mobile-safe confirmation dialog: a bottom sheet on phones, centered on larger
+// screens. Renders above everything (z-50), dims + blocks the page behind it,
+// and supports click-away + Escape to cancel.
+function ConfirmDialog({
+  title,
+  message,
+  confirmLabel,
+  variant,
+  busy,
+  onConfirm,
+  onCancel,
+}: {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  variant: "default" | "destructive";
+  busy: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCancel();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onCancel]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 backdrop-blur-sm sm:items-center"
+    >
+      {/* click-away backdrop */}
+      <button
+        type="button"
+        aria-hidden="true"
+        tabIndex={-1}
+        onClick={onCancel}
+        className="absolute inset-0 cursor-default"
+      />
+      <div className="relative w-full max-w-sm rounded-xl border bg-card p-6 shadow-xl">
+        <h2 className="text-base font-semibold">{title}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{message}</p>
+        <div className="mt-6 flex justify-end gap-2">
+          <Button variant="ghost" onClick={onCancel} disabled={busy}>
+            Cancel
+          </Button>
+          <Button variant={variant} onClick={onConfirm} disabled={busy} autoFocus>
+            {busy ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" /> Working…
+              </>
+            ) : (
+              confirmLabel
+            )}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
