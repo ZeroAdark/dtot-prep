@@ -9,12 +9,13 @@ export const dynamic = "force-dynamic";
 export default async function TestRunnerPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
-  const dto = await getSessionDTO(params.id, user.id);
+  const { id } = await params;
+  const dto = await getSessionDTO(id, user.id);
   if (!dto) notFound();
 
   // Normalize Dates → ISO strings for the client component.
