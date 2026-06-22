@@ -78,7 +78,7 @@ export function Welcome() {
 
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
-      <div className="grid items-center gap-10 md:grid-cols-2">
+      <div className="grid items-start gap-10 md:grid-cols-2">
         <div>
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <ShieldCheck className="h-3.5 w-3.5" />
@@ -113,7 +113,10 @@ export function Welcome() {
         </div>
 
         <Card className="shadow-md">
-          <CardContent className="p-8">
+          {/* Fixed min-height + flex column so switching Login/Create account
+              doesn't resize the card or shift the hero; the footer stays pinned
+              to the bottom and the extra field just fills reserved space. */}
+          <CardContent className="flex min-h-[36rem] flex-col p-8">
             {/* Tabs */}
             <div className="mb-5 grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">
               {(["login", "register"] as Mode[]).map((m) => (
@@ -219,11 +222,16 @@ export function Welcome() {
               </Button>
             </form>
 
-            <p className="mt-4 text-center text-xs text-muted-foreground">
-              {mode === "login"
-                ? "Practice profile on this server. New here? Switch to “Create account.”"
-                : "No email required — this is a practice profile on this server."}
-            </p>
+            <div className="mt-auto pt-6 text-center">
+              <p className="text-xs text-muted-foreground">
+                {mode === "login"
+                  ? "Practice profile on this server. New here? Switch to “Create account.”"
+                  : "No email required — this is a practice profile on this server."}
+              </p>
+              <p className="mt-2 text-[11px] text-muted-foreground/70">
+                Inactive accounts are automatically deleted after 30 days.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
