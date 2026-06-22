@@ -13,6 +13,9 @@ services:
     environment:
       DATABASE_URL: "file:/data/app.db"
       NODE_ENV: "production"
+      # Public origin behind the Cloudflare Tunnel — the same-origin/CSRF guard
+      # trusts this explicitly (in addition to the forwarded Host header).
+      APP_ORIGIN: "https://dtot.fedlibrary.org"
     volumes:
       - dtot-data:/data
     networks:
