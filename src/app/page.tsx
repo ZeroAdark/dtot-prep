@@ -10,7 +10,7 @@ import {
   ClipboardList,
 } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
-import { getDashboardStats } from "@/lib/stats";
+import { getDashboardStats, getUserStats } from "@/lib/stats";
 import { Welcome } from "@/components/Welcome";
 import { ReadinessRing } from "@/components/ReadinessRing";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,7 +38,7 @@ const toneBar: Record<string, string> = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  if (!user) return <Welcome />;
+  if (!user) return <Welcome stats={await getUserStats()} />;
 
   const stats = await getDashboardStats(user.id);
 

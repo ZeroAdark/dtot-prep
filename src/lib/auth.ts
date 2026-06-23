@@ -99,8 +99,9 @@ async function createSession(userId: string): Promise<string> {
 }
 
 // How stale lastSeenAt may get before getCurrentUser refreshes it. Throttles the
-// write to ~once/hour per active user instead of one per request.
-const ACTIVITY_REFRESH_MS = 60 * 60 * 1000;
+// write to at most once per couple minutes per active user (vs. one per request)
+// while staying fresh enough to drive the landing page's "online now" count.
+const ACTIVITY_REFRESH_MS = 2 * 60 * 1000;
 
 /**
  * The signed-in candidate (only safe public fields), or null. Read-only — safe

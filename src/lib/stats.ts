@@ -10,6 +10,25 @@ import { readinessBand } from "./grading";
 
 const FINISHED = ["COMPLETED", "EXPIRED"];
 
+// "Online" = active within this window. lastSeenAt is bumped on each
+// authenticated request (throttled in auth.ts to a shorter interval than this).
+const ONLINE_WINDOW_MS = 5 * 60 * 1000;
+
+export interface UserStats {
+  totalUsers: number;
+  onlineUsers: number;
+}
+
+/** Aggregate, non-PII counts for the public landing page. */
+export async function getUserStats(): Promise<UserStats> {
+  const since = new Date(Date.now() - ONLINE_WINDOW_MS);
+  const [totalUsers, onlineUsers] = await Promise.all([
+    prisma.user.count(),
+    prisma.user.count({ where: { lastSeenAt: { gte: since } } }),
+  ]);
+  return { totalUsers, onlineUsers };
+}
+
 export interface SectionReadiness {
   section: SectionKey;
   attempted: number; // questions answered/graded across finished sessions

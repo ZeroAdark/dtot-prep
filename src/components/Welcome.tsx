@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ShieldCheck,
   Timer,
@@ -9,6 +9,7 @@ import {
   Loader2,
   LogIn,
   UserPlus,
+  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,9 +17,31 @@ import { cn } from "@/lib/utils";
 
 const MIN_PASSWORD = 8;
 type Mode = "login" | "register";
+type UserStats = { totalUsers: number; onlineUsers: number };
 
-export function Welcome() {
+export function Welcome({ stats: initialStats }: { stats: UserStats }) {
   const [mode, setMode] = useState<Mode>("login");
+  const [stats, setStats] = useState<UserStats>(initialStats);
+
+  // Keep the counts (especially "online now") fresh while the visitor is here.
+  useEffect(() => {
+    let active = true;
+    const tick = async () => {
+      try {
+        const res = await fetch("/api/stats", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as UserStats;
+        if (active) setStats(data);
+      } catch {
+        /* ignore transient errors */
+      }
+    };
+    const id = setInterval(tick, 30000);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, []);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -110,6 +133,31 @@ export function Welcome() {
               );
             })}
           </ul>
+
+          {/* Social-proof counts */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <Users className="h-4 w-4" />
+              <span>
+                <strong className="font-semibold text-foreground">
+                  {stats.totalUsers.toLocaleString()}
+                </strong>{" "}
+                {stats.totalUsers === 1 ? "candidate" : "candidates"}
+              </span>
+            </span>
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-success" />
+              </span>
+              <span>
+                <strong className="font-semibold text-foreground">
+                  {stats.onlineUsers.toLocaleString()}
+                </strong>{" "}
+                online now
+              </span>
+            </span>
+          </div>
         </div>
 
         <Card className="shadow-md">
