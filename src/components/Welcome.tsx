@@ -10,6 +10,7 @@ import {
   LogIn,
   UserPlus,
   Users,
+  Activity,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 const MIN_PASSWORD = 8;
 type Mode = "login" | "register";
-type UserStats = { totalUsers: number; onlineUsers: number };
+type UserStats = { totalUsers: number; onlineUsers: number; activeToday: number };
 
 export function Welcome({ stats: initialStats }: { stats: UserStats }) {
   const [mode, setMode] = useState<Mode>("login");
@@ -143,6 +144,15 @@ export function Welcome({ stats: initialStats }: { stats: UserStats }) {
                   {stats.totalUsers.toLocaleString()}
                 </strong>{" "}
                 {stats.totalUsers === 1 ? "candidate" : "candidates"}
+              </span>
+            </span>
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <Activity className="h-4 w-4" />
+              <span>
+                <strong className="font-semibold text-foreground">
+                  {stats.activeToday.toLocaleString()}
+                </strong>{" "}
+                active today
               </span>
             </span>
             <span className="flex items-center gap-2 text-muted-foreground">

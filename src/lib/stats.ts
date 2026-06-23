@@ -10,23 +10,28 @@ import { readinessBand } from "./grading";
 
 const FINISHED = ["COMPLETED", "EXPIRED"];
 
-// "Online" = active within this window. lastSeenAt is bumped on each
-// authenticated request (throttled in auth.ts to a shorter interval than this).
+// "Online" = active within this window; "active today" = within the last 24h.
+// lastSeenAt is bumped on each authenticated request (throttled in auth.ts).
 const ONLINE_WINDOW_MS = 5 * 60 * 1000;
+const TODAY_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export interface UserStats {
   totalUsers: number;
   onlineUsers: number;
+  activeToday: number;
 }
 
 /** Aggregate, non-PII counts for the public landing page. */
 export async function getUserStats(): Promise<UserStats> {
-  const since = new Date(Date.now() - ONLINE_WINDOW_MS);
-  const [totalUsers, onlineUsers] = await Promise.all([
+  const now = Date.now();
+  const onlineSince = new Date(now - ONLINE_WINDOW_MS);
+  const todaySince = new Date(now - TODAY_WINDOW_MS);
+  const [totalUsers, onlineUsers, activeToday] = await Promise.all([
     prisma.user.count(),
-    prisma.user.count({ where: { lastSeenAt: { gte: since } } }),
+    prisma.user.count({ where: { lastSeenAt: { gte: onlineSince } } }),
+    prisma.user.count({ where: { lastSeenAt: { gte: todaySince } } }),
   ]);
-  return { totalUsers, onlineUsers };
+  return { totalUsers, onlineUsers, activeToday };
 }
 
 export interface SectionReadiness {
