@@ -169,7 +169,7 @@ const portsConnectors: DiagramDef = {
   slug: "ports-connectors",
   title: "Common ports & connectors",
   caption: "Tap a connector to identify it and where it's used.",
-  viewBox: "0 0 360 250",
+  viewBox: "0 0 420 290",
   parts: [
     { id: "usb-a", label: "USB-A", description: "Rectangular USB Type-A — keyboards, mice, flash drives. Insert one way; blue tongue = USB 3.x." },
     { id: "usb-c", label: "USB-C", description: "Small reversible oval connector. Carries USB, DisplayPort (alt mode), and power delivery (PD). Modern standard." },
@@ -184,55 +184,102 @@ const portsConnectors: DiagramDef = {
       label: string,
       col: number,
       row: number,
-      draw: (on: boolean) => React.ReactNode,
+      draw: () => React.ReactNode,
     ) => {
       const on = active === id;
-      const ox = 14 + col * 116;
-      const oy = 12 + row * 112;
+      const ox = 14 + col * 134;
+      const oy = 14 + row * 138;
       return (
         <g data-part={id} className="cursor-pointer">
-          <rect x={ox} y={oy} width={104} height={96} rx={8} strokeWidth={1.5}
+          <rect x={ox} y={oy} width={126} height={122} rx={12} strokeWidth={1.5}
             className={on ? "fill-primary/10 stroke-primary" : "fill-card stroke-border"} />
-          <g transform={`translate(${ox + 52}, ${oy + 40})`}>{draw(on)}</g>
-          <text x={ox + 52} y={oy + 84} fontSize={11} fontWeight={600} textAnchor="middle"
+          <g transform={`translate(${ox + 63}, ${oy + 50})`}>{draw()}</g>
+          <text x={ox + 63} y={oy + 104} fontSize={12} fontWeight={600} textAnchor="middle"
             className={on ? "fill-primary" : "fill-muted-foreground"}>
             {label}
           </text>
         </g>
       );
     };
-    const fill = (on: boolean) => (on ? "fill-primary" : "fill-muted-foreground/70");
-    const strk = (on: boolean) => (on ? "stroke-primary" : "stroke-muted-foreground/70");
     return (
       <>
-        {cell("usb-a", "USB-A", 0, 0, (on) => (
+        <defs>
+          <linearGradient id="pcMetal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e3e9f0" />
+            <stop offset="0.5" stopColor="#aab4c1" />
+            <stop offset="1" stopColor="#7c8896" />
+          </linearGradient>
+          <linearGradient id="pcMetalH" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#eef2f7" />
+            <stop offset="0.5" stopColor="#c0cad6" />
+            <stop offset="1" stopColor="#8f9dad" />
+          </linearGradient>
+          <linearGradient id="pcGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#f5d471" />
+            <stop offset="1" stopColor="#c0942f" />
+          </linearGradient>
+        </defs>
+
+        {/* USB-A — metal shell, white tongue, 4 gold contacts */}
+        {cell("usb-a", "USB-A", 0, 0, () => (
           <>
-            <rect x={-26} y={-12} width={52} height={24} rx={2} className={`fill-none ${strk(on)}`} strokeWidth={2} />
-            <rect x={-20} y={-2} width={30} height={8} className={fill(on)} />
+            <rect x={-43} y={-19} width={86} height={38} rx={3} fill="url(#pcMetal)" stroke="#586473" strokeWidth={1.5} />
+            <rect x={-43} y={-19} width={86} height={5} rx={2} fill="#ffffff" opacity={0.35} />
+            <rect x={-35} y={-12} width={70} height={24} rx={2} fill="#39434f" />
+            <rect x={-31} y={-3} width={58} height={11} rx={1.5} fill="#eef1f5" />
+            {[-27, -12.5, 2, 16.5].map((x) => (
+              <rect key={x} x={x} y={-1} width={9} height={6} rx={1} fill="url(#pcGold)" />
+            ))}
           </>
         ))}
-        {cell("usb-c", "USB-C", 1, 0, (on) => (
+
+        {/* USB-C — rounded oval shell with center tongue */}
+        {cell("usb-c", "USB-C", 1, 0, () => (
           <>
-            <rect x={-26} y={-9} width={52} height={18} rx={9} className={`fill-none ${strk(on)}`} strokeWidth={2} />
-            <rect x={-18} y={-3} width={36} height={6} rx={3} className={fill(on)} />
+            <rect x={-37} y={-15} width={74} height={30} rx={15} fill="url(#pcMetal)" stroke="#586473" strokeWidth={1.5} />
+            <rect x={-37} y={-15} width={74} height={5} rx={3} fill="#ffffff" opacity={0.3} />
+            <rect x={-29} y={-9} width={58} height={18} rx={9} fill="#39434f" />
+            <rect x={-22} y={-3} width={44} height={6} rx={3} fill="#9aa6b4" />
           </>
         ))}
-        {cell("rj45", "RJ45", 2, 0, (on) => (
+
+        {/* RJ45 — translucent modular plug, locking clip, 8 gold pins, cable */}
+        {cell("rj45", "RJ45", 2, 0, () => (
           <>
-            <path d="M -22 -12 H 22 V 10 H 8 V 16 H -8 V 10 H -22 Z" className={`fill-none ${strk(on)}`} strokeWidth={2} />
-            {[-15, -9, -3, 3, 9, 15].map((x) => <rect key={x} x={x} y={-12} width={3} height={7} className={fill(on)} />)}
+            <rect x={-8} y={12} width={16} height={20} rx={4} fill="#6b7480" />
+            <rect x={-31} y={-15} width={62} height={31} rx={3} fill="#e3edf3" stroke="#88a0ae" strokeWidth={1.5} />
+            <path d="M -7 -15 L 7 -15 L 5 -24 L -5 -24 Z" fill="#d2e1ea" stroke="#88a0ae" strokeWidth={1.2} strokeLinejoin="round" />
+            {Array.from({ length: 8 }, (_, i) => -25 + i * 6.7).map((x) => (
+              <rect key={x} x={x} y={-14} width={3.3} height={12} rx={0.6} fill="url(#pcGold)" />
+            ))}
           </>
         ))}
-        {cell("hdmi", "HDMI", 0, 1, (on) => (
-          <path d="M -26 -10 H 26 L 20 10 H -20 Z" className={`fill-none ${strk(on)}`} strokeWidth={2} />
-        ))}
-        {cell("dp", "DisplayPort", 1, 1, (on) => (
-          <path d="M -26 -10 H 20 L 26 -4 V 10 H -26 Z" className={`fill-none ${strk(on)}`} strokeWidth={2} />
-        ))}
-        {cell("audio", "3.5mm audio", 2, 1, (on) => (
+
+        {/* HDMI — tapered (trapezoidal) metal plug */}
+        {cell("hdmi", "HDMI", 0, 1, () => (
           <>
-            <circle cx={0} cy={0} r={13} className={`fill-none ${strk(on)}`} strokeWidth={2} />
-            <circle cx={0} cy={0} r={4} className={fill(on)} />
+            <path d="M -42 -15 L 42 -15 L 33 15 L -33 15 Z" fill="url(#pcMetal)" stroke="#586473" strokeWidth={1.5} strokeLinejoin="round" />
+            <path d="M -33 -8 L 33 -8 L 26 9 L -26 9 Z" fill="#39434f" />
+            <rect x={-25} y={-2} width={50} height={4} rx={1} fill="url(#pcGold)" opacity={0.85} />
+          </>
+        ))}
+
+        {/* DisplayPort — rectangular with one chamfered corner */}
+        {cell("dp", "DisplayPort", 1, 1, () => (
+          <>
+            <path d="M -40 -15 L 31 -15 L 40 -6 L 40 15 L -40 15 Z" fill="url(#pcMetal)" stroke="#586473" strokeWidth={1.5} strokeLinejoin="round" />
+            <path d="M -32 -8 L 26 -8 L 31 -3 L 31 9 L -32 9 Z" fill="#39434f" />
+            <rect x={-24} y={-2} width={46} height={4} rx={1} fill="url(#pcGold)" opacity={0.85} />
+          </>
+        ))}
+
+        {/* 3.5mm audio — gold TRS plug with insulator rings + barrel */}
+        {cell("audio", "3.5mm audio", 2, 1, () => (
+          <>
+            <rect x={13} y={-10} width={32} height={20} rx={5} fill="url(#pcMetalH)" stroke="#586473" strokeWidth={1.2} />
+            <rect x={-44} y={-5.5} width={60} height={11} rx={5.5} fill="url(#pcGold)" stroke="#8f6e22" strokeWidth={1} />
+            <rect x={-19} y={-5.5} width={3} height={11} fill="#222a33" />
+            <rect x={-4} y={-5.5} width={3} height={11} fill="#222a33" />
           </>
         ))}
       </>
