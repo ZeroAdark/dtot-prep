@@ -41,6 +41,40 @@
     --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif;
   }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 44% 12%;
+    --card-foreground: 210 40% 96%;
+
+    /* Lightened navy/blue so it reads on a dark surface */
+    --primary: 209 79% 62%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 20%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 66%;
+
+    --accent: 199 89% 55%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 52%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 50% 47%;
+    --success-foreground: 222 47% 11%;
+
+    --warning: 35 92% 56%;
+    --warning-foreground: 222 47% 11%;
+
+    --border: 217 33% 24%;
+    --input: 217 33% 26%;
+    --ring: 209 79% 62%;
+  }
 }
 
 @layer base {

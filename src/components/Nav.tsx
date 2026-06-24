@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AccountMenu } from "@/components/AccountMenu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const LINKS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
@@ -68,7 +69,10 @@ export function Nav({ user }: { user: { id: string; name: string } | null }) {
           </nav>
         )}
 
-        {user && <AccountMenu user={user} />}
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          {user && <AccountMenu user={user} />}
+        </div>
       </div>
 
       {/* Mobile nav */}

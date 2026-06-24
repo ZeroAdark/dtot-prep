@@ -255,30 +255,41 @@ const motherboard: DiagramDef = {
     { id: "atx", label: "24-pin power", description: "Main ATX power connector from the PSU feeding the board. CPU also has a separate 4/8-pin." },
   ],
   render: (active) => {
-    const box = (id: string, x: number, y: number, w: number, h: number, label: string) => {
-      const on = active === id;
-      return (
-        <g data-part={id} className="cursor-pointer">
-          <rect x={x} y={y} width={w} height={h} rx={5} strokeWidth={1.5} className={on ? ON : "fill-muted stroke-border"} />
+    const on = (id: string) => active === id;
+    const box = (id: string, x: number, y: number, w: number, h: number, label: string) => (
+      <g data-part={id} className="cursor-pointer">
+        <rect x={x} y={y} width={w} height={h} rx={5} strokeWidth={1.5} className={on(id) ? ON : "fill-muted stroke-border"} />
+        {label ? (
           <text x={x + w / 2} y={y + h / 2 + 4} fontSize={11} fontWeight={600} textAnchor="middle"
-            className={on ? TXT_ON : TXT_OFF}>
+            className={on(id) ? TXT_ON : TXT_OFF}>
             {label}
           </text>
-        </g>
-      );
-    };
+        ) : null}
+      </g>
+    );
     return (
       <>
         <rect x={10} y={10} width={340} height={280} rx={10} className="fill-card stroke-border" strokeWidth={1.5} />
-        {box("cpu", 36, 36, 96, 84, "CPU")}
-        {box("ram", 150, 36, 28, 180, "RAM")}
-        {box("ram", 184, 36, 28, 180, "")}
-        {box("ram", 218, 36, 28, 180, "")}
-        {box("atx", 262, 36, 74, 40, "24-pin")}
-        {box("m2", 36, 140, 96, 26, "M.2")}
-        {box("pcie", 36, 184, 150, 22, "PCIe x16")}
-        {box("pcie", 36, 216, 110, 18, "PCIe x1")}
-        {box("sata", 262, 150, 74, 90, "SATA")}
+        {/* CPU top-left */}
+        {box("cpu", 30, 28, 96, 86, "CPU")}
+        {/* RAM: four DIMM slots right of the CPU, with the label below them */}
+        <g data-part="ram" className="cursor-pointer">
+          {[140, 158, 176, 194].map((x) => (
+            <rect key={x} x={x} y={28} width={12} height={104} rx={3} strokeWidth={1.5}
+              className={on("ram") ? ON : "fill-muted stroke-border"} />
+          ))}
+          <text x={167} y={150} fontSize={11} fontWeight={600} textAnchor="middle"
+            className={on("ram") ? "fill-primary" : TXT_OFF}>
+            RAM
+          </text>
+        </g>
+        {/* right edge: power + storage */}
+        {box("atx", 250, 28, 90, 40, "24-pin")}
+        {box("sata", 250, 92, 90, 96, "SATA")}
+        {/* left stack: M.2 then PCIe slots (no overlap with RAM, which sits higher) */}
+        {box("m2", 30, 130, 96, 26, "M.2")}
+        {box("pcie", 30, 176, 170, 22, "PCIe x16")}
+        {box("pcie", 30, 208, 134, 18, "PCIe x1")}
       </>
     );
   },
@@ -296,15 +307,16 @@ const cloudServiceModels: DiagramDef = {
     { id: "saas", label: "SaaS", description: "Software as a Service — provider manages everything; you just use the app over the web (e.g. Gmail, Office 365, Salesforce)." },
   ],
   render: (active) => {
-    // layers from top (app) to bottom (hardware); value = how many of the 3
-    // models have the provider manage this layer (saas=3, paas, iaas).
-    const layers = [
-      ["Application", 3],
-      ["Runtime / Data", 2],
-      ["OS", 2],
-      ["Virtualization", 1],
-      ["Servers / Storage / Network", 1],
-    ] as const;
+    // Layers from top (app) to bottom (hardware). `lines` wraps long labels so
+    // they never overflow the box. providerFrom (per column) sets which layers
+    // are provider-managed (shaded).
+    const layers: string[][] = [
+      ["Application"],
+      ["Runtime / Data"],
+      ["OS"],
+      ["Virtualization"],
+      ["Servers / Storage", "& Network"],
+    ];
     const cols = [
       { id: "iaas", label: "IaaS", providerFrom: 4 },
       { id: "paas", label: "PaaS", providerFrom: 2 },
@@ -319,21 +331,26 @@ const cloudServiceModels: DiagramDef = {
             <g key={c.id} data-part={c.id} className="cursor-pointer">
               <text x={ox + 48} y={20} fontSize={13} fontWeight={700} textAnchor="middle"
                 className={on ? "fill-primary" : "fill-foreground"}>{c.label}</text>
-              {layers.map(([name], li) => {
+              {layers.map((lines, li) => {
                 const providerManaged = li >= c.providerFrom;
                 const y = 30 + li * 48;
+                const cy = y + 21;
                 return (
-                  <g key={name}>
+                  <g key={li}>
                     <rect x={ox} y={y} width={96} height={42} rx={4} strokeWidth={1.5}
                       className={
                         providerManaged
                           ? on ? "fill-primary stroke-primary" : "fill-primary/70 stroke-primary/70"
                           : "fill-card stroke-muted-foreground/50"
                       } />
-                    <text x={ox + 48} y={y + 25} fontSize={8.5} fontWeight={600} textAnchor="middle"
-                      className={providerManaged ? "fill-primary-foreground" : "fill-muted-foreground"}>
-                      {name}
-                    </text>
+                    {lines.map((ln, k) => (
+                      <text key={k} x={ox + 48}
+                        y={lines.length === 1 ? cy + 3 : cy - 4 + k * 12}
+                        fontSize={9} fontWeight={600} textAnchor="middle"
+                        className={providerManaged ? "fill-primary-foreground" : "fill-muted-foreground"}>
+                        {ln}
+                      </text>
+                    ))}
                   </g>
                 );
               })}
