@@ -98,18 +98,27 @@ const topologies: DiagramDef = {
     };
     return (
       <>
-        {/* Star */}
-        {quad("star", "Star", 12, 10, (on) => (
-          <>
-            {[[40, 25], [120, 25], [40, 70], [120, 70]].map(([x, y], i) => (
-              <g key={i}>{line(80, 48, x, y, on)}</g>
-            ))}
-            {[[40, 25], [120, 25], [40, 70], [120, 70]].map(([x, y], i) => (
-              <g key={i}>{node(x + 12, y + 10, on)}</g>
-            ))}
-            {node(92, 58, on)}
-          </>
-        ))}
+        {/* Star — spokes run from the center node to each outer node */}
+        {quad("star", "Star", 12, 10, (on) => {
+          const c: [number, number] = [92, 62];
+          const outer: [number, number][] = [
+            [44, 36],
+            [140, 36],
+            [44, 90],
+            [140, 90],
+          ];
+          return (
+            <>
+              {outer.map((p, i) => (
+                <g key={`l${i}`}>{line(c[0], c[1], p[0], p[1], on)}</g>
+              ))}
+              {outer.map((p, i) => (
+                <g key={`n${i}`}>{node(p[0], p[1], on)}</g>
+              ))}
+              {node(c[0], c[1], on)}
+            </>
+          );
+        })}
         {/* Bus */}
         {quad("bus", "Bus", 188, 10, (on) => (
           <>
