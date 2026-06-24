@@ -28,6 +28,8 @@ async function main() {
         content: s.content,
         keyPoints: j(s.keyPoints),
         flashcards: j(s.flashcards),
+        diagrams: j(s.diagrams),
+        drills: j(s.drills),
         order: s.order,
       },
     });

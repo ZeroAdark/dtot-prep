@@ -26,6 +26,7 @@ interface Q {
   rationale: string;
   optionNotes?: Record<string, string>;
   reference?: string;
+  diagram?: string;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -959,6 +960,7 @@ async function main() {
         rationale: q.rationale,
         optionNotes: q.optionNotes ? j(q.optionNotes) : null,
         reference: q.reference ?? null,
+        diagram: q.diagram ?? null,
       },
     });
   }
@@ -974,6 +976,8 @@ async function main() {
         content: s.content,
         keyPoints: j(s.keyPoints),
         flashcards: j(s.flashcards),
+        diagrams: j(s.diagrams),
+        drills: j(s.drills),
         order: s.order,
       },
     });

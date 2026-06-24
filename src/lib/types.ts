@@ -12,6 +12,7 @@ export interface ClientQuestionItem {
   prompt: string;
   scenario: string | null;
   options: ClientOption[];
+  diagram: string | null; // optional schematic-diagram slug shown with the question
   selectedOptionId: string | null;
   flagged: boolean;
   // Revealed only after the section/session closes:
@@ -51,6 +52,8 @@ export interface StudyGuideData {
   content: string;
   keyPoints: string[];
   flashcards: StudyFlashcard[];
+  diagrams: string[]; // interactive-diagram slugs
+  drills: string[]; // matching-drill slugs
   studied: boolean;
 }
 
@@ -61,6 +64,7 @@ export interface StudyQuizItem {
   difficulty: string;
   prompt: string;
   scenario: string | null;
+  diagram: string | null;
   options: ClientOption[];
   correctId: string;
   rationale: string;

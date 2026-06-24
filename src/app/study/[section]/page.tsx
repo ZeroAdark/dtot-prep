@@ -50,6 +50,8 @@ export default async function StudySectionPage({
     content: m.content,
     keyPoints: fromJson<string[]>(m.keyPoints, []),
     flashcards: fromJson<StudyFlashcard[]>(m.flashcards, []),
+    diagrams: fromJson<string[]>(m.diagrams, []),
+    drills: fromJson<string[]>(m.drills, []),
     studied: studied.has(m.id),
   }));
 

@@ -21,6 +21,7 @@ export interface ExtraQuestion {
   rationale: string;
   optionNotes?: Record<string, string>;
   reference?: string;
+  diagram?: string;
 }
 
 function load(): ExtraQuestion[] {

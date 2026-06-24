@@ -56,6 +56,7 @@ export default async function ReviewPage({
         prompt: r.question.prompt,
         scenario: r.question.scenario,
         options: parseOptions(r.question.options),
+        diagram: r.question.diagram ?? null,
         selectedOptionId: r.selectedOptionId,
         flagged: r.flagged,
         correctId: r.question.correctId,

@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TestResults } from "@/components/TestResults";
+import { InteractiveDiagram } from "@/components/InteractiveDiagram";
 import { useCountdown } from "@/lib/useCountdown";
 import { SECTIONS } from "@/lib/constants";
 import { sectionStyle } from "@/lib/sectionStyle";
@@ -311,6 +312,12 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
               <p className="mb-4 rounded-md bg-muted/60 p-4 text-sm leading-relaxed text-foreground/90">
                 {q.scenario}
               </p>
+            )}
+
+            {q.diagram && (
+              <div className="mb-4">
+                <InteractiveDiagram slug={q.diagram} compact />
+              </div>
             )}
 
             <p className="text-lg font-medium leading-relaxed">{q.prompt}</p>

@@ -1,6 +1,7 @@
 import { Check, X, Info, BookMarked, Flag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { InteractiveDiagram } from "@/components/InteractiveDiagram";
 import type { ClientQuestionItem } from "@/lib/types";
 
 export function ReviewQuestion({
@@ -45,6 +46,12 @@ export function ReviewQuestion({
         <p className="mb-3 rounded-md bg-muted/60 p-3 text-sm text-muted-foreground">
           {item.scenario}
         </p>
+      )}
+
+      {item.diagram && (
+        <div className="mb-3">
+          <InteractiveDiagram slug={item.diagram} compact />
+        </div>
       )}
 
       <p className="font-medium">{item.prompt}</p>

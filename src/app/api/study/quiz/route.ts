@@ -52,6 +52,7 @@ export async function GET(req: NextRequest) {
       difficulty: q.difficulty,
       prompt: q.prompt,
       scenario: q.scenario,
+      diagram: q.diagram ?? null,
       options: parseOptions(q.options),
       correctId: q.correctId,
       rationale: q.rationale,

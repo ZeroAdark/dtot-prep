@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { InteractiveDiagram } from "@/components/InteractiveDiagram";
 import type { SectionStyle } from "@/lib/sectionStyle";
 import type { StudyQuizItem } from "@/lib/types";
 
@@ -116,6 +117,12 @@ export function StudyQuickCheck({
               <p className="mb-2 rounded-md bg-muted/60 p-3 text-sm text-muted-foreground">
                 {q.scenario}
               </p>
+            )}
+
+            {q.diagram && (
+              <div className="mb-3">
+                <InteractiveDiagram slug={q.diagram} compact />
+              </div>
             )}
 
             <p className="font-medium">{q.prompt}</p>

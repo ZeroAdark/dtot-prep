@@ -63,6 +63,7 @@ model Question {
   rationale   String
   optionNotes String?
   reference   String?
+  diagram     String?
   createdAt   DateTime @default(now())
 
   responses UserResponse[]
@@ -81,6 +82,8 @@ model StudyMaterial {
   content    String
   keyPoints  String
   flashcards String   @default("[]")
+  diagrams   String   @default("[]")
+  drills     String   @default("[]")
   order      Int      @default(0)
   createdAt  DateTime @default(now())
 

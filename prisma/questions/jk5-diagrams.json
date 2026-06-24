@@ -1,0 +1,170 @@
+[
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT & Telecommunications",
+    "difficulty": "EASY",
+    "diagram": "osi-model",
+    "prompt": "Using the OSI model above, which layer is responsible for logical (IP) addressing and routing packets between different networks?",
+    "options": [
+      { "id": "A", "text": "Layer 2 — Data Link" },
+      { "id": "B", "text": "Layer 3 — Network" },
+      { "id": "C", "text": "Layer 4 — Transport" },
+      { "id": "D", "text": "Layer 5 — Session" }
+    ],
+    "correctId": "B",
+    "rationale": "Logical addressing (IP) and routing between networks happen at Layer 3, the Network layer — the home of routers. Tap the layers in the diagram to compare their roles.",
+    "optionNotes": {
+      "A": "Layer 2 uses physical MAC addresses on the local link (switches), not routing between networks.",
+      "C": "Layer 4 handles end-to-end delivery with TCP/UDP and ports, not inter-network routing.",
+      "D": "Layer 5 manages sessions/dialogs, not addressing."
+    },
+    "reference": "Networking › OSI model"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "IT & Telecommunications",
+    "difficulty": "MEDIUM",
+    "diagram": "network-topologies",
+    "prompt": "Of the topologies shown, which offers the most fault tolerance by providing multiple redundant paths between nodes?",
+    "options": [
+      { "id": "A", "text": "Star" },
+      { "id": "B", "text": "Bus" },
+      { "id": "C", "text": "Ring" },
+      { "id": "D", "text": "Mesh" }
+    ],
+    "correctId": "D",
+    "rationale": "A mesh interconnects nodes with many redundant links, so traffic can reroute around a failure — which is why it's used in WAN/wireless backhaul. The trade-off is cabling/cost.",
+    "optionNotes": {
+      "A": "Star depends on a central switch — a single point of failure.",
+      "B": "Bus shares one backbone; a break in it can down the whole segment.",
+      "C": "A single break can disrupt a basic ring unless it's dual/redundant."
+    },
+    "reference": "Networking › Topologies"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "EASY",
+    "diagram": "ports-connectors",
+    "prompt": "Among the connectors shown, which is the 8-position modular connector used to terminate twisted-pair cable for wired Ethernet?",
+    "options": [
+      { "id": "A", "text": "USB-C" },
+      { "id": "B", "text": "HDMI" },
+      { "id": "C", "text": "RJ45" },
+      { "id": "D", "text": "DisplayPort" }
+    ],
+    "correctId": "C",
+    "rationale": "RJ45 is the 8P8C modular connector with a locking clip used on Cat5e/Cat6 twisted-pair for Ethernet. Tap each connector to review where it's used.",
+    "optionNotes": {
+      "A": "USB-C is a reversible data/power connector, not Ethernet.",
+      "B": "HDMI carries digital audio/video to displays.",
+      "D": "DisplayPort carries PC monitor video."
+    },
+    "reference": "Hardware › Cables & connectors"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Computer Hardware",
+    "difficulty": "MEDIUM",
+    "diagram": "motherboard",
+    "prompt": "On the motherboard diagram, which slot should you use to install an NVMe SSD for the fastest available storage?",
+    "options": [
+      { "id": "A", "text": "A SATA port" },
+      { "id": "B", "text": "The M.2 slot" },
+      { "id": "C", "text": "A PCIe x1 slot" },
+      { "id": "D", "text": "A DIMM (RAM) slot" }
+    ],
+    "correctId": "B",
+    "rationale": "NVMe SSDs install in the M.2 slot and run over PCIe lanes — far faster than SATA. SATA tops out at ~600 MB/s; DIMM slots are for memory.",
+    "optionNotes": {
+      "A": "SATA works for SSDs/HDDs but is much slower than NVMe.",
+      "C": "A PCIe x1 slot is for small expansion cards, not the M.2 SSD form factor.",
+      "D": "DIMM slots hold RAM, not storage."
+    },
+    "reference": "Hardware › Storage"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Cloud Computing",
+    "difficulty": "MEDIUM",
+    "diagram": "cloud-service-models",
+    "prompt": "Per the service-model diagram, in which model do YOU manage the operating system and everything above it, while the provider manages virtualization, servers, storage, and networking?",
+    "options": [
+      { "id": "A", "text": "IaaS" },
+      { "id": "B", "text": "PaaS" },
+      { "id": "C", "text": "SaaS" },
+      { "id": "D", "text": "On-premises" }
+    ],
+    "correctId": "A",
+    "rationale": "In IaaS the provider manages the physical/virtual infrastructure and you manage the OS, runtime, and apps on top (e.g., a cloud VM). The shaded layers in the diagram are provider-managed.",
+    "optionNotes": {
+      "B": "In PaaS the provider also manages the OS and runtime; you bring only the app and data.",
+      "C": "In SaaS the provider manages everything; you just use the app.",
+      "D": "On-prem means you manage everything, including the hardware."
+    },
+    "reference": "Cloud Computing › Service models"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Cloud Computing",
+    "difficulty": "EASY",
+    "diagram": "cloud-deployment-models",
+    "prompt": "Which deployment model shown combines private infrastructure for sensitive workloads with public cloud for elastic scale, orchestrated together?",
+    "options": [
+      { "id": "A", "text": "Public" },
+      { "id": "B", "text": "Private" },
+      { "id": "C", "text": "Hybrid" },
+      { "id": "D", "text": "Community" }
+    ],
+    "correctId": "C",
+    "rationale": "Hybrid links private and public clouds so you can keep sensitive data private and burst to public capacity for scale.",
+    "optionNotes": {
+      "A": "Public is shared, provider-owned infrastructure only.",
+      "B": "Private is dedicated to one organization only.",
+      "D": "Community is shared among several organizations with common needs."
+    },
+    "reference": "Cloud Computing › Deployment models"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Cybersecurity",
+    "difficulty": "MEDIUM",
+    "diagram": "cia-triad",
+    "prompt": "On the CIA triad shown, which goal is supported primarily by hashing, digital signatures, and checksums?",
+    "options": [
+      { "id": "A", "text": "Confidentiality" },
+      { "id": "B", "text": "Integrity" },
+      { "id": "C", "text": "Availability" },
+      { "id": "D", "text": "Authentication" }
+    ],
+    "correctId": "B",
+    "rationale": "Hashes, digital signatures, and checksums detect unauthorized changes — that's integrity. Confidentiality is about secrecy (encryption); availability is about uptime.",
+    "optionNotes": {
+      "A": "Confidentiality is protected by encryption and access control.",
+      "C": "Availability is protected by redundancy, backups, and DDoS defenses.",
+      "D": "Authentication is a control that supports the triad, not one of its three goals."
+    },
+    "reference": "Cybersecurity › CIA triad"
+  },
+  {
+    "section": "JOB_KNOWLEDGE",
+    "topic": "Cybersecurity",
+    "difficulty": "MEDIUM",
+    "diagram": "network-security-zones",
+    "prompt": "In the security-zone diagram, where should a public-facing web server be placed so a compromise can't directly reach the internal LAN?",
+    "options": [
+      { "id": "A", "text": "On the internal LAN" },
+      { "id": "B", "text": "In the DMZ" },
+      { "id": "C", "text": "Directly on the internet, outside the firewall" },
+      { "id": "D", "text": "On the edge firewall itself" }
+    ],
+    "correctId": "B",
+    "rationale": "Public-facing servers belong in the DMZ. If one is breached, the internal firewall still blocks the attacker from pivoting into the trusted LAN.",
+    "optionNotes": {
+      "A": "Putting public servers on the LAN exposes the trusted network directly.",
+      "C": "An unprotected server on the internet has no firewall filtering at all.",
+      "D": "Hosting services on the firewall itself increases its attack surface."
+    },
+    "reference": "Cybersecurity › Network zones"
+  }
+]

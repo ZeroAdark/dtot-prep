@@ -390,6 +390,7 @@ export async function getSessionDTO(sessionId: string, userId: string) {
         difficulty: q.difficulty,
         prompt: q.prompt,
         scenario: q.scenario,
+        diagram: q.diagram ?? null,
         options: parseOptions(q.options),
         selectedOptionId: r?.selectedOptionId ?? null,
         flagged: r?.flagged ?? false,

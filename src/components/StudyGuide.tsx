@@ -10,15 +10,17 @@ import {
   Circle,
   Loader2,
   ChevronRight,
+  Shapes,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { sectionStyle } from "@/lib/sectionStyle";
 import { Flashcards } from "@/components/Flashcards";
 import { StudyQuickCheck } from "@/components/StudyQuickCheck";
+import { StudyVisuals } from "@/components/StudyVisuals";
 import type { StudyGuideData } from "@/lib/types";
 
-type Tab = "read" | "cards" | "quiz";
+type Tab = "read" | "cards" | "quiz" | "visuals";
 
 export function StudyGuide({
   guide,
@@ -38,7 +40,9 @@ export function StudyGuide({
     read: true,
     cards: false,
     quiz: false,
+    visuals: false,
   });
+  const hasVisuals = guide.diagrams.length > 0 || guide.drills.length > 0;
   const [studied, setStudied] = useState(guide.studied);
   const [saving, setSaving] = useState(false);
 
@@ -70,6 +74,9 @@ export function StudyGuide({
     [
       { key: "read", label: "Read", icon: BookOpen },
       { key: "cards", label: "Flashcards", icon: Layers, count: guide.flashcards.length },
+      ...(hasVisuals
+        ? [{ key: "visuals" as Tab, label: "Visuals", icon: Shapes }]
+        : []),
       { key: "quiz", label: "Quick check", icon: PencilLine },
     ];
 
@@ -195,6 +202,12 @@ export function StudyGuide({
             {seen.cards && (
               <div className={cn(tab !== "cards" && "hidden")}>
                 <Flashcards cards={guide.flashcards} style={style} />
+              </div>
+            )}
+
+            {hasVisuals && seen.visuals && (
+              <div className={cn(tab !== "visuals" && "hidden")}>
+                <StudyVisuals diagrams={guide.diagrams} drills={guide.drills} />
               </div>
             )}
 

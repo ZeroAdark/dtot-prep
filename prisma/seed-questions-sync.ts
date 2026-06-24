@@ -41,6 +41,7 @@ async function main() {
         rationale: q.rationale,
         optionNotes: q.optionNotes ? j(q.optionNotes) : null,
         reference: q.reference ?? null,
+        diagram: q.diagram ?? null,
       },
     });
   }

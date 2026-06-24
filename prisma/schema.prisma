@@ -71,6 +71,7 @@ model Question {
   rationale   String // detailed explanation shown after grading
   optionNotes String? // JSON: { "A": "why A is wrong", ... } (optional)
   reference   String? // study pointer, e.g. "Cloud Computing › Service models"
+  diagram     String? // optional schematic-diagram slug rendered with the question
   createdAt   DateTime @default(now())
 
   responses UserResponse[]
@@ -90,6 +91,8 @@ model StudyMaterial {
   content    String // long-form body (markdown-ish)
   keyPoints  String // JSON: ["point 1", "point 2", ...]
   flashcards String   @default("[]") // JSON: [{ "front": "...", "back": "..." }, ...]
+  diagrams   String   @default("[]") // JSON: interactive-diagram slugs (src/components/diagrams)
+  drills     String   @default("[]") // JSON: matching-drill slugs (src/lib/drills)
   order      Int      @default(0)
   createdAt  DateTime @default(now())
 
