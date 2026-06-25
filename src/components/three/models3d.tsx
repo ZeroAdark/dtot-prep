@@ -59,6 +59,23 @@ function Extruded({ points, depth, mat, position, bevel = 0.05 }: { points: [num
   );
 }
 
+/** Hollow oval shell (extruded ellipse with an elliptical hole) — e.g. USB-C. */
+function OvalShell({ rx, ry, irx, iry, depth, mat, position }: { rx: number; ry: number; irx: number; iry: number; depth: number; mat: Mat; position?: [number, number, number] }) {
+  const geo = useMemo(() => {
+    const s = new THREE.Shape();
+    s.absellipse(0, 0, rx, ry, 0, Math.PI * 2, false, 0);
+    const h = new THREE.Path();
+    h.absellipse(0, 0, irx, iry, 0, Math.PI * 2, true, 0);
+    s.holes.push(h);
+    return new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 2, curveSegments: 32, steps: 1 });
+  }, [rx, ry, irx, iry, depth]);
+  return (
+    <mesh geometry={geo} position={position}>
+      <meshStandardMaterial {...mat} />
+    </mesh>
+  );
+}
+
 /** Hollow rectangular shell, open at the +Z front (you can see inside). */
 function Shell({ w, h, d, t = 0.09, mat }: { w: number; h: number; d: number; t?: number; mat: Mat }) {
   return (
@@ -87,15 +104,22 @@ function UsbA() {
   );
 }
 function UsbC() {
+  const pins = [-0.78, -0.5, -0.22, 0.06, 0.34, 0.62, 0.9].map((x) => x - 0.06);
   return (
     <group>
-      <RB args={[2.45, 0.88, 2.2]} radius={0.43} mat={METAL} />
-      <RB args={[2.0, 0.52, 0.55]} radius={0.26} position={[0, 0, 0.95]} mat={BLACK} />
-      <RB args={[1.55, 0.3, 1.5]} radius={0.14} position={[0, 0, 0.35]} mat={STEEL} />
-      {[-0.55, -0.18, 0.18, 0.55].map((x) => (
-        <B key={`t${x}`} args={[0.12, 0.02, 1.1]} position={[x, 0.16, 0.55]} mat={GOLD} />
+      {/* hollow oval metal shell (open front) */}
+      <OvalShell rx={1.25} ry={0.46} irx={1.04} iry={0.31} depth={2.0} mat={METAL} position={[0, 0, -1.0]} />
+      {/* central tongue (black blade), recessed inside the opening */}
+      <RB args={[1.74, 0.16, 1.5]} radius={0.07} position={[0, 0, 0.05]} mat={{ color: "#20262e", metalness: 0.3, roughness: 0.5 }} />
+      {/* gold contacts on both faces of the tongue */}
+      {pins.map((x) => (
+        <B key={`u${x}`} args={[0.16, 0.025, 1.05]} position={[x, 0.092, 0.3]} mat={GOLD} />
       ))}
-      <RB args={[2.7, 1.1, 1.3]} radius={0.32} position={[0, 0, -1.7]} mat={GRAY} />
+      {pins.map((x) => (
+        <B key={`d${x}`} args={[0.16, 0.025, 1.05]} position={[x, -0.092, 0.3]} mat={GOLD} />
+      ))}
+      {/* over-mold / boot */}
+      <RB args={[2.8, 1.15, 1.3]} radius={0.42} position={[0, 0, -1.65]} mat={GRAY} />
     </group>
   );
 }
