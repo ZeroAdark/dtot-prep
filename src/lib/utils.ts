@@ -54,13 +54,3 @@ export function formatDate(d: Date | string): string {
     year: "numeric",
   });
 }
-
-export function formatDateTime(d: Date | string): string {
-  const date = typeof d === "string" ? new Date(d) : d;
-  return date.toLocaleString(undefined, {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}

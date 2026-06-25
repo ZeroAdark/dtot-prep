@@ -1,37 +1,6 @@
 import { STARL_RUBRIC, STARL_TOTAL_ITEMS, PASS_THRESHOLD } from "./constants";
 import { pct } from "./utils";
 
-// ── Multiple-choice auto-grading ─────────────────────────────────────────────
-
-export interface GradeInput {
-  correctId: string;
-  selectedOptionId: string | null | undefined;
-}
-
-export function isResponseCorrect(input: GradeInput): boolean {
-  return (
-    !!input.selectedOptionId && input.selectedOptionId === input.correctId
-  );
-}
-
-export interface SectionScore {
-  correct: number;
-  total: number;
-  answered: number;
-  percent: number;
-  passed: boolean;
-}
-
-export function tallySection(
-  results: { isCorrect: boolean | null; selectedOptionId: string | null }[],
-): SectionScore {
-  const total = results.length;
-  const answered = results.filter((r) => r.selectedOptionId != null).length;
-  const correct = results.filter((r) => r.isCorrect === true).length;
-  const percent = pct(correct, total);
-  return { correct, total, answered, percent, passed: percent >= PASS_THRESHOLD };
-}
-
 // ── STAR-L rubric scoring ────────────────────────────────────────────────────
 
 export type RubricState = Record<string, boolean>; // itemId -> checked

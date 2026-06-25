@@ -39,18 +39,6 @@ const DRILL_DEFS: DrillDef[] = [
     ],
   },
   {
-    slug: "connectors-use",
-    title: "Match the connector to its use",
-    instructions: "Pair each connector with what it carries.",
-    pairs: [
-      { left: "RJ45", right: "Wired Ethernet over twisted-pair" },
-      { left: "HDMI", right: "Digital video + audio to a display" },
-      { left: "USB-C", right: "Reversible data + power delivery" },
-      { left: "DisplayPort", right: "PC monitor video with a latch" },
-      { left: "3.5mm", right: "Analog headphone/mic audio" },
-    ],
-  },
-  {
     slug: "cloud-responsibility",
     title: "Match the model to who manages what",
     instructions: "Pair each model with how responsibility is split.",

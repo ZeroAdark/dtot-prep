@@ -8,8 +8,6 @@ export type SectionKey =
   | "SITUATIONAL_JUDGMENT"
   | "ENGLISH_EXPRESSION";
 
-export type Difficulty = "EASY" | "MEDIUM" | "HARD";
-
 export interface SectionMeta {
   key: SectionKey;
   label: string;
@@ -95,14 +93,8 @@ export const SECTION_ORDER: SectionKey[] = [
   "ENGLISH_EXPRESSION",
 ];
 
-export const QUIZ_SECTIONS = SECTION_ORDER; // auto-graded multiple choice
-
 /** Passing bar used for readiness scoring (percent). */
 export const PASS_THRESHOLD = 70;
-
-export function sectionMeta(key: string): SectionMeta | undefined {
-  return SECTIONS[key as SectionKey];
-}
 
 /**
  * Seconds allotted for `count` questions in a section, scaled from the official
@@ -114,16 +106,6 @@ export function sectionDurationSec(key: SectionKey, count: number): number {
   if (count <= 0) return 0;
   return Math.max(1, Math.round((count * m.examMinutes * 60) / m.examQuestions));
 }
-
-/** Totals for a full-length, all-section mock exam (matches the real DTOT). */
-export const FULL_EXAM_QUESTIONS = SECTION_ORDER.reduce(
-  (n, s) => n + SECTIONS[s].examQuestions,
-  0,
-);
-export const FULL_EXAM_MINUTES = SECTION_ORDER.reduce(
-  (n, s) => n + SECTIONS[s].examMinutes,
-  0,
-);
 
 // ── Personal Narrative competencies (the six required essays) ────────────────
 
@@ -195,10 +177,6 @@ export const COMPETENCY_ORDER: CompetencyKey[] = [
   "LEADERSHIP",
   "MANAGEMENT",
 ];
-
-export function competencyMeta(key: string): CompetencyMeta | undefined {
-  return COMPETENCIES[key as CompetencyKey];
-}
 
 // ── STAR-L self-scoring rubric ───────────────────────────────────────────────
 
@@ -281,7 +259,6 @@ export const STARL_TOTAL_ITEMS = STARL_RUBRIC.reduce(
 /** Word-count guidance for narratives. */
 export const NARRATIVE_MIN_WORDS = 150;
 export const NARRATIVE_TARGET_WORDS = 300;
-export const NARRATIVE_MAX_WORDS = 500;
 
 // ── Test modes ───────────────────────────────────────────────────────────────
 
