@@ -324,10 +324,19 @@ const storageMemory: DiagramDef = {
         )],
         ["flash", "USB flash drive", () => (
           <>
-            <rect x={-12} y={-14} width={34} height={28} rx={4} fill="#2b333d" stroke="#1c2127" strokeWidth={1} />
-            <rect x={-42} y={-9} width={32} height={18} rx={2} fill={METAL} stroke={SH} strokeWidth={1.2} />
-            <rect x={-36} y={-2} width={18} height={6} fill="#39434f" />
-            <circle cx={15} cy={0} r={2.6} fill="#2fa874" />
+            {/* plastic casing with a keyring loop */}
+            <rect x={-6} y={-15} width={44} height={30} rx={6} fill="#2b333d" stroke="#1c2127" strokeWidth={1} />
+            <rect x={-6} y={-15} width={44} height={7} rx={4} fill="#ffffff" opacity={0.07} />
+            <circle cx={30} cy={0} r={5} fill="none" stroke="#6b7480" strokeWidth={2.2} />
+            {/* seam where the connector meets the body */}
+            <rect x={-8} y={-13} width={3} height={26} rx={1} fill="#1c2127" />
+            {/* USB-A metal plug */}
+            <rect x={-40} y={-10} width={34} height={20} rx={2} fill={METAL} stroke={SH} strokeWidth={1.3} />
+            <rect x={-40} y={-10} width={34} height={4} rx={2} fill="#ffffff" opacity={0.3} />
+            <rect x={-35} y={-5} width={24} height={10} rx={1} fill={DARK} />
+            <rect x={-33} y={-1} width={17} height={5} rx={0.5} fill="#eef1f5" />
+            <rect x={-30} y={0} width={5} height={3} fill={GOLD} />
+            <rect x={-22} y={0} width={5} height={3} fill={GOLD} />
           </>
         )],
       ])}
