@@ -54,19 +54,23 @@ export function Hardware3DViewer({
 
         <div className="relative flex-1">
           {Model ? (
-            <Canvas shadows dpr={[1, 2]} camera={{ position: [5, 3.5, 7], fov: 35 }}>
+            <Canvas
+              dpr={[1, 1.5]}
+              frameloop="demand"
+              camera={{ position: [5, 3.5, 7], fov: 35 }}
+            >
               <color attach="background" args={["#111722"]} />
-              <ambientLight intensity={0.55} />
-              <hemisphereLight args={["#ffffff", "#5b6675", 0.5]} />
-              <directionalLight position={[6, 9, 6]} intensity={1.35} castShadow shadow-mapSize={[1024, 1024]} />
+              <ambientLight intensity={0.6} />
+              <hemisphereLight args={["#ffffff", "#5b6675", 0.55]} />
+              <directionalLight position={[6, 9, 6]} intensity={1.4} />
               <directionalLight position={[-6, 3, -4]} intensity={0.5} />
               <directionalLight position={[0, 3, -7]} intensity={0.6} />
-              <Bounds fit clip observe margin={1.3}>
+              <Bounds fit clip margin={1.3}>
                 <Center>
                   <Model />
                 </Center>
               </Bounds>
-              <OrbitControls makeDefault enablePan={false} enableDamping minDistance={2} maxDistance={30} />
+              <OrbitControls makeDefault enablePan={false} minDistance={2} maxDistance={30} />
             </Canvas>
           ) : (
             <div className="flex h-full items-center justify-center text-sm text-muted-foreground">

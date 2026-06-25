@@ -28,7 +28,7 @@ const RECT = (w: number, h: number): [number, number][] => [
 
 function B({ args, position, rotation, mat }: { args: [number, number, number]; position?: [number, number, number]; rotation?: [number, number, number]; mat: Mat }) {
   return (
-    <mesh position={position} rotation={rotation} castShadow receiveShadow>
+    <mesh position={position} rotation={rotation}>
       <boxGeometry args={args} />
       <meshStandardMaterial {...mat} />
     </mesh>
@@ -36,7 +36,7 @@ function B({ args, position, rotation, mat }: { args: [number, number, number]; 
 }
 function Cyl({ args, position, rotation, mat }: { args: [number, number, number, number]; position?: [number, number, number]; rotation?: [number, number, number]; mat: Mat }) {
   return (
-    <mesh position={position} rotation={rotation} castShadow receiveShadow>
+    <mesh position={position} rotation={rotation}>
       <cylinderGeometry args={args} />
       <meshStandardMaterial {...mat} />
     </mesh>
@@ -44,7 +44,7 @@ function Cyl({ args, position, rotation, mat }: { args: [number, number, number,
 }
 function RB({ args, position, rotation, radius = 0.06, mat }: { args: [number, number, number]; position?: [number, number, number]; rotation?: [number, number, number]; radius?: number; mat: Mat }) {
   return (
-    <RoundedBox args={args} radius={radius} smoothness={4} position={position} rotation={rotation} castShadow receiveShadow>
+    <RoundedBox args={args} radius={radius} smoothness={4} position={position} rotation={rotation}>
       <meshStandardMaterial {...mat} />
     </RoundedBox>
   );
@@ -57,7 +57,7 @@ function Extruded({ points, depth, mat, position, bevel = 0.04 }: { points: [num
     return new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 2, steps: 1 });
   }, [points, depth, bevel]);
   return (
-    <mesh geometry={geo} position={position} castShadow receiveShadow>
+    <mesh geometry={geo} position={position}>
       <meshStandardMaterial {...mat} />
     </mesh>
   );
