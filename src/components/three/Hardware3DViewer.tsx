@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Bounds, Center } from "@react-three/drei";
+import { OrbitControls, Bounds, Center, Environment, Lightformer } from "@react-three/drei";
 import { X, Move3d, RotateCcw } from "lucide-react";
 import { MODELS_3D } from "./models3d";
 
@@ -62,9 +62,16 @@ export function Hardware3DViewer({
               <color attach="background" args={["#111722"]} />
               <ambientLight intensity={0.6} />
               <hemisphereLight args={["#ffffff", "#5b6675", 0.55]} />
-              <directionalLight position={[6, 9, 6]} intensity={1.4} />
-              <directionalLight position={[-6, 3, -4]} intensity={0.5} />
-              <directionalLight position={[0, 3, -7]} intensity={0.6} />
+              <directionalLight position={[6, 9, 6]} intensity={1.1} />
+              <directionalLight position={[-6, 3, -4]} intensity={0.4} />
+              {/* Procedural studio environment (rendered once) so metals reflect
+                  realistically — no external HDRI download. */}
+              <Environment resolution={128} frames={1}>
+                <Lightformer form="rect" intensity={3} position={[0, 4, -3]} scale={[12, 5, 1]} />
+                <Lightformer form="rect" intensity={2} position={[-5, 1, 1]} rotation-y={Math.PI / 2} scale={[8, 6, 1]} />
+                <Lightformer form="rect" intensity={1.4} position={[5, 1, 1]} rotation-y={-Math.PI / 2} scale={[8, 6, 1]} />
+                <Lightformer form="rect" intensity={0.7} color="#c8d4e6" position={[0, -4, 2]} scale={[12, 4, 1]} />
+              </Environment>
               <Bounds fit clip margin={1.3}>
                 <Center>
                   <Model />
