@@ -1,4 +1,5 @@
 import type { DiagramDef } from "./types";
+import { HARDWARE_DIAGRAMS } from "./hardware";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Original schematic SVG diagrams for the study hub + test engine.
@@ -548,6 +549,7 @@ export const DIAGRAM_DEFS: DiagramDef[] = [
   cloudDeployment,
   ciaTriad,
   securityZones,
+  ...HARDWARE_DIAGRAMS,
 ];
 
 export const DIAGRAMS: Record<string, DiagramDef> = Object.fromEntries(
