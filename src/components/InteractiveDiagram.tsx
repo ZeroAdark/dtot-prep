@@ -1,16 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
-import { Move3d } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DIAGRAMS } from "@/components/diagrams/defs";
-import { has3DModel } from "@/components/three/registry";
-
-// Lazy-loaded: the three.js bundle only ships when a user opens a 3D model.
-const Hardware3DViewer = dynamic(() => import("@/components/three/Hardware3DViewer"), {
-  ssr: false,
-});
+import { PART_VIEWS, PartViewsPanel } from "@/components/diagrams/multiview";
 
 /**
  * Renders an interactive schematic diagram by slug: an SVG whose parts can be
@@ -26,7 +19,6 @@ export function InteractiveDiagram({
 }) {
   const def = DIAGRAMS[slug];
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [view3dId, setView3dId] = useState<string | null>(null);
 
   if (!def) return null;
   const active = def.parts.find((p) => p.id === activeId) ?? null;
@@ -82,15 +74,6 @@ export function InteractiveDiagram({
               <span className="font-semibold text-foreground">{active.label}. </span>
               <span className="text-foreground/85">{active.description}</span>
             </p>
-            {has3DModel(active.id) && (
-              <button
-                type="button"
-                onClick={() => setView3dId(active.id)}
-                className="mt-2.5 inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
-              >
-                <Move3d className="h-3.5 w-3.5" /> View in 3D
-              </button>
-            )}
           </div>
         ) : (
           <p className="text-muted-foreground">
@@ -99,12 +82,8 @@ export function InteractiveDiagram({
         )}
       </div>
 
-      {view3dId && (
-        <Hardware3DViewer
-          partId={view3dId}
-          title={def.parts.find((p) => p.id === view3dId)?.label ?? def.title}
-          onClose={() => setView3dId(null)}
-        />
+      {active && PART_VIEWS[active.id] && (
+        <PartViewsPanel id={active.id} label={active.label} />
       )}
     </figure>
   );
