@@ -57,7 +57,7 @@ export function ReviewQuestion({
       <p className="font-medium">{item.prompt}</p>
 
       <ul className="mt-3 space-y-2">
-        {item.options.map((opt) => {
+        {item.options.map((opt, i) => {
           const isCorrectOpt = opt.id === item.correctId;
           const isSelected = opt.id === item.selectedOptionId;
           const wrongSelected = isSelected && !isCorrectOpt;
@@ -79,7 +79,7 @@ export function ReviewQuestion({
                   !isCorrectOpt && !wrongSelected && "border-muted-foreground/30",
                 )}
               >
-                {opt.id}
+                {String.fromCharCode(65 + i)}
               </span>
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-2">

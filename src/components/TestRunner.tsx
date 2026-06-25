@@ -323,7 +323,7 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
             <p className="text-lg font-medium leading-relaxed">{q.prompt}</p>
 
             <ul className="mt-5 space-y-2.5">
-              {q.options.map((opt) => {
+              {q.options.map((opt, i) => {
                 const selected = q.selectedOptionId === opt.id;
                 return (
                   <li key={opt.id}>
@@ -344,7 +344,7 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
                             : "border-muted-foreground/30",
                         )}
                       >
-                        {opt.id}
+                        {String.fromCharCode(65 + i)}
                       </span>
                       <span className="pt-0.5">{opt.text}</span>
                     </button>

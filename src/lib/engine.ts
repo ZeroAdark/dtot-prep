@@ -8,7 +8,7 @@ import {
   sectionDurationSec,
 } from "./constants";
 import { pct } from "./utils";
-import { parseOptions, fromJson, toJson } from "./serialize";
+import { displayOptions, fromJson, toJson } from "./serialize";
 import { selectQuestions, HistoryMap } from "./selection";
 
 // ── Config snapshot stored on TestSession.config ─────────────────────────────
@@ -391,7 +391,7 @@ export async function getSessionDTO(sessionId: string, userId: string) {
         prompt: q.prompt,
         scenario: q.scenario,
         diagram: q.diagram ?? null,
-        options: parseOptions(q.options),
+        options: displayOptions(q, `${session.id}:${qid}`),
         selectedOptionId: r?.selectedOptionId ?? null,
         flagged: r?.flagged ?? false,
         // Answers only revealed once the section/session is closed:

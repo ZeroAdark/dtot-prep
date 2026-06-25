@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ReviewQuestion } from "@/components/ReviewQuestion";
 import { SECTIONS, SECTION_ORDER, SectionKey } from "@/lib/constants";
-import { parseOptions, fromJson } from "@/lib/serialize";
+import { displayOptions, fromJson } from "@/lib/serialize";
 import { sectionStyle } from "@/lib/sectionStyle";
 import { cn } from "@/lib/utils";
 import type { ClientQuestionItem } from "@/lib/types";
@@ -55,7 +55,7 @@ export default async function ReviewPage({
         difficulty: r.question.difficulty,
         prompt: r.question.prompt,
         scenario: r.question.scenario,
-        options: parseOptions(r.question.options),
+        options: displayOptions(r.question, `${r.sessionId}:${r.questionId}`),
         diagram: r.question.diagram ?? null,
         selectedOptionId: r.selectedOptionId,
         flagged: r.flagged,

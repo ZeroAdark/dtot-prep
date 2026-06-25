@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUserId } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { parseOptions, fromJson } from "@/lib/serialize";
+import { displayOptions, fromJson } from "@/lib/serialize";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
       prompt: q.prompt,
       scenario: q.scenario,
       diagram: q.diagram ?? null,
-      options: parseOptions(q.options),
+      options: displayOptions(q, q.id),
       correctId: q.correctId,
       rationale: q.rationale,
       optionNotes: q.optionNotes

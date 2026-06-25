@@ -128,7 +128,7 @@ export function StudyQuickCheck({
             <p className="font-medium">{q.prompt}</p>
 
             <ul className="mt-3 space-y-2">
-              {q.options.map((opt) => {
+              {q.options.map((opt, oi) => {
                 const isCorrect = opt.id === q.correctId;
                 const isSelected = opt.id === selected;
                 const wrongSelected = isSelected && !isCorrect;
@@ -170,7 +170,7 @@ export function StudyQuickCheck({
                         ) : answered && wrongSelected ? (
                           <X className="h-3.5 w-3.5" />
                         ) : (
-                          opt.id
+                          String.fromCharCode(65 + oi)
                         )}
                       </span>
                       <span className="flex-1">{opt.text}</span>
