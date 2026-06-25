@@ -34,13 +34,14 @@ type RawGuide = Omit<StudyGuide, "order">;
 // in the title, so visuals land on the most relevant guide (and content JSON
 // stays free of presentation slugs). Slugs map to src/components/diagrams/defs
 // and src/lib/drills.
+// NOTE: the computer-hardware guides (Motherboards/CPUs, Memory & Storage,
+// Cables & Connectors) intentionally have NO visuals — their diagram/drill rules
+// were removed per request. The hardware diagram components still exist because a
+// couple of Practice questions embed them, but they no longer appear in study.
 const VISUAL_RULES: { kw: string; diagrams?: string[]; drills?: string[] }[] = [
   { kw: "Network Models", diagrams: ["osi-model"], drills: ["osi-layer-functions"] },
   { kw: "Core Protocols", drills: ["ports-protocols"] },
   { kw: "Topologies", diagrams: ["network-topologies"] },
-  { kw: "Motherboards", diagrams: ["motherboard", "pc-components"] },
-  { kw: "Memory & Storage", diagrams: ["storage-memory"] },
-  { kw: "Cables & Connectors", diagrams: ["ports-connectors", "ports-connectors-2", "internal-cables"], drills: ["connectors-use"] },
   { kw: "Service & Deployment Models", diagrams: ["cloud-service-models", "cloud-deployment-models"], drills: ["cloud-responsibility"] },
   { kw: "CIA Triad", diagrams: ["cia-triad"] },
   { kw: "Network Defense", diagrams: ["network-security-zones"] },
