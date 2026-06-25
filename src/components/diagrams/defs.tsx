@@ -299,7 +299,7 @@ const motherboard: DiagramDef = {
   slug: "motherboard",
   title: "Motherboard layout",
   caption: "Tap a component to learn what plugs in where.",
-  viewBox: "0 0 360 300",
+  viewBox: "0 0 360 318",
   parts: [
     { id: "cpu", label: "CPU socket", description: "Holds the processor under a heatsink/fan. Socket type (LGA/PGA/AM5) must match the CPU." },
     { id: "ram", label: "RAM (DIMM) slots", description: "Memory modules install here. Match in pairs/colors for dual-channel performance." },
@@ -316,15 +316,28 @@ const motherboard: DiagramDef = {
         <rect x={x} y={y} width={w} height={h} rx={r} className="fill-primary/15 stroke-primary" strokeWidth={2.5} />
       ) : null;
     const tag = (x: number, y: number, label: string, id: string) => (
-      <text x={x} y={y} fontSize={9.5} fontWeight={700} textAnchor="middle"
+      <text x={x} y={y} fontSize={8.5} fontWeight={700} textAnchor="middle"
         className={on(id) ? "fill-primary" : "fill-foreground"}
         style={{ paintOrder: "stroke", stroke: "var(--card)", strokeWidth: 3 }}>
         {label}
       </text>
     );
+    const silk = (x: number, y: number, label: string) => (
+      <text x={x} y={y} fontSize={6} fontWeight={600} textAnchor="middle" fill="#bfe3cf" opacity={0.8}>{label}</text>
+    );
     const SLOT = "#15191f"; // slot plastic
     const HS = "url(#mbMetal)"; // heatsink metal
     const GOLDc = "url(#mbGold)";
+    // One right-angle SATA data port with its L-keyed mouth + 7 single-row contacts.
+    const sataPort = (x: number, y: number) => (
+      <g key={`sp${x}-${y}`}>
+        <path d={`M ${x} ${y} h20 v9 h-5 v4 h-15 z`} fill="#1e4fa0" stroke="#13315f" strokeWidth={0.8} strokeLinejoin="round" />
+        <rect x={x + 2} y={y + 2} width={12} height={5} fill="#0e2244" />
+        {Array.from({ length: 7 }, (_, i) => x + 2.6 + i * 1.5).map((px) => (
+          <rect key={px} x={px} y={y + 2.5} width={0.8} height={4} fill={GOLDc} />
+        ))}
+      </g>
+    );
     return (
       <>
         <defs>
@@ -343,120 +356,158 @@ const motherboard: DiagramDef = {
           </linearGradient>
         </defs>
 
-        {/* PCB substrate with mounting holes + silkscreen traces */}
-        <rect x={10} y={10} width={340} height={282} rx={8} fill="url(#mbPcb)" stroke="#0a3d24" strokeWidth={2} />
-        {[[26, 26], [334, 26], [26, 276], [334, 276], [180, 26]].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r={5} fill="#0a3d24" stroke="#7c8896" strokeWidth={1.5} />
+        {/* PCB substrate + mounting holes + faint silkscreen traces */}
+        <rect x={8} y={8} width={344} height={302} rx={8} fill="url(#mbPcb)" stroke="#0a3d24" strokeWidth={2} />
+        {[[24, 24], [336, 24], [24, 294], [336, 294], [190, 24]].map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r={4.5} fill="#0a3d24" stroke="#7c8896" strokeWidth={1.5} />
         ))}
-        {[40, 70, 250, 265].map((y) => (
-          <line key={y} x1={24} y1={y} x2={130} y2={y} stroke="#2fa06a" strokeWidth={0.6} opacity={0.5} />
-        ))}
-
-        {/* Rear I/O shield (top-left edge) */}
-        <rect x={22} y={16} width={150} height={16} rx={2} fill="#2a2f38" stroke="#586473" strokeWidth={1} />
-        {[28, 44, 60, 80, 100, 124, 150].map((x, i) => (
-          <rect key={x} x={x} y={20} width={i === 3 ? 18 : 12} height={8} rx={1} fill="#11151a" />
+        {[60, 130, 290].map((y) => (
+          <line key={y} x1={150} y1={y} x2={200} y2={y} stroke="#2fa06a" strokeWidth={0.6} opacity={0.4} />
         ))}
 
-        {/* VRM heatsinks around the socket */}
-        <g>
-          <rect x={48} y={36} width={78} height={12} rx={2} fill={HS} stroke="#586473" strokeWidth={1} />
-          <rect x={24} y={50} width={16} height={64} rx={2} fill={HS} stroke="#586473" strokeWidth={1} />
-          {[52, 56, 60, 64, 68, 72].map((x) => <line key={x} x1={x} y1={38} x2={x} y2={46} stroke="#7c8896" strokeWidth={0.8} />)}
-        </g>
-
-        {/* 8-pin EPS (CPU power), top edge — decorative */}
-        <rect x={180} y={16} width={40} height={16} rx={2} fill="#11151a" stroke="#586473" strokeWidth={1} />
-        {[0, 1, 2, 3].map((c) => [0, 1].map((rr) => (
-          <rect key={`${c}-${rr}`} x={184 + c * 9} y={19 + rr * 6} width={5} height={4} rx={1} fill="#9aa6b4" />
-        )))}
-        {tag(200, 42, "8-pin EPS", "")}
-
-        {/* CPU socket */}
-        <g data-part="cpu" className="cursor-pointer">
-          <rect x={50} y={52} width={72} height={72} rx={4} fill="#11151a" stroke="#3a424c" strokeWidth={1.5} />
-          <rect x={58} y={60} width={56} height={56} rx={2} fill="#1c2127" />
-          <rect x={62} y={64} width={48} height={48} rx={1.5} fill="#2a2f38" stroke="#454e58" strokeWidth={1} />
-          {/* retention lever */}
-          <path d="M 50 116 L 44 122 L 128 122 L 122 116" fill="none" stroke="#9aa6b4" strokeWidth={2} strokeLinejoin="round" />
-          {sel("cpu", 48, 50, 76, 76)}
-          {tag(86, 140, "CPU socket", "cpu")}
-        </g>
-
-        {/* RAM: four DIMM slots with alternating dual-channel colours */}
-        <g data-part="ram" className="cursor-pointer">
-          {[196, 210, 224, 238].map((x, i) => (
-            <g key={x}>
-              <rect x={x} y={40} width={10} height={118} rx={2} fill={SLOT} stroke="#3a424c" strokeWidth={1} />
-              <rect x={x + 1.5} y={44} width={7} height={110} rx={1} fill={i % 2 === 0 ? "#243a52" : "#3a2440"} />
-              <rect x={x} y={40} width={10} height={6} rx={2} fill={i % 2 === 0 ? "#3f6fb5" : "#7a51a8"} />
-              <rect x={x} y={152} width={10} height={6} rx={2} fill={i % 2 === 0 ? "#3f6fb5" : "#7a51a8"} />
-            </g>
-          ))}
-          {sel("ram", 192, 38, 52, 122)}
-          {tag(218, 168, "RAM ×4", "ram")}
-        </g>
-
-        {/* 24-pin ATX power, right edge */}
-        <g data-part="atx" className="cursor-pointer">
-          <rect x={300} y={54} width={36} height={104} rx={3} fill="#11151a" stroke="#3a424c" strokeWidth={1.5} />
-          {Array.from({ length: 12 }, (_, r) => r).flatMap((r) =>
-            [0, 1].map((c) => (
-              <rect key={`${r}-${c}`} x={305 + c * 14} y={59 + r * 8} width={10} height={5} rx={1} fill="#9aa6b4" />
-            )),
-          )}
-          {sel("atx", 298, 52, 40, 108)}
-          {tag(318, 172, "24-pin", "atx")}
-        </g>
-
-        {/* Chipset heatsink */}
-        <rect x={236} y={186} width={56} height={50} rx={4} fill={HS} stroke="#586473" strokeWidth={1.2} />
-        {[242, 250, 258, 266, 274, 282].map((x) => <line key={x} x1={x} y1={190} x2={x} y2={232} stroke="#7c8896" strokeWidth={1} />)}
-
-        {/* M.2 NVMe slot */}
-        <g data-part="m2" className="cursor-pointer">
-          <rect x={50} y={176} width={150} height={13} rx={2} fill="#1a2129" stroke="#3a424c" strokeWidth={1} />
-          {Array.from({ length: 22 }, (_, i) => 54 + i * 2.4).map((x) => <rect key={x} x={x} y={178} width={1.2} height={9} fill={GOLDc} />)}
-          <circle cx={193} cy={182} r={4} fill="none" stroke="#9aa6b4" strokeWidth={1.6} />
-          {sel("m2", 48, 174, 154, 17)}
-          {tag(120, 201, "M.2 (NVMe)", "m2")}
-        </g>
-
-        {/* PCIe slots (x16 reinforced + x1) */}
-        <g data-part="pcie" className="cursor-pointer">
-          <rect x={50} y={206} width={180} height={16} rx={2} fill={SLOT} stroke="#7c8896" strokeWidth={1.4} />
-          {Array.from({ length: 30 }, (_, i) => 56 + i * 5.4).map((x) => <rect key={x} x={x} y={209} width={1.6} height={10} fill={GOLDc} />)}
-          <rect x={224} y={208} width={8} height={12} rx={1} fill="#454e58" />
-          {sel("pcie", 48, 204, 184, 20)}
-          <rect x={50} y={236} width={78} height={13} rx={2} fill={SLOT} stroke="#3a424c" strokeWidth={1} />
-          {Array.from({ length: 12 }, (_, i) => 55 + i * 5.4).map((x) => <rect key={`s${x}`} x={x} y={238} width={1.6} height={9} fill={GOLDc} />)}
-          {tag(110, 266, "PCIe x16 / x1", "pcie")}
-        </g>
-
-        {/* SATA ports (stacked, right-angle) */}
-        <g data-part="sata" className="cursor-pointer">
-          <rect x={300} y={196} width={40} height={70} rx={3} fill="#11151a" stroke="#3a424c" strokeWidth={1.2} />
-          {[0, 1, 2, 3].map((i) => (
-            <g key={i}>
-              <rect x={304} y={201 + i * 16} width={32} height={12} rx={1.5} fill="#2a2f38" stroke="#586473" strokeWidth={0.8} />
-              <rect x={307} y={204 + i * 16} width={26} height={6} rx={1} fill="#0e1216" />
-            </g>
-          ))}
-          {sel("sata", 298, 194, 44, 74)}
-          {tag(320, 280, "SATA ×4", "sata")}
-        </g>
-
-        {/* CMOS coin battery */}
-        <circle cx={158} cy={252} r={15} fill="#d7dde4" stroke="#9aa6b4" strokeWidth={1.5} />
-        <text x={158} y={255} fontSize={7} fontWeight={700} textAnchor="middle" fill="#5a6573">CR2032</text>
-
-        {/* Front-panel / USB headers along the bottom */}
-        {[[40, 274], [70, 274], [100, 274]].map(([x, y], i) => (
-          <g key={i}>
-            <rect x={x} y={y} width={22} height={10} rx={1.5} fill="#243a52" />
-            {[0, 1, 2, 3].map((c) => <rect key={c} x={x + 2 + c * 5} y={y + 2} width={2} height={6} fill="#c0942f" />)}
+        {/* Rear I/O panel (top-left): a dense strip of varied, colour-coded ports */}
+        <rect x={16} y={12} width={120} height={20} rx={2} fill="#1c1f24" stroke="#586473" strokeWidth={1} />
+        <circle cx={24} cy={22} r={3.4} fill="#7e57c2" />{/* PS/2 */}
+        {[34, 45].map((x) => (
+          <g key={x}>
+            <rect x={x} y={15} width={8} height={5.5} rx={1} fill="#1565c0" />{/* USB3 stacked pair */}
+            <rect x={x} y={22} width={8} height={5.5} rx={1} fill="#1565c0" />
           </g>
         ))}
+        <path d="M 58 16 H 74 L 71 28 H 61 Z" fill="#222831" />{/* HDMI */}
+        <path d="M 78 16 H 92 L 92 22 L 89 28 H 78 Z" fill="#222831" />{/* DP */}
+        <rect x={96} y={15} width={12} height={13} rx={1} fill="#9aa6b4" stroke="#3a424c" strokeWidth={0.6} />{/* RJ45 */}
+        <rect x={98} y={26} width={3} height={1.6} fill="#2fa874" /><rect x={103} y={26} width={3} height={1.6} fill="#e0a800" />
+        {["#4caf50", "#ff80ab", "#2196f3"].map((c, i) => <circle key={i} cx={116 + i * 7} cy={22} r={3} fill={c} />)}
+
+        {/* 8-pin EPS / CPU power — top edge, above the VRM column */}
+        <rect x={146} y={12} width={42} height={17} rx={2} fill="#15181d" stroke="#586473" strokeWidth={1} />
+        {[0, 1, 2, 3].map((c) => [0, 1].map((rr) => (
+          <rect key={`${c}-${rr}`} x={150 + c * 9} y={15 + rr * 6} width={6} height={4} rx={1} fill="#9aa6b4" />
+        )))}
+        {silk(167, 39, "EPS 12V")}
+
+        {/* VRM: two finned heatsinks wrapping the socket + a row of power-stage chokes */}
+        <rect x={44} y={34} width={92} height={12} rx={2} fill={HS} stroke="#586473" strokeWidth={1} />
+        {Array.from({ length: 11 }, (_, i) => 49 + i * 8).map((x) => <line key={`vt${x}`} x1={x} y1={36} x2={x} y2={44} stroke="#7c8896" strokeWidth={0.7} />)}
+        <rect x={16} y={50} width={14} height={72} rx={2} fill={HS} stroke="#586473" strokeWidth={1} />
+        {Array.from({ length: 8 }, (_, i) => 54 + i * 9).map((y) => <line key={`vl${y}`} x1={18} y1={y} x2={28} y2={y} stroke="#7c8896" strokeWidth={0.7} />)}
+        {[138, 146].map((x) => <rect key={x} x={x} y={52} width={6} height={6} rx={1} fill="#1a1c20" />)}
+
+        {/* CPU socket — ILM frame, contact field, pin-1 triangle, load lever */}
+        <g data-part="cpu" className="cursor-pointer">
+          <rect x={48} y={50} width={80} height={90} rx={4} fill="#11151a" stroke="#3a424c" strokeWidth={1.5} />
+          <rect x={56} y={58} width={64} height={74} rx={2} fill="#1c2127" />
+          <rect x={60} y={62} width={56} height={66} rx={1.5} fill="#2a2f38" stroke="#454e58" strokeWidth={1} />
+          <path d="M 60 62 L 68 62 L 60 70 Z" fill={GOLDc} />{/* pin-1 triangle */}
+          <path d="M 128 96 L 138 96 L 138 132" fill="none" stroke="#9aa6b4" strokeWidth={2} strokeLinejoin="round" />{/* load lever */}
+          {sel("cpu", 46, 48, 84, 94)}
+          {tag(88, 153, "CPU", "cpu")}
+        </g>
+
+        {/* DIMM ×4 — dual-channel colour pairs, off-centre key ridge, end latches */}
+        <g data-part="ram" className="cursor-pointer">
+          {[200, 214, 228, 242].map((x, i) => (
+            <g key={x}>
+              <rect x={x} y={42} width={11} height={104} rx={2} fill={SLOT} stroke="#3a424c" strokeWidth={1} />
+              <rect x={x + 1.5} y={46} width={8} height={96} rx={1} fill={i % 2 === 0 ? "#243a52" : "#3a2440"} />
+              <rect x={x} y={42} width={11} height={6} rx={2} fill={i % 2 === 0 ? "#3f6fb5" : "#7a51a8"} />
+              <rect x={x} y={140} width={11} height={6} rx={2} fill={i % 2 === 0 ? "#3f6fb5" : "#7a51a8"} />
+              <rect x={x + 1.5} y={104} width={8} height={3} fill="#11151a" />{/* off-centre key */}
+            </g>
+          ))}
+          {sel("ram", 196, 40, 57, 108)}
+          {tag(278, 96, "DDR ×4", "ram")}
+        </g>
+
+        {/* 24-pin ATX main power — right edge, 2×12 with a side latch */}
+        <g data-part="atx" className="cursor-pointer">
+          <rect x={304} y={46} width={40} height={106} rx={3} fill="#11151a" stroke="#3a424c" strokeWidth={1.5} />
+          <rect x={300} y={90} width={5} height={18} rx={2} fill="#454e58" />{/* retention latch */}
+          {Array.from({ length: 12 }, (_, r) => r).flatMap((r) =>
+            [0, 1].map((c) => (
+              <rect key={`${r}-${c}`} x={308 + c * 15} y={50 + r * 8.2} width={11} height={5} rx={1} fill="#9aa6b4" />
+            )),
+          )}
+          {sel("atx", 302, 44, 42, 110)}
+          {tag(324, 163, "24-pin", "atx")}
+        </g>
+
+        {/* M.2 — SHORT keyed connector + empty channel + standoff (not a long slot) */}
+        <g data-part="m2" className="cursor-pointer">
+          <rect x={48} y={166} width={40} height={14} rx={2} fill="#1a2129" stroke="#3a424c" strokeWidth={1} />
+          {Array.from({ length: 16 }, (_, i) => 51 + i * 2.2).filter((x) => x < 78 || x > 84).map((x) => (
+            <rect key={x} x={x} y={168} width={1.1} height={10} fill={GOLDc} />
+          ))}
+          <rect x={78} y={167} width={6} height={12} rx={1} fill="#0f1318" />{/* M-key */}
+          <line x1={88} y1={173} x2={186} y2={173} stroke="#1a4d33" strokeWidth={3} />{/* open channel */}
+          <circle cx={190} cy={173} r={4.5} fill="#cdd6df" stroke="#7c8896" strokeWidth={1.2} />{/* standoff */}
+          <path d="M 187 173 H 193 M 190 170 V 176" stroke="#5a6573" strokeWidth={0.8} />
+          {silk(150, 169, "2280")}
+          {sel("m2", 46, 164, 150, 16)}
+          {tag(116, 192, "M.2", "m2")}
+        </g>
+
+        {/* PCIe x16 (reinforced) + x1 — off-centre key divider, x16 end latch */}
+        <g data-part="pcie" className="cursor-pointer">
+          <rect x={48} y={198} width={184} height={16} rx={2} fill={SLOT} stroke="#7c8896" strokeWidth={1.6} />
+          {Array.from({ length: 33 }, (_, i) => 54 + i * 5.4).filter((x) => x < 86 || x > 95).map((x) => (
+            <rect key={x} x={x} y={201} width={1.6} height={10} fill={GOLDc} />
+          ))}
+          <rect x={86} y={199} width={9} height={14} rx={1} fill={SLOT} />{/* off-centre key divider */}
+          <rect x={232} y={200} width={8} height={12} rx={1} fill="#454e58" />{/* end retention latch */}
+          <rect x={48} y={230} width={60} height={14} rx={2} fill={SLOT} stroke="#3a424c" strokeWidth={1} />
+          {Array.from({ length: 11 }, (_, i) => 53 + i * 5).filter((x) => x < 69 || x > 76).map((x) => (
+            <rect key={`s${x}`} x={x} y={233} width={1.6} height={8} fill={GOLDc} />
+          ))}
+          <rect x={69} y={231} width={7} height={12} rx={1} fill={SLOT} />
+          {sel("pcie", 46, 196, 188, 50)}
+          {tag(120, 224, "PCIe x16 / x1", "pcie")}
+        </g>
+
+        {/* USB 3.x internal header — tall blue box near the 24-pin */}
+        <rect x={306} y={170} width={36} height={26} rx={2} fill="#2a52b8" stroke="#1c2a55" strokeWidth={1} />
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((c) => [0, 1].map((rr) => (
+          <rect key={`u${c}-${rr}`} x={309 + c * 3.6} y={174 + rr * 9} width={1.6} height={6} fill={GOLDc} />
+        )))}
+        {silk(324, 205, "USB3")}
+
+        {/* SATA — 2×2 block of L-keyed 7-pin data ports */}
+        <g data-part="sata" className="cursor-pointer">
+          {[[300, 208], [323, 208], [300, 225], [323, 225]].map(([x, y]) => sataPort(x, y))}
+          {sel("sata", 297, 205, 47, 36)}
+          {tag(321, 252, "SATA", "sata")}
+        </g>
+
+        {/* Chipset (PCH) heatsink — lower-right */}
+        <rect x={238} y={250} width={54} height={48} rx={4} fill={HS} stroke="#586473" strokeWidth={1.2} />
+        {Array.from({ length: 6 }, (_, i) => 244 + i * 8).map((x) => <line key={x} x1={x} y1={254} x2={x} y2={294} stroke="#7c8896" strokeWidth={1} />)}
+        {silk(265, 276, "PCH")}
+
+        {/* CMOS coin-cell (CR2032) in its holder — lower-right */}
+        <circle cx={216} cy={272} r={16} fill="none" stroke="#9aa6b4" strokeWidth={2} />
+        <circle cx={216} cy={272} r={12.5} fill="#dfe5ec" stroke="#aab3bf" strokeWidth={1} />
+        <path d="M 206 264 A 12.5 12.5 0 0 1 226 268" fill="none" stroke="#ffffff" strokeWidth={1} opacity={0.7} />
+        <rect x={224} y={266} width={6} height={5} rx={1.5} fill="#aab3bf" />{/* spring clip tab */}
+        <text x={216} y={274} fontSize={6.5} fontWeight={700} textAnchor="middle" fill="#5a6573">CR2032</text>
+
+        {/* Front-panel / USB2 / fan headers along the bottom edge */}
+        <g>
+          <rect x={40} y={296} width={26} height={11} rx={1.5} fill="#2a2f38" />{/* F_PANEL 2×5, one key gap */}
+          {[0, 1, 2, 3, 4].map((c) => [0, 1].map((rr) => (
+            (c === 4 && rr === 1) ? null : <rect key={`f${c}-${rr}`} x={43 + c * 4.6} y={298.5 + rr * 4} width={1.8} height={2.6} fill={GOLDc} />
+          )))}
+          <rect x={74} y={296} width={24} height={11} rx={1.5} fill="#2a2f38" />{/* USB2 header */}
+          {[0, 1, 2, 3, 4].map((c) => [0, 1].map((rr) => (
+            <rect key={`u2${c}-${rr}`} x={77 + c * 4.2} y={298.5 + rr * 4} width={1.8} height={2.6} fill={GOLDc} />
+          )))}
+          {[108, 128].map((x) => (
+            <g key={x}>
+              <rect x={x} y={299} width={15} height={7} rx={1.5} fill="#2a2f38" />{/* 4-pin fan */}
+              {[0, 1, 2, 3].map((c) => <rect key={c} x={x + 2 + c * 3} y={301} width={1.6} height={3} fill={GOLDc} />)}
+            </g>
+          ))}
+        </g>
       </>
     );
   },
