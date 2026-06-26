@@ -1,0 +1,1190 @@
+[
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "MEDIUM",
+    "prompt": "When the embassy loses utility power and the diesel generator fails to start during its automatic transfer, what is the BEST first action to protect mission-critical systems?",
+    "scenario": "A regional storm knocks out commercial power to the embassy. The automatic transfer switch calls for the backup diesel generator, but the generator fails to crank and stays offline. The server room is now running solely on UPS batteries, which the runtime display shows will last roughly eight minutes at the current load.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Begin a graceful, prioritized shutdown of non-essential systems to extend UPS runtime for mission-critical and life-safety systems while troubleshooting the generator"
+      },
+      {
+        "id": "B",
+        "text": "Wait and watch the UPS runtime display, assuming the generator controller will retry and start on its own before the batteries are exhausted"
+      },
+      {
+        "id": "C",
+        "text": "Immediately cut all server-room power at the main breaker to prevent any equipment damage from the impending battery depletion"
+      },
+      {
+        "id": "D",
+        "text": "Plug the most important servers into wall outlets in adjacent offices to bypass the failed generator circuit"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "With only minutes of battery runtime and no generator, the priority is to preserve power for mission-critical and life-safety systems by shedding non-essential load through an orderly shutdown, which both extends runtime and prevents data-corrupting hard crashes while the generator problem is worked. This buys time and keeps the highest-value systems alive.",
+    "optionNotes": {
+      "B": "Passively waiting risks a total, ungraceful crash of every system when the batteries die, with no contingency if the controller does not retry in time.",
+      "C": "Killing all power abruptly drops mission-critical and life-safety systems too, causing the very outage and potential data corruption an orderly response is meant to avoid.",
+      "D": "Adjacent office outlets share the same failed utility feed, so they provide no power, and moving live servers mid-crisis risks damage and bypasses protected circuits."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "MEDIUM",
+    "prompt": "When a complete embassy-wide network outage takes down all internal and external connectivity at the start of business, what is the BEST first step before escalating?",
+    "scenario": "Arriving at the embassy, you find that no workstation can reach internal file shares, email, or the internet, and the phones over IP are also dead. Staff are gathering at your desk reporting that 'the whole network is down.' You have a documented incident-response and troubleshooting runbook for major outages.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reboot every network switch and the core router simultaneously to clear whatever fault is causing the outage as quickly as possible"
+      },
+      {
+        "id": "B",
+        "text": "Send an all-staff message declaring a major incident and telling everyone to go home until connectivity returns"
+      },
+      {
+        "id": "C",
+        "text": "Follow the runbook to scope the outage methodically from the core outward, checking core switch, router, and WAN link status to isolate the failure domain before changing anything"
+      },
+      {
+        "id": "D",
+        "text": "Open a priority ticket with the external circuit provider and wait for them to confirm whether the problem is on their side"
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Effective outage response begins with structured diagnosis: working from the core outward to localize the failure domain (core, distribution, or WAN) so the actual fault is fixed rather than guessed at. Identifying where connectivity breaks down directs the correct corrective action and any necessary escalation.",
+    "optionNotes": {
+      "A": "Rebooting all infrastructure at once destroys diagnostic state, can worsen the outage, and is a blind guess rather than a targeted fix.",
+      "B": "Dismissing staff and declaring a major incident before any diagnosis is premature and skips the basic scoping that often resolves or correctly characterizes the problem.",
+      "D": "Assuming the provider is at fault and waiting is too passive; the failure may be entirely internal, and no scoping has been done to justify that escalation."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "HARD",
+    "prompt": "When you discover a single unclassified workstation actively beaconing to a known malicious server and exfiltrating data, what is the BEST immediate containment action?",
+    "scenario": "While reviewing security logs, you confirm that one unclassified workstation is establishing repeated outbound connections to a server flagged on a current threat-intelligence list, and traffic volume suggests data is being exfiltrated right now. The user is away from the desk and the machine is unlocked.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Disconnect the workstation from the network to halt exfiltration while leaving it powered on, then notify the Information Systems Security Officer and preserve it for forensics"
+      },
+      {
+        "id": "B",
+        "text": "Immediately power the workstation off at the wall to be certain the malicious activity stops"
+      },
+      {
+        "id": "C",
+        "text": "Run an antivirus scan and delete any malware it finds, then return the workstation to normal use once it reports clean"
+      },
+      {
+        "id": "D",
+        "text": "Leave the machine connected and keep monitoring the traffic to gather more evidence before involving the security officer"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Pulling the network connection stops the active exfiltration immediately while keeping the system powered preserves volatile memory and live state essential to forensic investigation, and the security officer must be engaged at once because this is a confirmed breach. Containment plus evidence preservation plus prompt escalation is the correct balance.",
+    "optionNotes": {
+      "B": "Powering off destroys volatile evidence in RAM (running processes, encryption keys, network state) that forensics needs, even though it does stop the traffic.",
+      "C": "Scanning and wiping malware then reusing the machine destroys evidence, may miss persistence mechanisms, and ignores the required reporting of a confirmed breach.",
+      "D": "Continuing to let data exfiltrate to collect more evidence allows ongoing harm and delays mandatory escalation; containment cannot wait."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "MEDIUM",
+    "prompt": "When a water leak from a floor above begins dripping near energized racks in the embassy server room, what is the BEST first action?",
+    "scenario": "You enter the server room and find water dripping from a ceiling panel directly above a rack of energized equipment, with a small pool forming on the raised floor near the rack's power distribution unit. The drip is steady and appears to be spreading toward adjacent racks.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Start mopping up the pooled water around the rack to keep it from spreading to the other racks"
+      },
+      {
+        "id": "B",
+        "text": "De-energize the affected racks and cut power to the at-risk circuits before water reaches live components, then contain the leak and escalate to facilities and your supervisor"
+      },
+      {
+        "id": "C",
+        "text": "Place a plastic sheet over the top of the rack and leave the equipment running so services stay available"
+      },
+      {
+        "id": "D",
+        "text": "Move the dripping rack's servers to a dry corner of the room while they remain powered and cabled"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Water contacting energized electrical equipment creates an electrocution and short-circuit hazard, so the priority is to remove power from the affected circuits before water reaches live components, then stop the source and bring in facilities. Personnel safety and preventing a cascading electrical fault come first.",
+    "optionNotes": {
+      "A": "Mopping around energized equipment with water present puts the technician at risk of electric shock and does nothing about the live electrical hazard.",
+      "C": "Covering a still-energized rack leaves the shock and short-circuit hazard in place and water can still reach the power distribution unit and floor.",
+      "D": "Moving powered, cabled servers through a wet area is hazardous and impractical; the live electrical risk must be removed first by cutting power."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "MEDIUM",
+    "prompt": "When the embassy's encrypted radio and secure telephone links both go silent during a developing security situation, what is the BEST first action for the on-duty IT officer?",
+    "scenario": "During a developing security situation outside the embassy, the post's encrypted handheld radios and the secure telephone system both stop functioning within minutes of each other. The Marine Security Guard reports they can no longer reach the command post by secure means. You have a documented loss-of-secure-comms contingency that defines an alternate authorized channel.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Switch the radios to an open, unencrypted channel so everyone can at least keep talking until the secure systems are fixed"
+      },
+      {
+        "id": "B",
+        "text": "Activate the documented backup secure communications channel to restore command-and-control, then notify the Regional Security Officer and begin diagnosing the primary systems"
+      },
+      {
+        "id": "C",
+        "text": "Focus entirely on rebooting the radio encryption equipment and the secure phone system until one of them comes back, deferring any other action"
+      },
+      {
+        "id": "D",
+        "text": "Use your personal mobile phone to relay messages between the guard post and the command post until secure comms return"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Maintaining secure command-and-control during a security event is critical, so the correct move is to bring up the pre-authorized backup secure channel to restore communications, then alert the security officer and troubleshoot the primary systems. Restoring an approved secure path preserves both continuity and confidentiality.",
+    "optionNotes": {
+      "A": "Moving sensitive security coordination to an open, unencrypted channel exposes it to interception during an active threat and violates communications security.",
+      "C": "Tunneling on repairs while command-and-control is severed leaves the post without secure coordination and ignores the available authorized backup channel.",
+      "D": "A personal mobile phone is unauthorized and insecure for sensitive coordination and should not carry security-event traffic."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "HARD",
+    "prompt": "When a network outage and a suspected intrusion alert occur at the same moment, with limited staff, how should the IT officer prioritize the response?",
+    "scenario": "At the same time the monitoring system flags an active intrusion alert on the unclassified network, the WAN circuit also drops and external email stops flowing. You are the only IT officer on site, leadership wants email restored, and the intrusion alert is still firing. Both demand attention immediately.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Restore the WAN circuit and email first because leadership is asking for it, then look into the intrusion alert once connectivity is back"
+      },
+      {
+        "id": "B",
+        "text": "Treat the suspected intrusion as the higher priority: contain it to prevent spread or data loss and escalate to the security officer, then address the connectivity outage and call for additional support"
+      },
+      {
+        "id": "C",
+        "text": "Wait to act on either issue until you can determine whether the outage and the intrusion are caused by the same root event"
+      },
+      {
+        "id": "D",
+        "text": "Reboot the firewall and core router to clear both problems at once, since that may resolve the connectivity and stop the alert"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When failures collide, security incidents that threaten confidentiality and integrity outrank a service outage, so containing and escalating the suspected intrusion takes precedence while help is summoned for the connectivity problem. Preventing data loss and spread cannot be deferred for convenience even under leadership pressure.",
+    "optionNotes": {
+      "A": "Prioritizing email restoration over an active intrusion lets the security threat spread and exfiltrate data while attention is elsewhere, which is the more serious harm.",
+      "C": "Pausing all action to determine whether the events share a root cause wastes critical time during which an intrusion could be doing damage.",
+      "D": "Rebooting core devices blindly may destroy intrusion evidence, drop legitimate traffic, and does not properly contain a security incident."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "HARD",
+    "prompt": "When an ordered emergency evacuation gives you only minutes to handle IT assets before leaving the embassy, what is the BEST action?",
+    "scenario": "Post leadership orders an emergency evacuation of the embassy due to a rapidly deteriorating security situation. You have only a few minutes before you must leave with staff. The server room holds both classified and unclassified equipment, and you cannot carry it all or safely remain to shut everything down.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Follow the post's emergency destruction and protection plan, prioritizing destruction or removal of classified material and the most sensitive media, then evacuate with staff"
+      },
+      {
+        "id": "B",
+        "text": "Spend the available minutes performing an orderly graceful shutdown of every server, classified and unclassified alike, before you leave"
+      },
+      {
+        "id": "C",
+        "text": "Carry out as much physical hardware as you can fit in a vehicle, regardless of classification, and leave the rest powered on"
+      },
+      {
+        "id": "D",
+        "text": "Lock the server-room door and leave all equipment running, trusting that physical security will protect the assets until staff can return"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Under an evacuation order with minutes available and life-safety paramount, the established emergency action plan prioritizes denying adversaries access to classified material and the most sensitive media through the pre-defined destruction or removal sequence, then leaving with staff. Protecting national-security information and people outweighs preserving hardware.",
+    "optionNotes": {
+      "B": "A full graceful shutdown of everything wastes scarce time on low-sensitivity systems and may leave classified material intact and recoverable by an adversary.",
+      "C": "Indiscriminately hauling out hardware ignores classification priorities, risks personnel safety, and may leave the most sensitive material behind while saving low-value gear.",
+      "D": "Walking away with everything running and relying on a locked door leaves classified material fully intact for any adversary who breaches the building."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Crisis Response",
+    "difficulty": "MEDIUM",
+    "prompt": "When staff report a phishing-driven ransomware infection spreading from one laptop across the embassy's unclassified LAN, what is the BEST first containment action?",
+    "scenario": "A user reports that after opening an email attachment, files on their laptop are being renamed with a strange extension and a ransom message has appeared. Within minutes, two colleagues report the same symptoms on shared network folders, indicating the ransomware is spreading laterally across the unclassified LAN.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tell affected users to delete the ransom note and keep working from any folders that still look normal while you investigate"
+      },
+      {
+        "id": "B",
+        "text": "Isolate the infected segment by disconnecting affected machines and the shared file server from the network to halt lateral spread, then notify the security officer and begin incident response"
+      },
+      {
+        "id": "C",
+        "text": "Immediately start restoring all file shares from last night's backup over the top of the encrypted data while the infection is still active"
+      },
+      {
+        "id": "D",
+        "text": "Pay or arrange to pay the ransom quickly to recover the files before more data is lost"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The first priority with spreading ransomware is containment: disconnecting infected hosts and the file server from the network stops lateral encryption, after which the security officer is engaged and the formal incident-response process begins. Stopping the spread protects the rest of the environment before any recovery is attempted.",
+    "optionNotes": {
+      "A": "Letting users keep working on a live, spreading infection allows the ransomware to encrypt more data and reach additional systems.",
+      "C": "Restoring backups onto a network where the malware is still active risks re-encrypting the restored data and is premature before containment and eradication.",
+      "D": "Paying the ransom is not a sanctioned response, offers no guarantee of recovery, funds criminals, and bypasses required incident reporting and containment."
+    },
+    "reference": "Situational Judgment › Crisis Response"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "MEDIUM",
+    "prompt": "A colleague who lacks the clearance for a classified cable asks you to verbally summarize its key points because the matter is urgent and they say it concerns their portfolio. What is the BEST course of action?",
+    "scenario": "You are a DTO at an embassy. A first-tour officer stops by your desk and says they are drafting an urgent reply that touches on a classified cable you have read. They do not hold the required clearance for that cable but insist they need to know what it says to do their job today.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Give a brief verbal summary of only the most relevant points, since speaking aloud is less risky than sharing the document itself."
+      },
+      {
+        "id": "B",
+        "text": "Decline to share the contents and direct the officer to the originating office to determine whether they have a validated need-to-know and the proper access."
+      },
+      {
+        "id": "C",
+        "text": "Email the officer an unclassified paraphrase you write yourself so nothing classified leaves a secure system."
+      },
+      {
+        "id": "D",
+        "text": "Share the full cable so the officer can judge for themselves which parts apply to their work."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Access to classified information requires both an appropriate clearance and a validated need-to-know determined through proper channels, not by the holder's personal judgment of urgency. Routing the request to the originating office lets the proper authority confirm clearance and need-to-know before any access is granted.",
+    "optionNotes": {
+      "A": "A verbal summary still discloses classified content to someone without the required clearance and need-to-know; the medium does not change the classification of the information.",
+      "C": "Paraphrasing classified material into an unclassified email is improper derivative handling and can constitute a spillage; the information's sensitivity is not removed by rewording it.",
+      "D": "Releasing the full cable to an uncleared person is an unauthorized disclosure regardless of the recipient's intentions or their ability to filter relevance."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "MEDIUM",
+    "prompt": "You find an unlabeled USB flash drive on the floor of a shared embassy corridor near the IT office. What is the BEST first action?",
+    "scenario": "While walking through a common area of the chancery, you spot a small unmarked USB thumb drive lying on the floor. There is no name or tag on it, and you do not know who it belongs to.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Plug it into an isolated standalone machine to inspect the files and identify the owner."
+      },
+      {
+        "id": "B",
+        "text": "Insert it into your own workstation only long enough to read the directory listing, then unplug it."
+      },
+      {
+        "id": "C",
+        "text": "Leave it untouched, do not connect it to any system, and turn it over to the information security or facility security officer."
+      },
+      {
+        "id": "D",
+        "text": "Drop it in the lost-and-found box so the owner can reclaim it later."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Found removable media is a classic delivery vector for malware and a potential security probe; it must not be connected to any device. Handing it to the security office preserves it for examination and lets trained staff handle it under controlled procedures.",
+    "optionNotes": {
+      "A": "Connecting unknown media to any machine, even a standalone one, can execute malicious code or trigger an autorun payload; investigating ownership is the security office's role, not an ad hoc inspection.",
+      "B": "A brief connection is still a connection; malware can act on insertion, so even reading a directory listing exposes a system to compromise.",
+      "D": "Placing untracked media in a public lost-and-found leaves a possible threat device in circulation and means a potential security incident goes unreported."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "MEDIUM",
+    "prompt": "You receive an email appearing to be from the IT help desk asking you to confirm your network password via a linked portal to prevent your account from being locked. What is the BEST response?",
+    "scenario": "An email lands in your inbox with the embassy IT logo. It warns that your account will be suspended within two hours unless you 'revalidate' your credentials, and provides a button linking to a login page. The sending address is a long external domain you do not recognize.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Click the link but stop short of entering your password, just to see whether the page looks legitimate."
+      },
+      {
+        "id": "B",
+        "text": "Enter your credentials quickly to avoid the lockout, then change your password afterward to be safe."
+      },
+      {
+        "id": "C",
+        "text": "Forward the email to several colleagues to warn them, then delete it from your inbox."
+      },
+      {
+        "id": "D",
+        "text": "Do not click the link or enter any credentials, and report the message to IT security using the established phishing-reporting channel."
+      }
+    ],
+    "correctId": "D",
+    "rationale": "Urgency, a credential-revalidation request, and an unfamiliar external sender are hallmarks of phishing. Legitimate IT will never ask for a password through an emailed link, so the message should be reported through the official channel without interacting with it, enabling security to block the campaign.",
+    "optionNotes": {
+      "A": "Merely loading the linked page can fingerprint your system, confirm your address as live, or deliver a drive-by exploit; clicking is itself the risk regardless of whether you type anything.",
+      "B": "Entering credentials hands them to the attacker; changing the password afterward is too late because the original is already captured and may be used immediately.",
+      "C": "Mass-forwarding the suspicious email spreads the malicious link further, and deleting it destroys evidence security needs while leaving the threat unreported to the proper team."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "HARD",
+    "prompt": "You notice a cleared coworker repeatedly copying large volumes of sensitive files to personal cloud storage late at night and asking peers about systems unrelated to their duties. What is the BEST course of action?",
+    "scenario": "Over two weeks you observe a coworker who holds the same clearance as you staying after hours, transferring sizable batches of sensitive documents to a personal cloud account, and probing colleagues for access details about programs outside their portfolio. They have recently mentioned financial troubles and resentment toward management.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Confront the coworker directly and ask them to explain what they are doing before involving anyone else."
+      },
+      {
+        "id": "B",
+        "text": "Report the observed behaviors and indicators through the designated insider-threat or security reporting channel and let trained personnel assess them."
+      },
+      {
+        "id": "C",
+        "text": "Keep watching on your own to gather more proof before saying anything, so you do not falsely accuse a colleague."
+      },
+      {
+        "id": "D",
+        "text": "Quietly restrict the coworker's access to the systems you administer to stop any data loss."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Concerning behaviors such as unexplained bulk data exfiltration to personal storage, probing for unneeded access, and certain personal stressors are recognized potential insider-threat indicators that must be reported to the program responsible for assessing them. Reporting indicators is an obligation, not an accusation, and trained personnel handle the evaluation.",
+    "optionNotes": {
+      "A": "Confronting the person can tip them off, prompt destruction of evidence, or escalate a volatile situation, and it substitutes your own judgment for that of the trained team responsible for assessment.",
+      "C": "Delaying a report to build a personal case lets potential harm continue; reporting indicators is required even when uncertain, and verification is the security program's job, not yours.",
+      "D": "Acting unilaterally to cut access oversteps your role, can alert the individual, and may interfere with an investigation, while the underlying indicators still go formally unreported."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "MEDIUM",
+    "prompt": "A newly arrived officer emails you, the system administrator, asking to be granted access to a restricted financial application 'to be ready in case they need it.' What is the BEST course of action?",
+    "scenario": "You administer access to several embassy applications. A recently arrived officer sends a direct message asking you to add them to a restricted financial system. They have no current assignment that uses it and explain they simply want access available in advance.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Grant a temporary account now and remove it later if it turns out they do not need it."
+      },
+      {
+        "id": "B",
+        "text": "Grant the access since the officer is cleared and being prepared in advance saves time later."
+      },
+      {
+        "id": "C",
+        "text": "Decline to provision the access and direct the officer to submit a formal access request that the data owner approves based on their actual job duties."
+      },
+      {
+        "id": "D",
+        "text": "Grant read-only access as a compromise so the officer can see the system without being able to change anything."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Access to restricted systems is granted on the principle of least privilege tied to a current, validated job need and authorized by the data owner through a formal request, not provisioned by an administrator on personal request. Routing the officer to the proper approval process ensures access matches actual duties.",
+    "optionNotes": {
+      "A": "Provisioning a 'just in case' temporary account violates least privilege and creates orphaned access that is easy to forget and hard to audit; the absence of a current need is itself the reason to say no.",
+      "B": "Holding a clearance does not by itself justify access; need-to-know and an authorized, duty-based approval are still required before any account is created.",
+      "D": "Read-only access to a restricted financial system is still access without a validated need and without data-owner authorization, so it remains improperly granted."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "HARD",
+    "prompt": "You realize a classified document was mistakenly processed on the unclassified network ten minutes ago and the file may have been emailed onward. What is the BEST immediate action?",
+    "scenario": "While reviewing your sent items you discover that a document bearing a classification marking was drafted and sent over the embassy's unclassified system a few minutes earlier, possibly forwarded to another recipient. This is a spillage of classified information onto a lower-classification network.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Quietly delete the email and the file from your machine and empty the deleted-items folder so the exposure is contained."
+      },
+      {
+        "id": "B",
+        "text": "Stop using the affected system, do not delete or forward anything, and immediately report the spillage to the information security officer for guided remediation."
+      },
+      {
+        "id": "C",
+        "text": "Send a follow-up email recalling the message and asking recipients to delete it themselves."
+      },
+      {
+        "id": "D",
+        "text": "Wait until the end of the day to confirm the document was truly classified before deciding whether to report it."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A spillage must be reported immediately and the affected systems left undisturbed so security can perform controlled cleanup; the person who discovers it should not attempt self-remediation. Preserving the state and notifying the security officer enables proper containment of every copy.",
+    "optionNotes": {
+      "A": "Deleting the file yourself destroys information security needs to trace and sanitize all copies and does not address forwarded instances; unguided deletion can worsen, not contain, a spillage.",
+      "C": "A recall or self-directed cleanup is unreliable, may further propagate awareness of the content, and is not a substitute for the formal remediation process led by security.",
+      "D": "Delaying the report while you deliberate gives a marked document more time to spread; suspected spillages are reported promptly, with classification questions resolved by security."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Security & Compliance",
+    "difficulty": "EASY",
+    "prompt": "You see that a coworker has propped open the badge-secured server-room door with a chair so they can carry equipment in and out more easily. What is the BEST course of action?",
+    "scenario": "Passing the controlled-access server room, you notice the badge-secured door has been wedged open with a chair and left unattended. A coworker explains they are moving hardware and it is faster to leave it open.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Say nothing because the coworker is authorized to be in the room and is only there briefly."
+      },
+      {
+        "id": "B",
+        "text": "Close the door to restore the access control and report the physical-security lapse through the proper channel so it can be addressed."
+      },
+      {
+        "id": "C",
+        "text": "Prop the door yourself when you next need access, since it is clearly the accepted practice in the office."
+      },
+      {
+        "id": "D",
+        "text": "Wait by the door yourself to watch it until the coworker finishes moving the equipment."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Propping a controlled-access door defeats the access control protecting a sensitive area and is a reportable physical-security violation regardless of convenience. Restoring the door and reporting the lapse ensures the control is reinstated and the issue is corrected.",
+    "optionNotes": {
+      "A": "An authorized person does not make an unsecured controlled door acceptable; the open door allows uncontrolled, unbadged entry by anyone and is a violation that should be addressed.",
+      "C": "Treating the lapse as accepted practice normalizes a violation and compounds the problem rather than correcting it; access controls must be observed even when inconvenient.",
+      "D": "Personally standing guard is an ad hoc workaround that does not restore the engineered access control and leaves the underlying violation unreported and likely to recur."
+    },
+    "reference": "Situational Judgment › Security & Compliance"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "MEDIUM",
+    "prompt": "A shortlisted bidder's project lead turns out to be your cousin during an active firewall-replacement tender — what is the BEST first action?",
+    "scenario": "You are on the three-person technical evaluation panel for the embassy's firewall-replacement procurement. While reviewing the shortlisted proposals you realize the named project lead for one of the three bidders is your first cousin, with whom you remain in regular contact. The evaluation is mid-stream and scores are due in five days.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Disclose the family relationship in writing to the contracting officer and recuse yourself from scoring that procurement"
+      },
+      {
+        "id": "B",
+        "text": "Continue scoring but deliberately mark your cousin's bid slightly lower to prove you are impartial"
+      },
+      {
+        "id": "C",
+        "text": "Keep scoring normally and say nothing, since you have not spoken to your cousin about the tender"
+      },
+      {
+        "id": "D",
+        "text": "Quietly ask a colleague to swap evaluation assignments with you without telling anyone why"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A close family tie to a bidder is a conflict of interest that must be declared to the contracting authority in writing, with recusal from that procurement, so the award stays defensible regardless of how the scores turn out. The integrity of the process depends on transparency and removing the conflicted evaluator, not on the evaluator privately judging their own fairness.",
+    "optionNotes": {
+      "B": "Skewing a score to appear neutral is itself bias and corrupts the evaluation; a relationship-based conflict is resolved by recusal and disclosure, not by self-imposed handicapping.",
+      "C": "Lack of direct discussion does not remove the conflict; the appearance and reality of a family interest in a bidder still taint the award and create grounds to challenge it if discovered later.",
+      "D": "A silent swap hides the conflict from the contracting officer who must document it, leaving an undisclosed conflict on the record and offering no audit trail."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "MEDIUM",
+    "prompt": "An incumbent contractor sends the IT team a catered lunch the week sole-source renewal is being decided — what is the BEST response?",
+    "scenario": "The embassy's incumbent managed-services contractor, whose sole-source renewal is being weighed by management this week, has a buffet lunch delivered to the IT office 'to thank the team for a great year.' Several colleagues are already eating. As the DTO you are one of the staff whose input feeds the renewal recommendation.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Enjoy the lunch with the team since it is a shared gesture of low value, not a personal gift"
+      },
+      {
+        "id": "B",
+        "text": "Decline to partake, report the gift to the ethics or contracting official, and let them advise on returning or accounting for it"
+      },
+      {
+        "id": "C",
+        "text": "Accept the lunch but privately commit to scrutinizing the renewal extra hard to offset any obligation"
+      },
+      {
+        "id": "D",
+        "text": "Tell the contractor in front of everyone that the gesture is corrupt and that they have damaged their bid"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A gift from a party with a pending procurement decision creates an appearance of inducement even when shared and modest, so the correct move is to refrain, notify the ethics or contracting official, and follow their direction on handling it. Routing the matter to the responsible official keeps the renewal decision clean and on the record.",
+    "optionNotes": {
+      "A": "Framing it as a harmless shared gesture ignores the timing: anything of value flowing from a bidder during an active decision raises an inducement concern that staff cannot waive on their own.",
+      "C": "Accepting and then privately compensating mixes a personal judgment into an official decision and still leaves an unreported gift tied to a live procurement.",
+      "D": "Publicly accusing the contractor of corruption is a disproportionate, undiplomatic reaction that prejudges intent and damages the relationship without engaging the proper ethics channel."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "HARD",
+    "prompt": "Host-nation telecom regulators demand a router-config copy citing local law, but it would expose the embassy network — what is the BEST course of action?",
+    "scenario": "Host-nation telecommunications inspectors arrive at the embassy gate and, citing a national licensing statute, demand a full copy of the embassy's edge-router configuration before they will renew the building's commercial internet circuit. Handing it over would reveal internal addressing and security controls. The circuit renewal is genuinely needed, and the inspectors are growing impatient.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Provide the configuration to keep the circuit, since complying with host-nation law is part of operating in their territory"
+      },
+      {
+        "id": "B",
+        "text": "Refuse outright and tell the inspectors the embassy is sovereign and answers to no local rule"
+      },
+      {
+        "id": "C",
+        "text": "Do not hand over anything on the spot; refer the demand to the management/security officer and the mission's legal-political section to handle it through official channels"
+      },
+      {
+        "id": "D",
+        "text": "Offer the inspectors temporary admin access to inspect the router themselves instead of giving them a file"
+      }
+    ],
+    "correctId": "C",
+    "rationale": "A foreign authority's demand for sensitive network internals touches diplomatic privileges, premises inviolability, and information security, so it must be elevated to the officials responsible for legal and security matters and addressed government-to-government rather than settled at the gate. The frontline officer's job is to pause, protect the data, and route the demand, not to grant or deny it personally.",
+    "optionNotes": {
+      "A": "Surrendering security-sensitive configuration on demand compromises the network and may waive protections the mission is entitled to; compliance questions of this kind are decided through official channels, not by a technician under pressure.",
+      "B": "A blunt sovereignty refusal at the gate is needlessly confrontational, may misstate the actual legal position, and inflames host-nation relations the mission must preserve.",
+      "D": "Granting outsiders administrative access exposes the network even more directly than a file copy and still bypasses the required legal and security review."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "MEDIUM",
+    "prompt": "The consular and political sections both demand the only spare laptop within the hour for conflicting priorities — what is the BEST way to resolve it?",
+    "scenario": "A visa-system outage has the consular chief insisting the single spare encrypted laptop go to their counter to clear a backlog, while the political officer demands the same laptop to file a time-sensitive report ahead of a ministerial meeting. Both invoke urgency, both outrank you in their own sections, and both want an answer within the hour.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Give it to whoever contacted you first, since that is the fairest tie-breaker"
+      },
+      {
+        "id": "B",
+        "text": "Quickly assess each request's impact and deadline, propose an allocation or interim workaround, and surface the conflict to the supervisor who owns cross-section priorities for a decision"
+      },
+      {
+        "id": "C",
+        "text": "Refuse both until they settle it between themselves so you stay out of an interpersonal dispute"
+      },
+      {
+        "id": "D",
+        "text": "Hand it to the higher-ranking of the two officers regardless of which task matters more right now"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Competing demands on a scarce resource from peers in different chains call for a quick impact-and-deadline assessment, an offered workaround, and escalation to the manager with authority over cross-section priorities to make the call. That keeps the decision evidence-based and places the trade-off with the person empowered to set priorities across sections.",
+    "optionNotes": {
+      "A": "First-come ordering ignores the actual operational impact of each task and can starve the more critical mission need for an arbitrary reason.",
+      "C": "Refusing to engage abdicates the DTO's role in marshaling resources and leaves a time-critical conflict unmanaged while the deadlines pass.",
+      "D": "Defaulting to rank disregards which task carries greater consequence and is not how cross-section resource conflicts are properly arbitrated."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "HARD",
+    "prompt": "During a host-nation delegation's visit, your script names attendees by job title in an order that inverts their protocol seniority — what is the BEST fix before the meeting?",
+    "scenario": "You prepared the videoconference name cards and on-screen attendee list for a delegation from the host government. A protocol colleague warns you, fifteen minutes before the meeting, that in this culture the order in which officials are listed signals their relative standing, and your list places a senior minister below two junior aides because you sorted alphabetically by surname.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reorder the on-screen list and name cards to reflect the delegation's protocol seniority, confirming the correct order with the protocol colleague"
+      },
+      {
+        "id": "B",
+        "text": "Leave the alphabetical order, since sorting by surname is objective and no one can fault a neutral system"
+      },
+      {
+        "id": "C",
+        "text": "Remove all titles and ordering so the list is just first names, avoiding the ranking question entirely"
+      },
+      {
+        "id": "D",
+        "text": "Add a footnote explaining that the embassy sorts alphabetically and means no disrespect"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "When an ordering convention carries cultural meaning about rank, the respectful and correct action is to arrange the list by the delegation's protocol seniority and verify it with the protocol expert before the meeting. Honoring the host's hierarchy signals respect and prevents an avoidable diplomatic slight.",
+    "optionNotes": {
+      "B": "Defending an alphabetical sort as neutral disregards that in this context order conveys standing; insisting on the embassy's convention reads as a snub to the senior official.",
+      "C": "Stripping names down to first names removes the courtesy of titles and still fails to accord the senior minister the recognition the culture expects.",
+      "D": "A footnote excusing the embassy's habit still displays the wrong order during the meeting and substitutes an explanation for the correction that protocol actually requires."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "MEDIUM",
+    "prompt": "A locally engaged staffer asks you to approve emergency server-room access for a vendor, but you are unsure your acting role covers physical-security approvals — what is the BEST action?",
+    "scenario": "The regular facilities manager is on leave and you have been told you are 'acting' in some of their duties. A trusted local staff member asks you to authorize after-hours server-room access for a cooling-unit technician to fix a failing AC unit that threatens the servers. You genuinely do not know whether your acting designation includes granting physical-security access, and the access-control policy is not in front of you.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Approve it on the spot, because the cooling failure is urgent and acting in the role implies you can act"
+      },
+      {
+        "id": "B",
+        "text": "Decline any action and tell the staffer to wait until the facilities manager returns from leave"
+      },
+      {
+        "id": "C",
+        "text": "Confirm the scope of your acting authority and the access-control procedure with the security/management officer before granting access, while flagging the cooling risk as urgent"
+      },
+      {
+        "id": "D",
+        "text": "Have the local staffer escort the technician in informally so no formal approval is needed"
+      }
+    ],
+    "correctId": "C",
+    "rationale": "When your authority for a security-sensitive action is genuinely unclear, the right move is to verify the boundaries of your acting role and the proper access procedure with the responsible security or management officer while clearly flagging the urgency. Confirming scope prevents acting beyond your delegation on a physical-security matter while still driving the urgent risk toward a fast, authorized resolution.",
+    "optionNotes": {
+      "A": "Assuming an acting label grants security-access authority risks exceeding your delegation on a controlled space; urgency justifies fast escalation, not self-authorization you are unsure you hold.",
+      "B": "Doing nothing until the manager returns lets a real risk to the servers grow when the authority question could be resolved quickly through the security officer.",
+      "D": "An informal escort to dodge the approval requirement defeats access controls and leaves an unauthorized, undocumented entry into a sensitive area."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "MEDIUM",
+    "prompt": "A journalist asks you to confirm whether the embassy suffered a cyber intrusion last week — what is the BEST response from you as the DTO?",
+    "scenario": "At a public reception a journalist approaches you, identifies themselves, and says they have heard the embassy's email was breached last week. They ask you, as the technology officer, to confirm or deny it 'just between us.' There was in fact a contained incident that is still under review, and you have not been authorized to discuss it.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Confirm the basic facts informally so the embassy controls the narrative before rumors spread"
+      },
+      {
+        "id": "B",
+        "text": "Flatly deny any incident occurred to protect the embassy's reputation"
+      },
+      {
+        "id": "C",
+        "text": "Decline to discuss internal security matters, refer the journalist to the press/public-affairs office, and report the inquiry internally"
+      },
+      {
+        "id": "D",
+        "text": "Say 'no comment' and walk away without telling anyone the question was asked"
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Security incidents and media questions are handled by designated press channels, so the technology officer should decline to discuss internal matters, point the journalist to public affairs, and report the inquiry so the mission knows the story is circulating. This balances discretion about sensitive details with the transparency the organization needs internally to manage its public response.",
+    "optionNotes": {
+      "A": "Informally confirming details bypasses authorized spokespeople, may disclose information about an open investigation, and surrenders message control rather than keeping it.",
+      "B": "A flat denial of a real incident is dishonest and is likely to be exposed, doing far more reputational harm than a proper referral.",
+      "D": "A curt brush-off without reporting the contact leaves leadership unaware that a journalist is pursuing the breach, denying the mission the chance to prepare."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Diplomatic Problem-Solving",
+    "difficulty": "EASY",
+    "prompt": "The ambassador asks you to bypass MFA on their personal phone so they can read classified-system email faster — what is the BEST response?",
+    "scenario": "The ambassador, frustrated by repeated multi-factor prompts, instructs you to disable multi-factor authentication on their account and configure their personal smartphone to receive email from the restricted internal system 'because I'm the head of mission and I'm telling you it's fine.'",
+    "options": [
+      {
+        "id": "A",
+        "text": "Comply immediately, since the ambassador is the senior authority at post"
+      },
+      {
+        "id": "B",
+        "text": "Respectfully explain the security policy and risk, offer compliant alternatives that reduce friction, and escalate to the security officer if the ambassador still insists"
+      },
+      {
+        "id": "C",
+        "text": "Refuse curtly and tell the ambassador the request is against the rules, full stop"
+      },
+      {
+        "id": "D",
+        "text": "Quietly ignore the request and hope the ambassador forgets about it"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A directive from a senior official to weaken a mandated security control should be met by respectfully explaining the policy and risk, proposing compliant ways to ease the friction, and escalating to the security authority if the official still insists. Information-security rules are not the head of mission's to waive informally, and the DTO upholds them diplomatically rather than simply obeying or stonewalling.",
+    "optionNotes": {
+      "A": "Rank does not override a mandatory security control; disabling multi-factor authentication and routing restricted email to a personal device on request creates a serious, unauthorized exposure.",
+      "C": "A blunt refusal without explanation, alternatives, or escalation is undiplomatic and leaves the ambassador's underlying need unaddressed.",
+      "D": "Silently ignoring a direct instruction is evasive, fails to resolve the security conflict, and erodes trust when the ambassador notices nothing was done."
+    },
+    "reference": "Situational Judgment › Diplomatic Problem-Solving"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "MEDIUM",
+    "prompt": "Four tickets land in the DTO queue within the same minute and you are the only technician on shift — what is the BEST way to decide the order in which to work them?",
+    "scenario": "It is a busy Monday at the embassy. Within sixty seconds your service desk receives: (1) the consular-section printer is jammed, (2) a single user cannot reach a non-essential SharePoint site, (3) the classified network's encryption device is reporting a fault that has taken the entire classified LAN offline, and (4) a staff member wants their mouse replaced. You cannot work them all at once.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Work them strictly in the order received so no one can claim they were skipped"
+      },
+      {
+        "id": "B",
+        "text": "Triage by impact and urgency, restoring the classified-network outage first because it affects the most users and the highest-sensitivity service"
+      },
+      {
+        "id": "C",
+        "text": "Start with the quick mouse swap and printer jam to reduce the ticket count, then tackle the larger problems"
+      },
+      {
+        "id": "D",
+        "text": "Ask each requester how urgent their issue is and let their answers set your order"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Sound triage ranks work by business impact and urgency rather than arrival time or convenience. A failure that takes an entire high-sensitivity network offline affects many users and a critical service, so it outranks a single user's non-essential access or cosmetic hardware swaps and must be addressed first.",
+    "optionNotes": {
+      "A": "Processing strictly by arrival time ignores severity, leaving a network-wide, high-sensitivity outage to wait behind trivial requests that happened to arrive earlier.",
+      "C": "Clearing easy tickets to shrink the queue optimizes for ticket count, not impact, and delays restoration of a service that is blocking many users on the most sensitive network.",
+      "D": "Letting requesters self-rate urgency invites inflated priorities and abdicates the technician's responsibility to judge true impact objectively."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "MEDIUM",
+    "prompt": "Your annual hardware budget covers only part of an aging fleet — what is the BEST basis for deciding which workstations to replace this cycle?",
+    "scenario": "As the post's DTO you have funds to replace roughly one third of the embassy's aging workstations this fiscal year. Some of the old machines belong to senior officers, some are in the high-traffic consular section, and several still run an operating system that the vendor will stop supporting (end of security updates) in three months.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Replace the machines whose operating system loses security support first, prioritizing those handling sensitive or high-volume work"
+      },
+      {
+        "id": "B",
+        "text": "Replace the senior officers' workstations first as a matter of protocol and visibility"
+      },
+      {
+        "id": "C",
+        "text": "Spread the funds evenly so every section receives the same number of new machines"
+      },
+      {
+        "id": "D",
+        "text": "Replace whichever machines are physically oldest by purchase date, regardless of their software or role"
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Prioritization should follow risk to the mission and to security. Machines that will soon stop receiving security updates become unpatchable vulnerabilities, so they carry the highest risk and should be replaced first, weighted toward those processing sensitive or high-volume work where exposure is greatest.",
+    "optionNotes": {
+      "B": "Allocating by rank or visibility rather than risk leaves soon-to-be-unsupported machines in service and prioritizes optics over security exposure.",
+      "C": "Distributing funds equally ignores that risk is not evenly distributed; it can leave the most vulnerable or critical machines unreplaced while refreshing low-risk ones.",
+      "D": "Purchase age alone is a poor proxy for risk; an old machine on a supported, patched platform in a low-stakes role may be far safer than a newer one losing security support."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "HARD",
+    "prompt": "Two VIP requests collide for the same one-hour slot before a head-of-state visit — what is the BEST way to resolve the scheduling conflict?",
+    "scenario": "Thirty minutes from now you have only one hour of free hands. The Ambassador's office asks you to set up a secure video link for a call with the capital, while the visiting Defense Attache's office asks you, at the same time, to reconfigure a conference room's AV for a delegation briefing. Both are flagged 'VIP / urgent'. You can complete only one in the window.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Do whichever request reached you first and tell the other office you were already committed"
+      },
+      {
+        "id": "B",
+        "text": "Quickly compare the two on deadline and mission impact, take the one with the harder deadline and greater consequence, and immediately offer the other office a concrete alternative time or a colleague"
+      },
+      {
+        "id": "C",
+        "text": "Escalate both upward and wait for a manager to choose before you touch either task"
+      },
+      {
+        "id": "D",
+        "text": "Attempt both at once by starting each setup and bouncing between the two rooms"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When equally labeled VIP requests conflict, the tie is broken by objective factors — which has the firmer deadline and the larger consequence if missed — and the professional response pairs that decision with a concrete alternative (a rescheduled time or another technician) so the deferred request is still served. This resolves the conflict transparently without leaving either office stranded.",
+    "optionNotes": {
+      "A": "Defaulting to arrival order ignores that one task may have a harder deadline or greater impact, and brushing off the other office with no alternative damages the relationship.",
+      "C": "Pushing both decisions upward when you have the facts to triage wastes the short window and may cause both tasks to miss their deadlines while you wait.",
+      "D": "Splitting attention across two time-sensitive setups risks finishing neither correctly before the deadline, the worst outcome for both VIPs."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "MEDIUM",
+    "prompt": "A required security-patch maintenance window overlaps with desirable progress on a new collaboration-platform rollout — what is the BEST way to allocate your limited time this week?",
+    "scenario": "You are mid-way through deploying a new internal collaboration platform that staff are eager to use, and you would like to keep that momentum. This week the vendor also released a critical security patch for the embassy's email servers, with a published advisory that the flaw is being actively exploited in the wild. Both compete for the same maintenance window and your hours.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Keep building momentum on the new platform and schedule the patch for the next routine monthly maintenance window"
+      },
+      {
+        "id": "B",
+        "text": "Apply the critical, actively-exploited patch within its window first, then resume the new-platform work with whatever time remains"
+      },
+      {
+        "id": "C",
+        "text": "Skip the patch since the email servers sit behind the firewall and are unlikely to be reached"
+      },
+      {
+        "id": "D",
+        "text": "Split the window evenly between the patch and the rollout so both advance a little"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Preventive and corrective maintenance that closes an actively-exploited critical vulnerability protects the whole organization and outranks discretionary project work. The patch is time-sensitive and security-critical, so it is applied first; the new platform is valuable but can absorb the delay without exposing the post to known active threats.",
+    "optionNotes": {
+      "A": "Deferring an actively-exploited critical patch to a routine cycle leaves a known, weaponized vulnerability open for weeks in favor of non-urgent feature work.",
+      "C": "Assuming a firewall makes the patch unnecessary contradicts defense-in-depth and the advisory that the flaw is already being exploited; perimeter controls are not a substitute for patching a known hole.",
+      "D": "Halving the window may leave the patch only partially deployed or unverified, which is as risky as not starting it, while the project gains little."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "HARD",
+    "prompt": "While on after-hours call you receive several alerts at once with no backup available — what is the BEST first action to prioritize them safely?",
+    "scenario": "It is 02:00 and you are the sole on-call DTO. Your phone shows, arriving together: a monitoring alert that backups failed overnight, an automated warning that the visa-appointment website is returning errors to the public, and a personal text from a colleague asking you to reset their forgotten password so they can finish a report tonight. No second technician is reachable until morning.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reset the colleague's password first because it is the quickest item and helps a teammate immediately"
+      },
+      {
+        "id": "B",
+        "text": "Quickly assess scope and impact, then restore the public-facing visa website outage first, log the failed backup for follow-up, and decline the off-channel password reset per policy"
+      },
+      {
+        "id": "C",
+        "text": "Wake your manager immediately to decide which alert to handle before you take any action yourself"
+      },
+      {
+        "id": "D",
+        "text": "Handle the alerts in the order the notifications appeared on your screen"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "On-call triage starts with a rapid impact assessment: a public-facing service outage affecting visa applicants has the broadest external impact and is addressed first, the failed backup is documented for prompt follow-up rather than ignored, and a password reset requested through an informal channel is handled through proper verified procedures rather than ad hoc at 02:00. This sequences the genuine emergencies while staying compliant.",
+    "optionNotes": {
+      "A": "Choosing the fastest, lowest-impact task first lets a public service outage and a backup failure persist, and performing a password reset over an unverified personal channel bypasses identity-verification controls.",
+      "C": "Waking a manager before doing any triage you are equipped to perform delays response to a live outage; escalate after stabilizing or only if the situation truly exceeds your authority.",
+      "D": "Working in notification order is arbitrary and can place a trivial favor ahead of a public-facing outage, ignoring relative impact."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Resource Prioritization",
+    "difficulty": "EASY",
+    "prompt": "More upgrade tasks were assigned than can fit before a hard cutover deadline — what is the BEST way to plan the work under that fixed constraint?",
+    "scenario": "All embassy laptops must be migrated to a new secure baseline image before a fixed cutover date two weeks away, after which the old image will be blocked from the network. You estimate there is not enough time to migrate every machine personally before the deadline, and the date cannot move.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Migrate machines in random order and hope to reach as many as possible before the cutover"
+      },
+      {
+        "id": "B",
+        "text": "Sequence the migration so mission-critical and high-use machines are done first, and proactively flag the shortfall to your supervisor early so extra help or a phased exception can be arranged"
+      },
+      {
+        "id": "C",
+        "text": "Quietly do as many as you can and explain the unfinished machines only if someone asks after the deadline"
+      },
+      {
+        "id": "D",
+        "text": "Push to move the cutover date even though you have been told it is fixed"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Under a hard, immovable deadline with insufficient capacity, the right approach is to order the work by importance so the most critical systems are protected first, and to surface the capacity gap early enough that management can add resources or approve a controlled exception. This combines sound prioritization with timely, honest communication.",
+    "optionNotes": {
+      "A": "Working in random order with no plan risks leaving mission-critical machines stranded off the network when the cutover hits, and relying on luck is not prioritization.",
+      "C": "Concealing a known shortfall until after the deadline removes any chance for management to add help or grant an exception and leaves users unexpectedly cut off.",
+      "D": "Lobbying to move a date you have been told is fixed wastes effort on a constraint outside your control instead of managing the work within it."
+    },
+    "reference": "Situational Judgment › Resource Prioritization"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "MEDIUM",
+    "prompt": "Two of your network engineers openly disagree over a firewall change during a team call, and the tone is turning personal in front of the whole team — what is the BEST immediate action as their team lead?",
+    "scenario": "During a routine DTO team call, two of your network engineers, Mara and Theo, start arguing about whether a proposed firewall rule change should go ahead before the next maintenance window. Their disagreement escalates from technical points into sarcastic remarks, and the rest of the team has gone quiet and uncomfortable.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pause the open discussion, acknowledge both have valid technical concerns, and move the detailed firewall debate to a separate session with just the two engineers."
+      },
+      {
+        "id": "B",
+        "text": "Side immediately with the more senior engineer so the call can move on and the schedule is kept."
+      },
+      {
+        "id": "C",
+        "text": "Let them keep arguing on the call until one of them concedes, since the technical issue is genuinely important."
+      },
+      {
+        "id": "D",
+        "text": "End the call abruptly and tell both engineers you are disappointed in their conduct."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "De-escalating a personal conflict in front of an audience while still respecting the legitimate technical substance is the priority; separating the people from the problem and taking the detailed debate offline protects both team morale and the quality of the eventual decision.",
+    "optionNotes": {
+      "B": "Picking a winner by seniority rather than merit rewards rank over the actual technical argument and signals to the team that the louder or more senior voice prevails, which damages trust.",
+      "C": "Allowing a personalized argument to continue publicly lets the conflict harden, makes bystanders uncomfortable, and rarely produces a sound technical outcome under that pressure.",
+      "D": "Ending the call with a public rebuke shames both engineers in front of peers, escalates the emotional charge, and avoids the underlying technical question entirely."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "MEDIUM",
+    "prompt": "A junior administrator's ticket-handling notes are consistently incomplete, causing rework — how should you BEST deliver this feedback?",
+    "scenario": "You supervise Priya, a junior systems administrator who is technically capable but whose ticket-resolution notes routinely omit the steps she took, forcing other team members to redo diagnostics on follow-up tickets. She is well-liked and eager, and this is the first time the issue has been raised with her.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Send a team-wide email reminding everyone about documentation standards so Priya gets the message without being singled out."
+      },
+      {
+        "id": "B",
+        "text": "Meet with her privately, point to specific recent tickets, explain the rework impact, and agree on what complete notes should contain going forward."
+      },
+      {
+        "id": "C",
+        "text": "Wait until her annual performance review so the feedback is formally documented in one place."
+      },
+      {
+        "id": "D",
+        "text": "Quietly correct her ticket notes yourself each time so the team is not slowed down."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Effective feedback is timely, specific, private, and behavior-focused, and it pairs the observed problem with its concrete impact and a clear, agreed expectation for improvement — giving the person a fair chance to change.",
+    "optionNotes": {
+      "A": "A general broadcast is indirect, may not be recognized as aimed at the actual issue, and unfairly implies the whole team is at fault when one person needs targeted coaching.",
+      "C": "Delaying feedback for months removes the chance to correct the behavior early, lets the rework continue, and makes the eventual review feel like an ambush rather than fair coaching.",
+      "D": "Silently fixing her work hides the problem from the person who needs to learn, creates an unsustainable workload for the supervisor, and prevents her from developing the skill."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "HARD",
+    "prompt": "A visiting senior diplomat demands you bypass MFA on their account because they find it slow before an important call — what is the BEST course of action?",
+    "scenario": "A senior diplomat visiting your embassy is frustrated that multi-factor authentication adds a step when logging into the secure messaging system. With an important call approaching, they tell you, somewhat impatiently, to 'just turn that thing off for my account so I can get in faster.'",
+    "options": [
+      {
+        "id": "A",
+        "text": "Acknowledge the time pressure, explain briefly why MFA is mandatory for secure messaging, and offer to help them complete the sign-in quickly right now."
+      },
+      {
+        "id": "B",
+        "text": "Disable MFA on their account for the day and re-enable it after the call to keep the diplomat satisfied."
+      },
+      {
+        "id": "C",
+        "text": "Tell them flatly that the request is against policy and that you cannot help further."
+      },
+      {
+        "id": "D",
+        "text": "Forward the request up your chain and wait for a ruling before doing anything to assist the diplomat."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A non-compliant security request from a high-status stakeholder should be declined on substance while still solving the person's real underlying need — getting logged in quickly — through a compliant path, preserving both the control and the relationship.",
+    "optionNotes": {
+      "B": "Removing a mandatory authentication control to accommodate convenience creates a real security exposure and sets a precedent that controls are negotiable for senior people.",
+      "C": "A flat refusal with no help or explanation leaves the stakeholder stuck, damages the relationship, and misses the chance to resolve the actual access problem within the rules.",
+      "D": "Escalating a clear-cut policy matter and doing nothing in the meantime is unnecessarily slow, leaves an important person blocked, and dodges a decision you are equipped to handle."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "MEDIUM",
+    "prompt": "In a leadership briefing, your manager credits only herself for a migration project you largely led — how should you BEST respond?",
+    "scenario": "At a leadership briefing you attend, your manager presents the successful migration of the embassy's case-management system. She describes it as 'my project' and 'the work I delivered,' even though you designed and executed most of it with your team. Several leaders are present.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Interrupt the briefing to correct the record and clarify that you led the work."
+      },
+      {
+        "id": "B",
+        "text": "Say nothing now and quietly let resentment build, deciding she clearly cannot be trusted."
+      },
+      {
+        "id": "C",
+        "text": "After the meeting, speak with her privately, share how the omission affected you, and ask that the team's contribution be recognized going forward."
+      },
+      {
+        "id": "D",
+        "text": "Send an email to all the leaders present afterward listing exactly what you and your team did."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Raising a credit grievance privately, calmly, and with a forward-looking request gives the other person a chance to correct course without public embarrassment, which is more likely to repair the relationship and secure proper recognition.",
+    "optionNotes": {
+      "A": "Publicly correcting a manager mid-briefing embarrasses her in front of leadership, looks self-serving, and is likely to provoke defensiveness rather than acknowledgment.",
+      "B": "Staying silent and letting resentment fester resolves nothing, lets the misattribution stand, and lets a one-time issue quietly poison the working relationship.",
+      "D": "Mass-emailing leaders to set the record straight goes over the manager's head, reads as undermining her, and escalates a fixable issue into an open conflict."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "EASY",
+    "prompt": "A colleague gives you blunt feedback that your incident write-ups are too technical for non-IT readers — what is the BEST way to receive it?",
+    "scenario": "A communications officer you work with tells you, fairly directly, that your incident write-ups are so full of technical jargon that embassy staff outside IT cannot understand what happened or what they need to do. You believe your write-ups are accurate and thorough.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Thank her for the feedback, ask for a specific example of a confusing passage, and consider adding a plain-language summary."
+      },
+      {
+        "id": "B",
+        "text": "Explain that the technical detail is necessary and that staff should make the effort to understand it."
+      },
+      {
+        "id": "C",
+        "text": "Apologize profusely and offer to stop writing the incident reports altogether."
+      },
+      {
+        "id": "D",
+        "text": "Tell her that report-writing is your responsibility and politely ask her to stay in her lane."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Receiving feedback well means listening without defensiveness, seeking a concrete example to understand the point, and acting on it where valid — here, the accuracy of the reports and their readability are not in conflict and both can be served.",
+    "optionNotes": {
+      "B": "Defending the status quo and putting the burden on readers dismisses valid feedback and ignores that a report only works if its audience can act on it.",
+      "C": "Over-apologizing and offering to abandon the task is a disproportionate, defeatist reaction to a constructive suggestion that simply asks for clearer writing.",
+      "D": "Treating the input as territorial overreach shuts down a colleague trying to help and forfeits a chance to make the reports more useful."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "HARD",
+    "prompt": "During a major outage, a stressed teammate snaps at you and starts duplicating your recovery steps without coordinating — what is the BEST action while recovery is ongoing?",
+    "scenario": "The embassy's email service is down during a high-pressure outage. Your colleague Sam, visibly stressed, snaps at you over the bridge call and begins running recovery commands on a server you are already working on, without telling anyone, risking conflicting changes. Senior staff are anxiously waiting for updates.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Snap back to make clear you will not be spoken to that way, then continue your own recovery steps."
+      },
+      {
+        "id": "B",
+        "text": "Stop and call out the rude behavior on the bridge so everyone knows Sam is being unprofessional."
+      },
+      {
+        "id": "C",
+        "text": "Stay calm, quickly propose that you each own distinct steps to avoid clashing changes, and keep focus on restoring service."
+      },
+      {
+        "id": "D",
+        "text": "Step back entirely and let Sam run the recovery alone so there is no conflict between you."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Under acute stress the immediate priority is service restoration and avoiding conflicting actions; staying calm, not taking the outburst personally, and rapidly establishing clear ownership of tasks prevents technical collisions while addressing the coordination problem.",
+    "optionNotes": {
+      "A": "Returning the hostility escalates tension during a crisis and does nothing to stop the uncoordinated, conflicting changes that could worsen the outage.",
+      "B": "Publicly calling out a stressed colleague mid-incident shifts attention from recovery to interpersonal drama and is likely to make coordination harder, not easier.",
+      "D": "Withdrawing to avoid conflict abandons your responsibility, loses the value of two people working the problem, and may leave the recovery in less capable hands at a critical moment."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  },
+  {
+    "section": "SITUATIONAL_JUDGMENT",
+    "topic": "Interpersonal Judgment",
+    "difficulty": "MEDIUM",
+    "prompt": "An external audit vendor keeps demanding raw access to systems beyond their agreed scope and grows irritated when you decline — how should you BEST handle this difficult stakeholder?",
+    "scenario": "An external auditor engaged to review your embassy's IT controls repeatedly asks for direct administrative access to production systems that fall outside the scope agreed in their statement of work. When you decline, they become curt and imply you are obstructing the audit. You need the audit to succeed but cannot grant out-of-scope access.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Grant the broader access to keep the auditor cooperative, reasoning that auditors are trusted parties anyway."
+      },
+      {
+        "id": "B",
+        "text": "Stay courteous, restate the agreed scope, offer to provide the underlying evidence they need through approved means, and escalate the scope question to the engagement owner if they persist."
+      },
+      {
+        "id": "C",
+        "text": "Refuse all further requests and stop responding until the auditor adjusts their tone."
+      },
+      {
+        "id": "D",
+        "text": "Complain to your manager that the auditor is impossible and ask to have them removed from the engagement."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Managing a difficult stakeholder means staying professional, holding firm on the legitimate boundary, and actively offering an alternative that meets their underlying need — while routing any genuine scope change to the right decision-maker rather than improvising access.",
+    "optionNotes": {
+      "A": "Granting access beyond the agreed scope to smooth the relationship breaches the engagement terms and access-control principles, exposing production systems to unnecessary risk.",
+      "C": "Going silent until the tone improves is passive-aggressive, stalls a time-sensitive audit, and abandons the chance to meet the auditor's real evidentiary needs through proper channels.",
+      "D": "Jumping straight to having the auditor removed is a premature escalation over a boundary issue that can first be resolved by restating scope and offering compliant alternatives."
+    },
+    "reference": "Situational Judgment › Interpersonal Judgment"
+  }
+]

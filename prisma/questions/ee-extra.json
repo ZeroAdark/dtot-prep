@@ -1,0 +1,2477 @@
+[
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Subject-verb agreement when a prepositional phrase intervenes between subject and verb: choose the sentence whose verb agrees with its true subject.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The summary of the bilateral negotiations were circulated to all delegates before the session."
+      },
+      {
+        "id": "B",
+        "text": "The summary of the bilateral negotiations was circulated to all delegates before the session."
+      },
+      {
+        "id": "C",
+        "text": "The summary of the bilateral negotiations have been circulated to all delegates before the session."
+      },
+      {
+        "id": "D",
+        "text": "The summary of the bilateral negotiations are circulated to all delegates before the session."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The grammatical subject is the singular noun 'summary'; the words 'of the bilateral negotiations' form an intervening prepositional phrase that does not change the number of the subject. A singular subject requires a singular verb, so the singular past-tense form is correct.",
+    "optionNotes": {
+      "A": "This treats the plural noun inside the prepositional phrase as the subject; the verb must agree with the singular head noun, not with the object of the preposition.",
+      "C": "The plural auxiliary here is pulled toward the nearby plural noun, but the singular head noun requires a singular auxiliary.",
+      "D": "A plural present-tense verb is used with a singular subject; the intervening phrase does not make the subject plural."
+    },
+    "reference": "English > Subject-verb agreement with intervening phrases"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Collective-noun agreement when the group acts as a single unit: choose the sentence that correctly treats the committee as one entity.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The committee have reached its decision and will announce them tomorrow."
+      },
+      {
+        "id": "B",
+        "text": "The committee are reaching their decision and will announce it tomorrow."
+      },
+      {
+        "id": "C",
+        "text": "The committee has reached its decision and will announce it tomorrow."
+      },
+      {
+        "id": "D",
+        "text": "The committee have reached their decision and will announce it tomorrow."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "When a collective noun acts as a single unified body, it takes a singular verb and singular pronouns. Here the group reaches one decision as a unit, so the singular verb 'has reached', the singular possessive 'its', and the singular pronoun 'it' are all consistent.",
+    "optionNotes": {
+      "A": "The plural verb conflicts with the singular possessive 'its', and the plural object pronoun 'them' does not match a single 'decision'.",
+      "B": "The plural verb and plural possessive 'their' treat the body as several individuals, which clashes with the singular pronoun 'it' and contradicts viewing the committee as one unit.",
+      "D": "The plural verb and plural possessive 'their' clash with the singular pronoun 'it', producing an internally inconsistent sentence."
+    },
+    "reference": "English > Subject-verb agreement with collective nouns"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Choosing between 'who' and 'whom' as the object of a preposition: select the grammatically correct sentence.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The minister to who the report was addressed has requested a briefing."
+      },
+      {
+        "id": "B",
+        "text": "The minister whom the report was addressed to has requested a briefing, but who signed it remains unclear."
+      },
+      {
+        "id": "C",
+        "text": "The minister to whom the report was addressed has requested a briefing."
+      },
+      {
+        "id": "D",
+        "text": "The minister to whomever the report was addressed has requested a briefing."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "The relative pronoun functions as the object of the preposition 'to', and the objective form 'whom' is required after a preposition. Placing the preposition directly before the objective relative pronoun produces the correct construction.",
+    "optionNotes": {
+      "A": "The subjective form is used as the object of 'to', but the object of a preposition must take the objective form.",
+      "B": "The stranded preposition is acceptable informally, but the trailing clause 'but who signed it remains unclear' tacks on a second relative clause whose antecedent is muddled, leaving the overall sentence faulty and stylistically off.",
+      "D": "The form ending in '-ever' introduces an indefinite free relative and does not fit a clause referring to one specific, already-named minister."
+    },
+    "reference": "English > Who vs whom"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Maintaining verb-tense consistency across a single narrative sentence: choose the version with no unwarranted tense shift.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "When the delegation arrived at the summit, the staff greet them and escort them to the conference hall."
+      },
+      {
+        "id": "B",
+        "text": "When the delegation arrived at the summit, the staff greeted them and escorted them to the conference hall."
+      },
+      {
+        "id": "C",
+        "text": "When the delegation arrives at the summit, the staff greeted them and escort them to the conference hall."
+      },
+      {
+        "id": "D",
+        "text": "When the delegation arrived at the summit, the staff greet them and escorted them to the conference hall."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "All the actions occur within the same past time frame, so every verb should stay in the past tense. Keeping 'arrived', 'greeted', and 'escorted' in the past preserves a consistent timeline without an unjustified shift.",
+    "optionNotes": {
+      "A": "The opening verb is past while the following two verbs switch to present, creating an unjustified tense shift within one continuous event.",
+      "C": "The sentence moves from present to past and back to present, mixing three tenses for actions that share a single time frame.",
+      "D": "A present verb appears between two past verbs, breaking the consistency required when all the actions belong to the same past sequence."
+    },
+    "reference": "English > Verb-tense consistency"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "HARD",
+    "prompt": "Pronoun-antecedent agreement with a singular indefinite pronoun antecedent: choose the sentence whose pronouns agree in number under strict formal usage.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Each of the envoys must submit their credentials before they may address the assembly."
+      },
+      {
+        "id": "B",
+        "text": "Each of the envoys must submit his or her credentials before he or she may address the assembly."
+      },
+      {
+        "id": "C",
+        "text": "Each of the envoys must submit their credentials before he may address the assembly."
+      },
+      {
+        "id": "D",
+        "text": "Each of the envoys must submit its credentials before they may address the assembly."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The antecedent 'each' is grammatically singular, so every pronoun referring back to it must also be singular. Using singular pronoun phrases throughout keeps the reference in strict agreement with the singular indefinite pronoun.",
+    "optionNotes": {
+      "A": "Plural pronouns are used to refer to the singular antecedent 'each', producing a number mismatch under strict formal usage.",
+      "C": "The sentence pairs a plural possessive with a later singular pronoun, so the two references to the same antecedent disagree with each other.",
+      "D": "The pronoun 'its' refers to things rather than people and is therefore wrong for human envoys, and it also clashes with the later plural pronoun."
+    },
+    "reference": "English > Pronoun-antecedent agreement"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "EASY",
+    "prompt": "Selecting the correct past participle of an irregular verb after a perfect auxiliary: choose the sentence using the right form.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The secretariat has wrote the final communique and forwarded it to the press office."
+      },
+      {
+        "id": "B",
+        "text": "The secretariat has written the final communique and forwarded it to the press office."
+      },
+      {
+        "id": "C",
+        "text": "The secretariat has writed the final communique and forwarded it to the press office."
+      },
+      {
+        "id": "D",
+        "text": "The secretariat has write the final communique and forwarded it to the press office."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "After the auxiliary 'has', an irregular verb requires its past participle, and the participle of this verb is 'written'. Using that form correctly completes the present-perfect construction.",
+    "optionNotes": {
+      "A": "The simple past form is placed after 'has', but the perfect tense calls for the past participle, not the past tense.",
+      "C": "A regularized '-ed' ending is applied to a verb that does not follow the regular pattern, so this form does not exist.",
+      "D": "The base form follows 'has', leaving the perfect construction incomplete because no participle is supplied."
+    },
+    "reference": "English > Irregular verb forms"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the sentence in which the introductory participial phrase correctly modifies the subject, avoiding a dangling modifier.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Reviewing the draft communiqué, several inconsistencies in the protocol annex became apparent to the delegation."
+      },
+      {
+        "id": "B",
+        "text": "Reviewing the draft communiqué, the delegation noticed several inconsistencies in the protocol annex."
+      },
+      {
+        "id": "C",
+        "text": "Reviewing the draft communiqué, the protocol annex revealed several inconsistencies to the delegation."
+      },
+      {
+        "id": "D",
+        "text": "Reviewing the draft communiqué, it was apparent that the protocol annex had several inconsistencies."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "An introductory participial phrase must attach to the noun that performs its action. The phrase describing the act of reviewing has to be followed immediately by the agent doing the reviewing, so the people who reviewed the communiqué must serve as the grammatical subject of the main clause.",
+    "optionNotes": {
+      "A": "The participle ends up modifying the inconsistencies, implying that the inconsistencies were reviewing the communiqué, which leaves the participle dangling without a logical agent.",
+      "C": "The annex becomes the grammatical subject, so the sentence claims the annex reviewed the communiqué, an illogical attachment of the participle.",
+      "D": "The expletive 'it' supplies no agent capable of reviewing, leaving the opening participle with nothing sensible to modify."
+    },
+    "reference": "English › Dangling and misplaced modifiers"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Choose the sentence whose items in the compound series are grammatically parallel.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The officer's duties include drafting cables, briefing the ambassador, and to maintain the secure network."
+      },
+      {
+        "id": "B",
+        "text": "The officer's duties include drafting cables, to brief the ambassador, and maintenance of the secure network."
+      },
+      {
+        "id": "C",
+        "text": "The officer's duties include drafting cables, briefing the ambassador, and maintaining the secure network."
+      },
+      {
+        "id": "D",
+        "text": "The officer's duties include to draft cables, briefing the ambassador, and maintaining the secure network."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Items joined in a series must share the same grammatical form. When the list begins with an -ing gerund phrase, each subsequent item must also be a gerund phrase, so all three duties appear as parallel -ing forms.",
+    "optionNotes": {
+      "A": "The final element switches to an infinitive, breaking the gerund pattern established by the first two items.",
+      "B": "The second item is an infinitive and the third is a noun phrase, so none of the three items matches the others in form.",
+      "D": "The opening item is an infinitive while the remaining two are gerunds, so the series mixes incompatible forms."
+    },
+    "reference": "English › Parallelism in compound elements"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "HARD",
+    "prompt": "Select the sentence that uses articles and determiners correctly before the singular count noun and the institutional reference.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The attaché submitted a formal request to United Nations within an hour of the incident."
+      },
+      {
+        "id": "B",
+        "text": "The attaché submitted formal request to the United Nations within an hour of the incident."
+      },
+      {
+        "id": "C",
+        "text": "The attaché submitted a formal request to the United Nations within hour of the incident."
+      },
+      {
+        "id": "D",
+        "text": "The attaché submitted a formal request to the United Nations within an hour of the incident."
+      }
+    ],
+    "correctId": "D",
+    "rationale": "A singular count noun such as 'request' requires a determiner, and the indefinite article fits a first mention. The name 'United Nations' conventionally takes the definite article, and 'hour' begins with a vowel sound, so it needs the indefinite article 'an'.",
+    "optionNotes": {
+      "A": "The organization's name omits the required definite article, since this body is conventionally referred to with 'the'.",
+      "B": "The singular count noun 'request' is left without any determiner, which is ungrammatical for a first mention.",
+      "C": "The noun 'hour' begins with a vowel sound and therefore requires 'an', not a bare noun with no article."
+    },
+    "reference": "English › Articles and determiners"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "EASY",
+    "prompt": "Choose the sentence that correctly distinguishes the comparative from the superlative when contrasting two encryption options.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Of the two encryption standards under review, the newer one is the most secure."
+      },
+      {
+        "id": "B",
+        "text": "Of the two encryption standards under review, the newer one is more secure."
+      },
+      {
+        "id": "C",
+        "text": "Of the two encryption standards under review, the newest one is more secure."
+      },
+      {
+        "id": "D",
+        "text": "Of the two encryption standards under review, the new one is securest."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When exactly two items are compared, English requires the comparative form, so the comparative adjective 'newer' and the comparative phrase 'more secure' are both appropriate for a two-way contrast.",
+    "optionNotes": {
+      "A": "The superlative 'most secure' implies a comparison among three or more items, but only two standards are being weighed.",
+      "C": "The superlative 'newest' is reserved for three or more items, so it is wrong for distinguishing just two standards.",
+      "D": "The nonstandard superlative 'securest' again signals a comparison of three or more, which does not fit a two-item set."
+    },
+    "reference": "English › Comparatives and superlatives"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "HARD",
+    "prompt": "Select the sentence that uses the correct subjunctive or conditional verb form in a contrary-to-fact 'if' clause about a past breach.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "If the firewall had been patched last week, the intrusion would not have occurred."
+      },
+      {
+        "id": "B",
+        "text": "If the firewall would have been patched last week, the intrusion would not have occurred."
+      },
+      {
+        "id": "C",
+        "text": "If the firewall was patched last week, the intrusion would not have occurred."
+      },
+      {
+        "id": "D",
+        "text": "If the firewall had been patched last week, the intrusion would not occur."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A third-conditional sentence about an unreal past situation pairs a past-perfect verb in the 'if' clause with 'would have' plus a past participle in the result clause, accurately conveying that the breach did in fact happen.",
+    "optionNotes": {
+      "B": "Placing 'would have' inside the 'if' clause is a well-known error; the conditional 'would' belongs only in the result clause, not the condition.",
+      "C": "The simple past 'was' does not establish the unreal past needed to match a 'would have' result clause about a completed event.",
+      "D": "The result clause uses the present-style 'would occur' rather than 'would have occurred', so it fails to refer to the already-completed past breach."
+    },
+    "reference": "English › Subjunctive and conditional mood"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "MEDIUM",
+    "prompt": "Choose the sentence that uses the correct gerund or infinitive complement after each governing verb.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The committee recommended to postpone the summit and agreed reviewing the security plan."
+      },
+      {
+        "id": "B",
+        "text": "The committee recommended postponing the summit and agreed to review the security plan."
+      },
+      {
+        "id": "C",
+        "text": "The committee recommended to postpone the summit and agreed to review the security plan."
+      },
+      {
+        "id": "D",
+        "text": "The committee recommended postponing the summit and agreed reviewing the security plan."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The verb 'recommend' takes a gerund complement, while 'agree' takes an infinitive complement. Matching each verb to its required form yields 'recommended postponing' and 'agreed to review'.",
+    "optionNotes": {
+      "A": "The pairing is reversed: 'recommend' is given an infinitive and 'agree' a gerund, the opposite of what each verb requires.",
+      "C": "Using an infinitive after 'recommend' is incorrect, since that verb selects a gerund complement.",
+      "D": "Using a gerund after 'agree' is incorrect, since that verb selects an infinitive complement."
+    },
+    "reference": "English › Gerunds versus infinitives"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Grammar",
+    "difficulty": "EASY",
+    "prompt": "Select the sentence that correctly matches quantifiers and verb agreement to count and noncount nouns.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "There were fewer reported incidents this quarter, and much of the equipment has been replaced."
+      },
+      {
+        "id": "B",
+        "text": "There were less reported incidents this quarter, and many of the equipment have been replaced."
+      },
+      {
+        "id": "C",
+        "text": "There were fewer reported incidents this quarter, and many of the equipment have been replaced."
+      },
+      {
+        "id": "D",
+        "text": "There were less reported incidents this quarter, and much of the equipment has been replaced."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "The plural count noun 'incidents' takes 'fewer', while the noncount noun 'equipment' takes 'much' and a singular verb. Pairing 'fewer incidents' with 'much of the equipment has' respects both distinctions.",
+    "optionNotes": {
+      "B": "The count noun 'incidents' is given 'less' instead of 'fewer', and the noncount 'equipment' is wrongly treated as plural with 'many' and 'have'.",
+      "C": "The quantifier 'fewer' is correct for incidents, but 'equipment' is wrongly treated as a plural count noun with 'many' and 'have'.",
+      "D": "The noncount handling of 'equipment' is correct, but the count noun 'incidents' is wrongly paired with 'less' rather than 'fewer'."
+    },
+    "reference": "English › Count and noncount noun agreement"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "EASY",
+    "prompt": "Choosing between 'affect' and 'effect' as the main verb describing how sanctions influence trade flows.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The new sanctions will affect bilateral trade flows within the first quarter."
+      },
+      {
+        "id": "B",
+        "text": "The new sanctions will effect bilateral trade flows within the first quarter."
+      },
+      {
+        "id": "C",
+        "text": "The new sanctions will affects bilateral trade flows within the first quarter."
+      },
+      {
+        "id": "D",
+        "text": "The new sanctions will effects bilateral trade flows within the first quarter."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "When the meaning is 'to influence or have an impact on,' the verb is 'affect.' The sanctions influence existing trade flows, so the verb spelled with an initial 'a' is required, and after the modal 'will' the verb must take its base form.",
+    "optionNotes": {
+      "B": "Spelling the verb with an initial 'e' means 'to bring about,' which would imply the sanctions create the trade flows from nothing rather than influence existing ones; that is not the intended meaning.",
+      "C": "Adding an '-s' to the verb after the modal 'will' is ungrammatical, since a modal must be followed by the base form of the verb.",
+      "D": "This both uses the 'bring about' sense, which is the wrong meaning, and adds an '-s' that cannot follow the modal 'will.'"
+    },
+    "reference": "English › affect vs. effect"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "MEDIUM",
+    "prompt": "Selecting 'who's' or 'whose' to introduce a clause identifying the delegate responsible for the security briefing.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Please identify the delegate who's portfolio includes the security briefing."
+      },
+      {
+        "id": "B",
+        "text": "Please identify the delegate whose portfolio includes the security briefing."
+      },
+      {
+        "id": "C",
+        "text": "Please identify the delegate who's responsible for portfolio includes the security briefing."
+      },
+      {
+        "id": "D",
+        "text": "Please identify the delegate whos portfolio includes the security briefing."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The sentence needs the possessive form to show that the portfolio belongs to the delegate. The possessive of 'who' is written as one word with no apostrophe, since the apostrophe form is reserved for the contraction of 'who is' or 'who has.'",
+    "optionNotes": {
+      "A": "The apostrophe form is a contraction of 'who is' or 'who has' and cannot show possession of the portfolio; expanding it gives 'the delegate who is portfolio includes,' which is not a coherent clause.",
+      "C": "This still uses the contraction form and produces a garbled, ungrammatical string; possession requires the apostrophe-free spelling.",
+      "D": "Dropping the 'e' yields a misspelling; the possessive is correctly spelled with a final 'e' and no apostrophe."
+    },
+    "reference": "English › who's vs. whose"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "EASY",
+    "prompt": "Deciding between 'its' and 'it's' where a clause states that a server has finished a task on its own.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The mission confirmed that the server completed it's nightly backup ahead of schedule."
+      },
+      {
+        "id": "B",
+        "text": "The mission confirmed that the server completed its' nightly backup ahead of schedule."
+      },
+      {
+        "id": "C",
+        "text": "The mission confirmed that the server completed its nightly backup ahead of schedule."
+      },
+      {
+        "id": "D",
+        "text": "The mission confirmed that the server completed it is nightly backup ahead of schedule."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "The phrase needs the possessive determiner showing that the backup belongs to the server. The possessive form of 'it' is written with no apostrophe; the apostrophe spelling is only the contraction of 'it is' or 'it has.'",
+    "optionNotes": {
+      "A": "Inserting an apostrophe before the 's' creates the contraction of 'it is,' producing 'the server completed it is nightly backup,' which is ungrammatical here.",
+      "B": "Placing an apostrophe after the 's' is never a correct form of this word; the possessive has no apostrophe at all.",
+      "D": "Spelling out 'it is' confirms the contraction reading, but 'completed it is nightly backup' makes no sense; the possessive determiner is required."
+    },
+    "reference": "English › its vs. it's"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "MEDIUM",
+    "prompt": "Choosing 'fewer' or 'less' to quantify a countable noun (the number of unresolved support tickets).",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "This quarter the help desk logged less unresolved tickets than last quarter."
+      },
+      {
+        "id": "B",
+        "text": "This quarter the help desk logged fewer unresolved tickets than last quarter."
+      },
+      {
+        "id": "C",
+        "text": "This quarter the help desk logged lesser unresolved tickets than last quarter."
+      },
+      {
+        "id": "D",
+        "text": "This quarter the help desk logged least unresolved tickets than last quarter."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Tickets are individually countable items, so the comparative for count nouns is required. 'Fewer' modifies things that can be counted, whereas 'less' is reserved for uncountable mass quantities.",
+    "optionNotes": {
+      "A": "'Less' applies to uncountable quantities such as time or money; it is not the standard choice for a plural count noun like tickets.",
+      "C": "'Lesser' means 'smaller in importance or rank,' not 'smaller in number,' so it cannot quantify how many tickets were logged.",
+      "D": "'Least' is a superlative used to compare three or more amounts and does not pair with 'than'; a two-way comparison of countable items needs the count-noun comparative."
+    },
+    "reference": "English › fewer vs. less"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "HARD",
+    "prompt": "Choosing punctuation and relative pronoun to attach a restrictive clause that narrows down exactly which encryption keys must be rotated.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The encryption keys, that were issued before the audit, must be rotated immediately."
+      },
+      {
+        "id": "B",
+        "text": "The encryption keys which were issued before the audit, must be rotated immediately."
+      },
+      {
+        "id": "C",
+        "text": "The encryption keys that were issued before the audit must be rotated immediately."
+      },
+      {
+        "id": "D",
+        "text": "The encryption keys, which were issued before the audit must be rotated immediately."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "The clause is essential: it identifies which subset of keys must be rotated, so it is restrictive and takes no commas. Standard formal usage pairs a restrictive clause with 'that' and attaches it to the noun without any commas.",
+    "optionNotes": {
+      "A": "Setting the clause off with commas signals nonessential information, yet the clause is essential to identify which keys are meant; the commas contradict the restrictive function.",
+      "B": "A restrictive clause should not be broken by a comma before the main verb; the stray comma after 'audit' splits the subject from its predicate and leaves the clause incorrectly half-punctuated.",
+      "D": "This pairs a nonrestrictive marker with only one comma, breaking the rule that a nonrestrictive clause must be enclosed by a pair of commas, and it wrongly treats essential information as parenthetical."
+    },
+    "reference": "English › that vs. which (restrictive clauses)"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "HARD",
+    "prompt": "Selecting the correct past-tense form of 'lay' versus 'lie' for an intransitive action (a document resting somewhere) described in the past.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The classified memo laid on the ambassador's desk untouched all weekend."
+      },
+      {
+        "id": "B",
+        "text": "The classified memo lay on the ambassador's desk untouched all weekend."
+      },
+      {
+        "id": "C",
+        "text": "The classified memo lied on the ambassador's desk untouched all weekend."
+      },
+      {
+        "id": "D",
+        "text": "The classified memo had laid on the ambassador's desk untouched all weekend."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "The memo does not act on an object; it simply rests, so the intransitive verb meaning 'to recline or rest' is needed. The simple past of that intransitive verb is identical in form to the present tense of the transitive 'place' verb, which causes the confusion.",
+    "optionNotes": {
+      "A": "'Laid' is the past tense of the transitive verb meaning 'to put or place something,' which requires a direct object; here the memo is not placing anything, so this form does not fit.",
+      "C": "'Lied' is the past tense of the unrelated verb meaning 'to tell an untruth,' which has nothing to do with an object resting on a desk.",
+      "D": "The past participle for the 'rest' verb is 'lain,' not 'laid'; pairing 'had' with the transitive past participle describes placing an object, not resting."
+    },
+    "reference": "English › lay vs. lie"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "MEDIUM",
+    "prompt": "Choosing 'principal' or 'principle' for a noun meaning a fundamental rule that governs data-handling policy.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Data minimization is a core principal of the agency's privacy policy."
+      },
+      {
+        "id": "B",
+        "text": "Data minimization is a core principel of the agency's privacy policy."
+      },
+      {
+        "id": "C",
+        "text": "Data minimization is a core principle of the agency's privacy policy."
+      },
+      {
+        "id": "D",
+        "text": "Data minimization is a core principals of the agency's privacy policy."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "The sentence names a fundamental rule or standard, and the noun meaning 'a basic truth or governing rule' ends in '-ple.' The look-alike ending in '-pal' means a chief person or a principal sum of money, which does not fit a governing rule.",
+    "optionNotes": {
+      "A": "The '-pal' spelling refers to a head person (such as a school principal) or the original sum of a loan, not to a fundamental rule of policy.",
+      "B": "This is simply a misspelling; the noun for a fundamental rule is spelled with the ending '-ple,' not '-pel.'",
+      "D": "This both uses the '-pal' spelling, which names a chief person rather than a rule, and is plural, clashing with the singular article 'a.'"
+    },
+    "reference": "English › principal vs. principle"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "MEDIUM",
+    "prompt": "Choosing between 'comprise' and 'compose' when a whole is named before its parts in a delegation memo.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The delegation comprises four ministers, six technical advisers, and two interpreters."
+      },
+      {
+        "id": "B",
+        "text": "The delegation is comprised of four ministers, six technical advisers, and two interpreters."
+      },
+      {
+        "id": "C",
+        "text": "The delegation comprises of four ministers, six technical advisers, and two interpreters."
+      },
+      {
+        "id": "D",
+        "text": "Four ministers, six technical advisers, and two interpreters comprise into the delegation."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "The whole comprises the parts: the entity that contains takes 'comprise' directly and is followed by the list of components with no preposition. The whole is the subject, the parts are the direct object, so the verb needs no 'of' and no passive construction.",
+    "optionNotes": {
+      "B": "The passive 'is comprised of' is widely flagged as an error in careful usage; 'comprise' already means 'consist of,' so the whole should simply comprise its parts rather than be comprised of them.",
+      "C": "Adding 'of' after 'comprise' is redundant because the verb already incorporates that sense; the whole comprises the parts directly, with no preposition.",
+      "D": "Reversing the relationship so the parts comprise the whole is incorrect, and 'comprise into' is not idiomatic; parts compose a whole, but a whole comprises its parts."
+    },
+    "reference": "English › comprise vs. compose"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "HARD",
+    "prompt": "Selecting among 'ensure', 'insure', and 'assure' for guaranteeing an outcome versus reassuring a person in a security briefing.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "I want to ensure the ambassador that the encrypted channel will insure delivery of the cable."
+      },
+      {
+        "id": "B",
+        "text": "I want to assure the ambassador that the encrypted channel will ensure delivery of the cable."
+      },
+      {
+        "id": "C",
+        "text": "I want to insure the ambassador that the encrypted channel will assure delivery of the cable."
+      },
+      {
+        "id": "D",
+        "text": "I want to ensure the ambassador that the encrypted channel will assure delivery of the cable."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "To remove someone's doubt by speaking to them directly, the verb is 'assure' (you assure a person). To make an outcome certain, the verb is 'ensure' (you ensure a result). 'Insure' is reserved for indemnifying against financial loss, which is not at issue here.",
+    "optionNotes": {
+      "A": "Telling a person something to relieve their doubt calls for 'assure,' not 'ensure'; and guaranteeing that delivery happens calls for 'ensure,' not 'insure,' which concerns insurance against loss.",
+      "C": "Reassuring a person is 'assure,' not 'insure'; and making delivery certain is 'ensure,' not 'assure,' which is directed at a person rather than an outcome.",
+      "D": "Addressing the ambassador to settle their mind requires 'assure,' since 'ensure' takes an outcome rather than a person; and making delivery certain requires 'ensure' rather than 'assure.'"
+    },
+    "reference": "English › ensure vs. insure vs. assure"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "MEDIUM",
+    "prompt": "Distinguishing 'imply' (speaker suggests) from 'infer' (listener concludes) when describing what a report does versus what a reader does.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "From the figures in the audit, the committee inferred a shortfall, which the report had implied but never stated outright."
+      },
+      {
+        "id": "B",
+        "text": "From the figures in the audit, the committee implied a shortfall, which the report had inferred but never stated outright."
+      },
+      {
+        "id": "C",
+        "text": "From the figures in the audit, the committee inferred a shortfall, which the report had inferred but never stated outright."
+      },
+      {
+        "id": "D",
+        "text": "From the figures in the audit, the committee implied a shortfall, which the report had implied but never stated outright."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "The party that hints at something without stating it 'implies' it; the party that draws a conclusion from evidence 'infers' it. The report is the source that suggested the shortfall, so it implies; the committee is the audience drawing the conclusion, so it infers.",
+    "optionNotes": {
+      "B": "This reverses the roles: a committee reasoning from the figures draws a conclusion and so infers, while a document that hints without saying outright implies; here both verbs are swapped.",
+      "C": "A written report cannot infer, because inferring is the act of a reader or listener concluding; a document conveys meaning by implying.",
+      "D": "A committee reasoning from data is concluding and therefore inferring, not implying; only a source that suggests something does the implying."
+    },
+    "reference": "English › imply vs. infer"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "EASY",
+    "prompt": "Choosing 'complement' (completes/pairs well) versus 'compliment' (praise) in describing how a new system works with an existing one.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The new translation tool will compliment the existing case-management platform."
+      },
+      {
+        "id": "B",
+        "text": "The new translation tool will complement the existing case-management platform."
+      },
+      {
+        "id": "C",
+        "text": "The new translation tool will complementary the existing case-management platform."
+      },
+      {
+        "id": "D",
+        "text": "The new translation tool will complimentary the existing case-management platform."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When one thing completes or works well alongside another, the verb is 'complement' (with an 'e'), which shares the root of 'complete.' Praising someone is 'compliment' (with an 'i'), which is not what a tool does to a platform.",
+    "optionNotes": {
+      "A": "Spelled with an 'i,' this word means to praise; a tool pairing usefully with a platform calls for the 'e' spelling that means to complete or go well with.",
+      "C": "This is an adjective form used as if it were a verb; the sentence needs the verb 'complement,' not 'complementary.'",
+      "D": "This is an adjective (and the wrong sense, relating to praise or to being free of charge) being forced into a verb slot; the verb 'complement' is required."
+    },
+    "reference": "English › complement vs. compliment"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "HARD",
+    "prompt": "Applying 'farther' for physical distance and 'further' for figurative degree or additional matters within one sentence.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The relay station sits farther up the ridge, and we will discuss the budget further at tomorrow's session."
+      },
+      {
+        "id": "B",
+        "text": "The relay station sits further up the ridge, and we will discuss the budget farther at tomorrow's session."
+      },
+      {
+        "id": "C",
+        "text": "The relay station sits further up the ridge, and we will discuss the budget further at tomorrow's session."
+      },
+      {
+        "id": "D",
+        "text": "The relay station sits farther up the ridge, and we will discuss the budget farther at tomorrow's session."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "For measurable physical distance, careful usage prefers 'farther' (the station's location up the ridge). For figurative extent or 'to a greater degree,' the choice is 'further' (continuing a discussion). The sentence is correct only when each sense is matched to the right word, and 'farther' for a discussion is never acceptable.",
+    "optionNotes": {
+      "B": "Physical distance up the ridge is better served by 'farther,' while extending a discussion is a figurative degree that takes 'further'; here both are reversed.",
+      "C": "Extending a discussion correctly takes 'further,' but using 'further' for the literal distance up the ridge ignores the distance-specific 'farther' that careful usage prefers for measurable space.",
+      "D": "Distance up the ridge correctly takes 'farther,' but extending a discussion is figurative rather than spatial, so it must be 'further'; 'farther' is reserved for measurable physical distance."
+    },
+    "reference": "English › farther vs. further"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Usage & Word Choice",
+    "difficulty": "EASY",
+    "prompt": "Choosing 'accept' (to receive/agree) versus 'except' (to exclude) when an office adopts a policy with one exclusion.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "All bureaus must except the revised security protocol, accept the field office in transition."
+      },
+      {
+        "id": "B",
+        "text": "All bureaus must except the revised security protocol, except the field office in transition."
+      },
+      {
+        "id": "C",
+        "text": "All bureaus must accept the revised security protocol, except the field office in transition."
+      },
+      {
+        "id": "D",
+        "text": "All bureaus must accept the revised security protocol, accept the field office in transition."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Agreeing to and adopting the protocol is 'accept,' a verb meaning to receive or consent to. Carving out the field office as an exclusion calls for 'except,' which means 'apart from' or 'excluding.' The two words serve opposite functions in the sentence.",
+    "optionNotes": {
+      "A": "Adopting the protocol is 'accept,' not 'except'; and the exclusion clause needs 'except' to mean 'apart from,' so both words are used in exactly the wrong slots.",
+      "B": "Bureaus adopting the protocol must 'accept' it; using 'except' for that action wrongly says they exclude it, even though the exclusion of the field office is correctly handled.",
+      "D": "The exclusion clause must use 'except' to mean 'apart from'; repeating 'accept' there mistakenly says the field office also adopts the protocol, contradicting the intended carve-out."
+    },
+    "reference": "English › accept vs. except"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "EASY",
+    "prompt": "Which sentence correctly avoids a comma splice between two independent clauses describing the delegation's schedule?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The ambassador arrived at noon, the briefing began an hour later."
+      },
+      {
+        "id": "B",
+        "text": "The ambassador arrived at noon; the briefing began an hour later."
+      },
+      {
+        "id": "C",
+        "text": "The ambassador arrived at noon, the briefing, began an hour later."
+      },
+      {
+        "id": "D",
+        "text": "The ambassador arrived at noon the briefing began an hour later."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Two independent clauses cannot be joined by a comma alone. A semicolon correctly links two closely related complete clauses without a coordinating conjunction, producing a grammatically sound sentence.",
+    "optionNotes": {
+      "A": "Joining two complete clauses with only a comma creates a comma splice, which is an error.",
+      "C": "An extra comma is dropped inside the second clause, separating its subject from its verb, and the two clauses are still spliced with a comma.",
+      "D": "Running two independent clauses together with no punctuation at all produces a fused or run-on sentence."
+    },
+    "reference": "English › Comma splices"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "MEDIUM",
+    "prompt": "Which sentence correctly uses a semicolon to join two independent clauses linked by the conjunctive adverb 'therefore'?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The visa request was incomplete, therefore, the consulate returned the file."
+      },
+      {
+        "id": "B",
+        "text": "The visa request was incomplete; therefore, the consulate returned the file."
+      },
+      {
+        "id": "C",
+        "text": "The visa request was incomplete therefore; the consulate returned the file."
+      },
+      {
+        "id": "D",
+        "text": "The visa request was incomplete, therefore the consulate returned the file."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When a conjunctive adverb such as 'therefore' links two independent clauses, a semicolon belongs before the adverb to separate the clauses, and a comma conventionally follows the adverb. This placement correctly divides the two complete thoughts.",
+    "optionNotes": {
+      "A": "Setting the conjunctive adverb off with commas on both sides still leaves two independent clauses joined by only a comma, which is a comma splice.",
+      "C": "The semicolon is misplaced after 'therefore' rather than before it, so it fails to separate the two clauses at the correct boundary.",
+      "D": "A comma before 'therefore' cannot join two independent clauses; a semicolon is required at that junction."
+    },
+    "reference": "English › Semicolons joining independent clauses"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "MEDIUM",
+    "prompt": "Which sentence correctly uses a colon to introduce a list only after a complete independent clause?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The summit covered three priorities: trade, security, and migration."
+      },
+      {
+        "id": "B",
+        "text": "The three priorities of the summit were: trade, security, and migration."
+      },
+      {
+        "id": "C",
+        "text": "The summit covered: trade, security, and migration."
+      },
+      {
+        "id": "D",
+        "text": "The summit covered three priorities; trade, security, and migration."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A colon used to introduce a list must follow a grammatically complete independent clause. Here the clause stands on its own before the colon, and the list that follows correctly explains the stated priorities.",
+    "optionNotes": {
+      "B": "Placing the colon directly after a linking verb breaks the clause before it is complete, so no colon should appear there.",
+      "C": "Placing the colon right after a transitive verb separates the verb from its objects, leaving the introductory clause incomplete.",
+      "D": "A semicolon cannot introduce a list; it joins independent clauses, and the words after it do not form a clause."
+    },
+    "reference": "English › Colon before a list or explanation"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "HARD",
+    "prompt": "Which sentence correctly forms the plural possessive of a noun referring to more than one diplomat?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The diplomats' credentials were verified before the reception."
+      },
+      {
+        "id": "B",
+        "text": "The diplomat's credentials were verified before the reception, though several attended."
+      },
+      {
+        "id": "C",
+        "text": "The diplomats credentials were verified before the reception."
+      },
+      {
+        "id": "D",
+        "text": "The diplomats's credentials were verified before the reception."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A regular plural noun already ending in -s forms its possessive by adding only an apostrophe after the s. This shows that the credentials belong to more than one diplomat.",
+    "optionNotes": {
+      "B": "Placing the apostrophe before the s marks a single owner, which contradicts the stated fact that several diplomats were involved.",
+      "C": "Omitting the apostrophe entirely makes the word a simple plural with no possessive marking, so ownership is not expressed.",
+      "D": "Adding apostrophe-s to a plural that already ends in -s is not standard; a plural ending in -s takes only a trailing apostrophe."
+    },
+    "reference": "English › Apostrophes (possessive vs plural)"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "MEDIUM",
+    "prompt": "Which sentence correctly applies the serial (Oxford) comma in a list of four items?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The protocol office handles travel logistics, accreditation and translation."
+      },
+      {
+        "id": "B",
+        "text": "The protocol office handles travel, logistics, accreditation, and, translation."
+      },
+      {
+        "id": "C",
+        "text": "The protocol office handles travel logistics, accreditation, and translation."
+      },
+      {
+        "id": "D",
+        "text": "The protocol office handles travel, logistics, accreditation, and translation."
+      }
+    ],
+    "correctId": "D",
+    "rationale": "In a list of three or more items, a comma is placed after each item, including one before the final conjunction. This treats every item as separate and prevents the last two from being read as a single combined entry.",
+    "optionNotes": {
+      "A": "Two adjacent terms are run together without a comma, and the serial comma before the conjunction is missing, so the series is not properly separated.",
+      "B": "An extra comma is inserted after the conjunction itself, which wrongly separates 'and' from the item it introduces.",
+      "C": "Without a comma between the first two terms, 'travel logistics' reads as one combined item rather than two distinct list entries."
+    },
+    "reference": "English › Serial (Oxford) comma"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "EASY",
+    "prompt": "Which sentence correctly places a comma after a long introductory phrase?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "After reviewing the final draft the minister approved the communiqué."
+      },
+      {
+        "id": "B",
+        "text": "After reviewing the final draft, the minister approved the communiqué."
+      },
+      {
+        "id": "C",
+        "text": "After, reviewing the final draft the minister approved the communiqué."
+      },
+      {
+        "id": "D",
+        "text": "After reviewing, the final draft the minister approved the communiqué."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "An introductory phrase that precedes the main clause is set off with a comma at the point where the phrase ends and the main clause begins. The comma falls after the full introductory element, just before the subject of the main clause.",
+    "optionNotes": {
+      "A": "No comma is placed after the introductory phrase, so the modifier runs directly into the main clause without the required pause.",
+      "C": "The comma is inserted in the middle of the introductory phrase, breaking it apart rather than separating it from the main clause.",
+      "D": "The comma falls inside the introductory phrase after 'reviewing,' splitting the modifier from its object instead of marking the boundary with the main clause."
+    },
+    "reference": "English › Comma after an introductory phrase"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "HARD",
+    "prompt": "Which sentence correctly places the closing punctuation relative to the quotation marks in American usage?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The envoy described the talks as \"constructive\", and she scheduled a follow-up."
+      },
+      {
+        "id": "B",
+        "text": "The envoy described the talks as \"constructive,\" and she scheduled a follow-up."
+      },
+      {
+        "id": "C",
+        "text": "The envoy described the talks as \"constructive\" and she scheduled a follow-up,."
+      },
+      {
+        "id": "D",
+        "text": "The envoy described the talks as \"constructive\", and she scheduled a follow-up\"."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "In American usage a comma always goes inside the closing quotation mark, regardless of whether it belongs to the quoted material. The comma sits within the quotes and the rest of the sentence continues normally.",
+    "optionNotes": {
+      "A": "Placing the comma outside the closing quotation mark follows British convention, not the American rule that keeps commas inside the quotes.",
+      "C": "The comma is detached from the quoted word and stacked oddly against a period, leaving the quotation without its required internal punctuation.",
+      "D": "A stray closing quotation mark is added at the very end where no quotation is open, and the comma still sits outside the quoted word."
+    },
+    "reference": "English › Quotation-mark punctuation"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the sentence that correctly hyphenates the compound modifier preceding a noun.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The delegation reviewed a long-term security agreement before the summit."
+      },
+      {
+        "id": "B",
+        "text": "The delegation reviewed a long term security agreement before the summit."
+      },
+      {
+        "id": "C",
+        "text": "The delegation reviewed a long-term-security agreement before the summit."
+      },
+      {
+        "id": "D",
+        "text": "The delegation reviewed a long term-security agreement before the summit."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "When two or more words act together as a single adjective directly before the noun they modify, they are joined by a hyphen. Here the pair describing the kind of agreement is hyphenated, while the next descriptive word that separately modifies the noun stays unhyphenated.",
+    "optionNotes": {
+      "B": "Leaving the two-word modifier open before the noun fails to signal that the words function as one adjective, which the hyphen is meant to show.",
+      "C": "Stringing a hyphen through every word ahead of the noun wrongly binds a word that independently modifies the noun rather than belonging to the compound adjective.",
+      "D": "Placing the hyphen between the wrong pair joins words that do not form the compound adjective and splits the pair that does, distorting the intended meaning."
+    },
+    "reference": "English › Hyphens in compound modifiers before a noun"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "HARD",
+    "prompt": "Choose the sentence that uses a dash (rather than a hyphen) correctly to set off an abrupt parenthetical insertion.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The ambassador's proposal-bold yet pragmatic-won unexpected support."
+      },
+      {
+        "id": "B",
+        "text": "The ambassador's proposal — bold yet pragmatic — won unexpected support."
+      },
+      {
+        "id": "C",
+        "text": "The ambassador's proposal-bold yet pragmatic—won unexpected support."
+      },
+      {
+        "id": "D",
+        "text": "The ambassador's proposal—bold-yet-pragmatic—won unexpected support."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "An interruptive aside is set off with a pair of dashes, which are longer marks distinct from the short hyphen used to join words. Both ends of the inserted phrase must use the same dash, and the inserted words themselves are an ordinary phrase that needs no internal joining.",
+    "optionNotes": {
+      "A": "Short hyphens cannot do the work of dashes; they join parts of words and cannot bracket an interrupting phrase.",
+      "C": "Mixing a hyphen on one side with a dash on the other breaks the required symmetry of the enclosing pair of marks.",
+      "D": "Hyphenating the ordinary inserted phrase wrongly treats separate descriptive words as a single compound, which they are not in this position."
+    },
+    "reference": "English › Dashes vs hyphens for parenthetical insertions"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "EASY",
+    "prompt": "Identify the sentence that correctly uses a pair of commas to enclose nonessential information.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Our chief negotiator, who joined last spring, will brief the council tomorrow."
+      },
+      {
+        "id": "B",
+        "text": "Our chief negotiator who joined last spring, will brief the council tomorrow."
+      },
+      {
+        "id": "C",
+        "text": "Our chief negotiator, who joined last spring will brief the council tomorrow."
+      },
+      {
+        "id": "D",
+        "text": "Our chief negotiator who joined last spring will brief the council tomorrow."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Information that adds detail but is not needed to identify the subject is enclosed by commas on both sides. Because the surrounding sentence already identifies who is meant, the added description is set off with a comma before and a comma after.",
+    "optionNotes": {
+      "B": "Closing the aside without opening it leaves the descriptive insertion attached on one side, so the pair of enclosing marks is incomplete.",
+      "C": "Opening the aside without closing it strands the insertion against the main verb and leaves the bracketing marks unbalanced.",
+      "D": "Omitting both commas merges the nonessential description into the sentence as though it were needed to identify the subject, which it is not."
+    },
+    "reference": "English › Commas with nonessential information"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the sentence that correctly punctuates a nonrestrictive relative clause.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The treaty which was signed in Vienna, remains in force today."
+      },
+      {
+        "id": "B",
+        "text": "The treaty, which was signed in Vienna remains in force today."
+      },
+      {
+        "id": "C",
+        "text": "The treaty, which was signed in Vienna, remains in force today."
+      },
+      {
+        "id": "D",
+        "text": "The treaty which was signed in Vienna remains in force today."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "A clause introduced by 'which' that supplies extra, non-defining detail about an already-identified noun is set off with a comma at its start and another at its end. The added clause here merely comments on the treaty rather than singling out which treaty is meant.",
+    "optionNotes": {
+      "A": "A comma falls only at the end of the added clause, so its beginning is not marked and the enclosing pair is incomplete.",
+      "B": "A comma falls only at the start of the clause, leaving its end unmarked so the clause runs into the main verb without closure.",
+      "D": "Dropping both commas turns a non-defining 'which' clause into one that wrongly appears to restrict the noun, even though the treaty is already identified."
+    },
+    "reference": "English › Commas with nonrestrictive clauses"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "EASY",
+    "prompt": "Choose the sentence that correctly places a comma before the coordinating conjunction joining two independent clauses.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The minister approved the draft and the staff began translating it overnight."
+      },
+      {
+        "id": "B",
+        "text": "The minister approved the draft, and the staff began translating it overnight."
+      },
+      {
+        "id": "C",
+        "text": "The minister approved the draft and, the staff began translating it overnight."
+      },
+      {
+        "id": "D",
+        "text": "The minister, approved the draft and the staff began translating it overnight."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When a coordinating conjunction links two complete sentences, a comma is placed before that conjunction. Each side here has its own subject and verb and could stand alone, so the comma precedes the connecting word.",
+    "optionNotes": {
+      "A": "Joining two full independent clauses with the conjunction but no preceding comma omits the punctuation that should mark the break between them.",
+      "C": "Putting the comma after the conjunction rather than before it misplaces the mark; the comma belongs ahead of the connecting word.",
+      "D": "Inserting a comma between the subject and its verb wrongly separates elements that belong together and ignores the actual clause boundary."
+    },
+    "reference": "English › Comma before a coordinating conjunction in a compound sentence"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Punctuation",
+    "difficulty": "HARD",
+    "prompt": "Select the sentence that correctly forms the plural-possessive apostrophe for a regular plural noun.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The delegates' badges were reissued after the credentials office updated its records."
+      },
+      {
+        "id": "B",
+        "text": "The delegate's badges were reissued after the credentials office updated its records."
+      },
+      {
+        "id": "C",
+        "text": "The delegates's badges were reissued after the credentials office updated its records."
+      },
+      {
+        "id": "D",
+        "text": "The delegates badges' were reissued after the credentials office updated its records."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A regular plural noun that already ends in -s shows possession by adding only an apostrophe after that -s. Because the badges belong to more than one delegate, the possessive mark follows the plural form.",
+    "optionNotes": {
+      "B": "Placing the apostrophe before the -s makes the noun singular possessive, indicating only one owner rather than the several intended.",
+      "C": "Adding an apostrophe plus another -s to a regular plural that already ends in -s is redundant and is not the standard plural-possessive form.",
+      "D": "Attaching the apostrophe to the thing owned rather than to the owners misassigns possession and leaves the actual possessor unmarked."
+    },
+    "reference": "English › Plural-possessive apostrophes"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "EASY",
+    "prompt": "Comma-splice correction: which version correctly joins the two independent clauses about the summit briefing?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The delegation arrived on Tuesday, the briefing began the following morning."
+      },
+      {
+        "id": "B",
+        "text": "The delegation arrived on Tuesday; the briefing began the following morning."
+      },
+      {
+        "id": "C",
+        "text": "The delegation arrived on Tuesday, however the briefing began the following morning."
+      },
+      {
+        "id": "D",
+        "text": "The delegation arrived on Tuesday the briefing began the following morning."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Two independent clauses may be linked with a semicolon, which signals a close relationship while keeping each clause grammatically complete. A semicolon is one of the standard repairs for a comma splice, alongside a period or a comma plus a coordinating conjunction.",
+    "optionNotes": {
+      "A": "A lone comma between two independent clauses is a comma splice; a comma cannot do the work of a semicolon or a coordinating conjunction.",
+      "C": "Placing 'however' after only a comma still splices the clauses; a conjunctive adverb needs a preceding semicolon (or a period), not just a comma.",
+      "D": "With no punctuation at all between the two complete clauses, the sentence is a fused run-on."
+    },
+    "reference": "English › Comma-splice correction"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "EASY",
+    "prompt": "Sentence-fragment repair: which choice turns the dependent word group into a complete sentence about the funding decision?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Although the committee reviewed the proposal for three weeks."
+      },
+      {
+        "id": "B",
+        "text": "The committee reviewed the proposal for three weeks, it approved the funding."
+      },
+      {
+        "id": "C",
+        "text": "Although the committee reviewed the proposal for three weeks, it approved the funding only after revisions."
+      },
+      {
+        "id": "D",
+        "text": "Reviewing the proposal for three weeks and weighing every objection raised in session."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "A subordinating word such as 'although' creates a dependent clause that must attach to an independent clause to form a complete sentence. Pairing the subordinate clause with a main clause that has its own subject and finite verb ('it approved') produces a grammatically whole statement.",
+    "optionNotes": {
+      "A": "Beginning with 'although' leaves only a dependent clause with no main clause to complete it, so it is a fragment.",
+      "B": "This is a grammatical sentence but it joins two independent clauses with only a comma, producing a comma splice rather than repairing a fragment.",
+      "D": "A string of participial phrases ('reviewing,' 'weighing') with no finite main verb never reaches a complete predicate, so it remains a fragment."
+    },
+    "reference": "English › Sentence fragments"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Parallel structure in a series: which sentence keeps the three duties of the liaison officer in matching grammatical form?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The liaison officer is responsible for drafting talking points, the coordination of logistics, and to escort visiting dignitaries."
+      },
+      {
+        "id": "B",
+        "text": "The liaison officer is responsible for drafting talking points, coordinating logistics, and escorting visiting dignitaries."
+      },
+      {
+        "id": "C",
+        "text": "The liaison officer is responsible for drafting talking points, coordination of logistics, and escorting visiting dignitaries."
+      },
+      {
+        "id": "D",
+        "text": "The liaison officer is responsible for drafting talking points, to coordinate logistics, and the escort of visiting dignitaries."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Items in a series should share the same grammatical form. Casting all three duties as parallel gerund phrases ('drafting,' 'coordinating,' 'escorting') makes the list balanced and easy to read.",
+    "optionNotes": {
+      "A": "The series mixes a gerund, a noun phrase, and an infinitive ('drafting,' 'the coordination,' 'to escort'), so the three duties are not in matching form.",
+      "C": "Two gerunds bracket a noun phrase ('coordination of logistics'), breaking the parallel pattern of the series.",
+      "D": "The list shifts from a gerund to an infinitive to a noun phrase ('drafting,' 'to coordinate,' 'the escort'), which is not parallel."
+    },
+    "reference": "English › Parallel structure"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Misplaced modifier: which sentence positions the phrase 'with extensive field experience' so that it most clearly describes the candidate rather than the panel?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The panel recommended the candidate with extensive field experience for the posting."
+      },
+      {
+        "id": "B",
+        "text": "With extensive field experience, the panel recommended the candidate for the posting."
+      },
+      {
+        "id": "C",
+        "text": "The panel recommended for the posting the candidate, with extensive field experience."
+      },
+      {
+        "id": "D",
+        "text": "The panel, with extensive field experience, recommended the candidate for the posting."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A modifier should sit next to the noun it describes. Placing 'with extensive field experience' immediately after 'the candidate' attaches the experience to the candidate being recommended.",
+    "optionNotes": {
+      "B": "Fronting the phrase makes 'the panel' the nearest noun, so it reads as though the panel, not the candidate, has the field experience.",
+      "C": "Setting the phrase off with a comma at the end of the sentence leaves it stranded and ambiguous, no longer firmly attached to 'the candidate.'",
+      "D": "Inserting the phrase right after 'the panel' attributes the field experience to the panel rather than to the candidate."
+    },
+    "reference": "English › Misplaced modifiers"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Effective subordination: which version best subordinates the minor idea so the main point (the treaty took effect) receives the emphasis?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The negotiations lasted two years, and the treaty finally took effect in March."
+      },
+      {
+        "id": "B",
+        "text": "After negotiations that had lasted two years, the treaty finally took effect in March."
+      },
+      {
+        "id": "C",
+        "text": "The negotiations lasted two years, the treaty finally took effect in March."
+      },
+      {
+        "id": "D",
+        "text": "Although the treaty finally took effect in March, the negotiations lasted two years."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Subordination puts the less important idea in a dependent structure and reserves the main clause for the point being stressed. Reducing the lengthy negotiations to an introductory phrase keeps 'the treaty finally took effect' as the emphasized main clause.",
+    "optionNotes": {
+      "A": "Joining the two ideas with 'and' coordinates them as equals, so neither the negotiations nor the treaty's effect is emphasized over the other.",
+      "C": "A comma alone between two independent clauses is a comma splice, and it also fails to subordinate either idea.",
+      "D": "Subordinating the treaty's taking effect demotes the very point that should be emphasized, reversing the intended focus."
+    },
+    "reference": "English › Subordination and coordination"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Faulty comparison: which sentence compares the Vienna mission's caseload with another caseload using the most concise standard phrasing rather than repeating the full noun or comparing unlike things?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The caseload of the Vienna mission is heavier than Geneva."
+      },
+      {
+        "id": "B",
+        "text": "The caseload of the Vienna mission is heavier than the caseload of Geneva."
+      },
+      {
+        "id": "C",
+        "text": "The caseload of the Vienna mission is heavier than that of Geneva."
+      },
+      {
+        "id": "D",
+        "text": "The caseload of the Vienna mission is heavier than Geneva's mission."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "A comparison must pair like with like, and good usage avoids needless repetition. The pronoun 'that of Geneva' stands in for 'the caseload of Geneva,' so a caseload is compared with a caseload concisely, without repeating the full noun phrase.",
+    "optionNotes": {
+      "A": "This compares a caseload directly with a city ('than Geneva'), an illogical pairing of unlike things.",
+      "B": "The comparison is logical but repeats 'the caseload of' in full where a pronoun substitute is the standard, tighter form; the prompt asks for the most concise standard phrasing.",
+      "D": "This compares a caseload with a mission ('Geneva's mission'), so the two sides of the comparison are not the same kind of thing."
+    },
+    "reference": "English › Faulty comparison"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Conciseness and redundancy: which revision conveys the meeting outcome without redundant or padded wording?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "At this point in time, the two parties have mutually agreed together on a final outcome that is acceptable to both sides."
+      },
+      {
+        "id": "B",
+        "text": "The two parties have reached an agreement that is acceptable to both sides, mutually."
+      },
+      {
+        "id": "C",
+        "text": "The two parties have reached an acceptable agreement."
+      },
+      {
+        "id": "D",
+        "text": "At this point in time, the two parties have reached an acceptable agreement on the final outcome."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Concise writing removes words that add no meaning. Because an agreement is by definition something the parties reached together, the trimmed sentence carries the full meaning with no padding.",
+    "optionNotes": {
+      "A": "It stacks redundancies: 'at this point in time,' 'mutually agreed together,' and 'a final outcome acceptable to both sides' all repeat ideas already implied by 'agreed.'",
+      "B": "An agreement is inherently mutual, so tacking on 'mutually' restates what 'agreement' already means.",
+      "D": "'At this point in time' is wordy filler and 'agreement on the final outcome' repeats the notion of reaching an agreement."
+    },
+    "reference": "English › Conciseness and redundancy"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Sentence combining: which single sentence merges the two facts about the report most smoothly, subordinating the cause to the result?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The report omitted key data. It was returned to the analyst for revision."
+      },
+      {
+        "id": "B",
+        "text": "Because the report omitted key data, it was returned to the analyst for revision."
+      },
+      {
+        "id": "C",
+        "text": "The report omitted key data, it was returned to the analyst for revision."
+      },
+      {
+        "id": "D",
+        "text": "The report omitted key data, being returned to the analyst for revision."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Combining the sentences with the subordinator 'because' folds the cause into a dependent clause and lets the main clause state the result, producing one smooth, logically connected sentence.",
+    "optionNotes": {
+      "A": "These remain two separate sentences; the prompt calls for combining them into one with a clear cause-result link.",
+      "C": "A comma alone cannot join the two independent clauses, so this combination is a comma splice.",
+      "D": "The participle 'being returned' attaches awkwardly to 'the report' and blurs, rather than clarifies, the cause-and-result relationship."
+    },
+    "reference": "English › Sentence combining"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Correlative-conjunction parallelism: which sentence makes the elements following 'not only ... but also' grammatically parallel?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The new protocol not only streamlines visa processing but also it reduces wait times."
+      },
+      {
+        "id": "B",
+        "text": "The new protocol not only streamlines visa processing but also reduces wait times."
+      },
+      {
+        "id": "C",
+        "text": "The new protocol not only streamlines visa processing but reduces also wait times."
+      },
+      {
+        "id": "D",
+        "text": "The new protocol streamlines not only visa processing but also reducing wait times."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Correlative conjunctions must frame elements of the same grammatical form. Here 'not only' and 'but also' each introduce a present-tense verb phrase ('streamlines ... reduces'), so the paired structures match.",
+    "optionNotes": {
+      "A": "Adding the pronoun 'it' after 'but also' inserts a full clause opposite a bare verb phrase, breaking the parallel between the two halves.",
+      "C": "Splitting the pair into 'not only ... but ... also' and shifting 'also' misplaces the correlative and disrupts the balanced framing.",
+      "D": "Pairing the noun phrase 'visa processing' with the gerund phrase 'reducing wait times' mismatches the forms joined by the correlatives."
+    },
+    "reference": "English › Correlative-conjunction parallelism"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "EASY",
+    "prompt": "Select the sentence in which the introductory participial phrase is correctly attached to the noun that actually performs the action (no dangling participle).",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Having reviewed the draft communiqué overnight, the delegation approved the revised wording the next morning."
+      },
+      {
+        "id": "B",
+        "text": "Having reviewed the draft communiqué overnight, the revised wording was approved by the delegation the next morning."
+      },
+      {
+        "id": "C",
+        "text": "Having reviewed the draft communiqué overnight, approval of the revised wording came the next morning."
+      },
+      {
+        "id": "D",
+        "text": "Having reviewed the draft communiqué overnight, the next morning brought approval of the revised wording."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "An introductory participial phrase must modify the subject of the main clause, and that subject must be the doer of the participle's action. The reviewing was done by the delegation, so the delegation must immediately follow the phrase as the grammatical subject.",
+    "optionNotes": {
+      "B": "The subject is the revised wording, which did not do the reviewing; the participle dangles because wording cannot review a communiqué.",
+      "C": "The subject is approval, an abstract noun that cannot review anything, so the opening phrase is left without a logical doer.",
+      "D": "The subject is the next morning, which cannot perform the act of reviewing, leaving the participle attached to the wrong agent."
+    },
+    "reference": "English › Dangling participles"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Choose the version that avoids a mixed construction, in which a sentence begins with one grammatical structure and finishes with an incompatible one.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Because the visa-processing backlog grew over the summer is the reason the consulate added two officers."
+      },
+      {
+        "id": "B",
+        "text": "By extending the consulate's hours was how the visa-processing backlog was finally cleared."
+      },
+      {
+        "id": "C",
+        "text": "Because the visa-processing backlog grew over the summer, the consulate added two officers."
+      },
+      {
+        "id": "D",
+        "text": "The fact that the visa-processing backlog grew over the summer was why the consulate decided to having added two officers."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "A subordinate clause beginning with a conjunction such as 'because' should attach to a complete independent clause, not serve as the subject of a verb. Pairing the adverbial clause with a clean main clause keeps a single, consistent grammatical frame from start to finish.",
+    "optionNotes": {
+      "A": "A 'because' clause is forced to act as a subject paired with 'is the reason,' joining two incompatible structures into a tangled construction.",
+      "B": "An adverbial prepositional phrase ('By extending...') is treated as a subject linked to 'was how,' mixing a modifier with a subject slot.",
+      "D": "The chain 'was why the consulate decided to having added' shifts structure midstream and pairs an infinitive marker with a participle ungrammatically."
+    },
+    "reference": "English › Mixed constructions"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Identify the sentence free of faulty predication, in which the subject and its complement after a linking verb form a logical equation.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The purpose of the security briefing is to inform staff of the new screening protocol."
+      },
+      {
+        "id": "B",
+        "text": "The purpose of the security briefing is when staff are informed of the new screening protocol."
+      },
+      {
+        "id": "C",
+        "text": "The purpose of the security briefing is because staff need to know the new screening protocol."
+      },
+      {
+        "id": "D",
+        "text": "The purpose of the security briefing is where the new screening protocol gets explained to staff."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "After a linking verb, the complement must be able to stand as a logical equivalent of the subject. A 'purpose' is properly identified by an infinitive phrase naming an aim, so an abstract noun is matched with an action it denotes rather than with a time, cause, or place.",
+    "optionNotes": {
+      "B": "A 'purpose' is not a moment in time, so equating it with a 'when' clause produces an illogical subject-complement match.",
+      "C": "A 'because' clause states a cause, but a purpose cannot be the same thing as a reason; the linking verb wrongly equates a noun with a causal clause.",
+      "D": "A 'where' clause names a place, and a purpose is not a location, so the predication does not logically balance."
+    },
+    "reference": "English › Faulty predication"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Select the revision that eliminates the ambiguous pronoun reference by making clear which noun each pronoun stands for.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "When the ministry sent the proposal to the committee, it was already three weeks overdue, so it returned it for revision."
+      },
+      {
+        "id": "B",
+        "text": "The ministry sent the proposal to the committee, and it returned it for revision because it was overdue."
+      },
+      {
+        "id": "C",
+        "text": "When the ministry sent the already three-weeks-overdue proposal to the committee, the committee returned the document for revision."
+      },
+      {
+        "id": "D",
+        "text": "The ministry sent the proposal, which was overdue, to the committee, and then it returned it to them for revision."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Clarity requires that every pronoun point unmistakably to a single antecedent; when several nouns could be the referent, the cleanest fix is to replace vague pronouns with the specific nouns. Naming the committee and the document removes any doubt about who did what.",
+    "optionNotes": {
+      "A": "Three instances of 'it' could each refer to the proposal or the committee, leaving the actor and the object of the return unclear.",
+      "B": "Every 'it' could denote either the committee or the proposal, so the reader cannot tell which noun was overdue or which did the returning.",
+      "D": "The pronouns 'it,' 'them,' and the relative 'which' scatter among multiple nouns, so the reference of 'it returned it' remains ambiguous."
+    },
+    "reference": "English › Unclear pronoun reference"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Choose the sentence that correctly punctuates a nonrestrictive relative clause, which adds nonessential information and must be set off with commas.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The Vienna Convention which was adopted in 1961 governs diplomatic relations among states."
+      },
+      {
+        "id": "B",
+        "text": "The Vienna Convention, which was adopted in 1961, governs diplomatic relations among states."
+      },
+      {
+        "id": "C",
+        "text": "The Vienna Convention that was adopted in 1961 governs diplomatic relations among states."
+      },
+      {
+        "id": "D",
+        "text": "The Vienna Convention, that was adopted in 1961, governs diplomatic relations among states."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Because the Vienna Convention is a uniquely identified treaty, the clause naming its adoption date merely adds extra detail and is nonrestrictive; such a clause takes 'which' and is enclosed in a pair of commas to signal that it could be removed without changing which thing is meant.",
+    "optionNotes": {
+      "A": "Omitting the commas presents the added detail as if it were restrictive, even though the subject is already fully identified and the clause is supplementary.",
+      "C": "Using 'that' with no commas marks the clause as restrictive, falsely implying there are several Vienna Conventions to distinguish among.",
+      "D": "The relative 'that' is reserved for restrictive clauses and should not be paired with commas; a nonrestrictive clause requires 'which.'"
+    },
+    "reference": "English › Restrictive vs nonrestrictive clauses"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "EASY",
+    "prompt": "For maximum clarity and directness, select the version that uses the active voice to make the responsible agent the grammatical subject.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "A decision to suspend the talks was reached by the negotiating team after consultation."
+      },
+      {
+        "id": "B",
+        "text": "It was decided by the negotiating team that the talks would be suspended after consultation."
+      },
+      {
+        "id": "C",
+        "text": "After consultation, the negotiating team decided to suspend the talks."
+      },
+      {
+        "id": "D",
+        "text": "After consultation, the talks were decided to be suspended by the negotiating team."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Active voice places the doer of the action in the subject position and follows it directly with the verb, which is clearer and more concise than passive phrasings that bury the agent in a 'by' phrase or behind an empty 'it' subject.",
+    "optionNotes": {
+      "A": "The passive 'was reached by the negotiating team' demotes the actual agent into a trailing 'by' phrase and adds a nominalized 'decision.'",
+      "B": "The expletive 'It was decided by' delays the agent and wraps the action in unnecessary passive scaffolding.",
+      "D": "The passive 'the talks were decided to be suspended' is wordy and awkward, hiding the agent until the end of the clause."
+    },
+    "reference": "English › Active vs passive voice"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the sentence that avoids an awkward nominalization by expressing the key action as a strong verb rather than as an abstract noun.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The committee made a recommendation for the implementation of the new accreditation procedure."
+      },
+      {
+        "id": "B",
+        "text": "The committee recommended implementing the new accreditation procedure."
+      },
+      {
+        "id": "C",
+        "text": "The committee's recommendation was for the implementation of the new accreditation procedure to occur."
+      },
+      {
+        "id": "D",
+        "text": "There was a recommendation by the committee regarding the implementation of the new accreditation procedure."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Turning buried action-nouns back into verbs sharpens a sentence; converting 'made a recommendation' to 'recommended' and 'the implementation of' to 'implementing' removes empty nouns and the prepositions they drag along, leaving a crisp verb-driven clause.",
+    "optionNotes": {
+      "A": "The phrase 'made a recommendation for the implementation of' hides two actions inside abstract nouns padded with prepositions.",
+      "C": "Anchoring the sentence on 'recommendation was for the implementation ... to occur' stacks nominalizations and weakens the verb to a flat 'was.'",
+      "D": "Opening with 'There was a recommendation by' uses an expletive plus a noun where a direct verb would carry the action more efficiently."
+    },
+    "reference": "English › Nominalizations"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "HARD",
+    "prompt": "Choose the sentence that makes a logical comparison by comparing items of the same kind rather than mismatched things.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The security protocols at the embassy are far stricter than the consulate."
+      },
+      {
+        "id": "B",
+        "text": "The security protocols at the embassy are far stricter than those at the consulate."
+      },
+      {
+        "id": "C",
+        "text": "The security protocols at the embassy are far stricter than the consulate's are stricter."
+      },
+      {
+        "id": "D",
+        "text": "The embassy has far stricter security protocols than the consulate has more relaxed ones."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A sound comparison sets like against like; protocols must be measured against protocols, not against a building. The pronoun 'those' stands in for 'the security protocols,' so the comparison pairs one set of protocols with another rather than with the consulate itself.",
+    "optionNotes": {
+      "A": "This compares 'the security protocols at the embassy' with 'the consulate,' weighing a set of rules against a place.",
+      "C": "Repeating 'are stricter' on both sides is redundant and garbles the comparison into a self-contradictory loop.",
+      "D": "Adding 'has more relaxed ones' on the second side breaks the parallel measure and muddles which trait is being compared."
+    },
+    "reference": "English › Logical comparison"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Syntax & Sentence Structure",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the option that improves sentence variety by combining a string of short, choppy statements into one well-subordinated sentence without losing meaning.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The attaché arrived in Geneva. He was tired. He still attended the evening session. He took careful notes."
+      },
+      {
+        "id": "B",
+        "text": "The attaché arrived in Geneva, and he was tired, and he still attended the evening session, and he took careful notes."
+      },
+      {
+        "id": "C",
+        "text": "Although he arrived in Geneva tired, the attaché still attended the evening session and took careful notes."
+      },
+      {
+        "id": "D",
+        "text": "The attaché arrived in Geneva tired; he still attended the evening session; he took careful notes; he was thorough."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Good sentence variety uses subordination to show how ideas relate, demoting a minor point to a dependent clause and keeping the main actions in the independent clause. Marking the fatigue with 'although' signals concession and joins the actions smoothly instead of listing equal-weight statements.",
+    "optionNotes": {
+      "A": "Four short, equally weighted sentences in a row create a choppy, monotonous rhythm and fail to show the relationship between being tired and still attending.",
+      "B": "Chaining clauses with repeated 'and' gives every idea the same weight and produces a stringy run-on rather than true variety.",
+      "D": "Splicing several independent clauses with semicolons keeps every idea at equal rank and still reads as a list rather than a subordinated whole."
+    },
+    "reference": "English › Sentence variety"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "EASY",
+    "prompt": "Choose the most concise professional phrasing to open an email requesting a status update, avoiding padded, redundant openers.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "I am writing this email to you today in order to kindly request that you provide me with an update."
+      },
+      {
+        "id": "B",
+        "text": "Could you send me an update on the project status?"
+      },
+      {
+        "id": "C",
+        "text": "At this point in time, I wanted to reach out and touch base regarding an update."
+      },
+      {
+        "id": "D",
+        "text": "Due to the fact that I need information, I am hereby requesting a status update from you."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Concise professional phrasing states the request directly without filler. A single clear question that names exactly what is needed communicates the same intent in far fewer words than self-referential framing about the act of writing.",
+    "optionNotes": {
+      "A": "Announcing that one is writing the email, adding 'today,' and using 'kindly request that you provide me with' restate the obvious and pad the sentence with words that carry no information.",
+      "C": "'At this point in time' is a wordy substitute for 'now,' and 'reach out and touch base' are vague idioms that delay the actual request.",
+      "D": "'Due to the fact that' should be 'because,' and 'hereby requesting' is stiff legalese that adds length without clarity."
+    },
+    "reference": "English › Concise email phrasing: cut filler openers"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the sentence that uses the active voice to assign clear responsibility, rather than hiding the actor in passive construction.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "It was determined that the credentials had been misconfigured by someone."
+      },
+      {
+        "id": "B",
+        "text": "Mistakes were made during the configuration of the access credentials."
+      },
+      {
+        "id": "C",
+        "text": "The networking team misconfigured the access credentials on Tuesday."
+      },
+      {
+        "id": "D",
+        "text": "An error in the configuration of the access credentials has been identified."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Active voice places the actor before the verb so the reader immediately knows who did what. Naming the responsible party and the action removes ambiguity and supports accountability in operational reporting.",
+    "optionNotes": {
+      "A": "'It was determined' and 'had been misconfigured by someone' bury both the decider and the actor in passive verbs, leaving responsibility vague.",
+      "B": "'Mistakes were made' is the classic agentless passive that deliberately omits who is responsible.",
+      "D": "'An error... has been identified' reports that a problem exists but never states who introduced it or who found it, so no agent is assigned."
+    },
+    "reference": "English › Active voice: assign a clear actor"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Pick the salutation and closing pair that matches a formal first-contact email to a senior official whose name you know.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Hey Ambassador Reyes, ... Cheers,"
+      },
+      {
+        "id": "B",
+        "text": "Dear Ambassador Reyes, ... Yours sincerely,"
+      },
+      {
+        "id": "C",
+        "text": "To Whom It May Concern, ... Best,"
+      },
+      {
+        "id": "D",
+        "text": "Hi there, ... Talk soon,"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "When the recipient's name and title are known, a formal opening pairs the honorific and surname with 'Dear,' and a formal email closes with 'Yours sincerely.' Matching register at both ends signals appropriate respect in first official contact.",
+    "optionNotes": {
+      "A": "'Hey' and 'Cheers' are casual and unsuited to a senior official, undercutting the formality the title 'Ambassador' calls for.",
+      "C": "'To Whom It May Concern' is used only when the recipient is unknown; here the name is known, so it reads as impersonal and careless.",
+      "D": "'Hi there' and 'Talk soon' are informal and generic, omitting the recipient's title entirely."
+    },
+    "reference": "English › Formality: salutations and closings"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "Choose the most professional way to decline a meeting request while keeping the relationship intact and offering a path forward.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "I can't make that meeting. Sorry."
+      },
+      {
+        "id": "B",
+        "text": "Thank you for the invitation. I'm unable to join on Thursday, but I'd be glad to contribute written input or meet early next week."
+      },
+      {
+        "id": "C",
+        "text": "Unfortunately I must decline, as I have far more important priorities to attend to right now."
+      },
+      {
+        "id": "D",
+        "text": "I probably shouldn't say yes since these meetings never seem to accomplish much anyway."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A courteous decline acknowledges the request, states the inability clearly, and offers an alternative so the door stays open. This preserves goodwill while still saying no, which is the goal of a tactful refusal.",
+    "optionNotes": {
+      "A": "A blunt 'I can't' with only 'Sorry' gives no acknowledgment of the invitation and no alternative, so it reads as curt.",
+      "C": "Calling one's own priorities 'far more important' belittles the requester's meeting and damages the relationship.",
+      "D": "Disparaging the meetings as accomplishing nothing is an insult to the organizer rather than a polite decline."
+    },
+    "reference": "English › Courteously declining a request"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Select the strongest executive-summary topic sentence that leads with the conclusion (bottom line up front) rather than with background.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Over the past quarter, the team conducted numerous interviews and reviewed several vendor proposals in detail."
+      },
+      {
+        "id": "B",
+        "text": "There are many factors to consider before any decision can responsibly be reached on this matter."
+      },
+      {
+        "id": "C",
+        "text": "We recommend selecting Vendor B, which meets all security requirements at 20 percent lower cost."
+      },
+      {
+        "id": "D",
+        "text": "This memo will discuss the vendor selection process and walk through how we got here."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "An executive-summary topic sentence states the bottom line up front: the recommendation and the key reason. Leading with the conclusion lets a busy reader grasp the decision immediately, with supporting detail to follow.",
+    "optionNotes": {
+      "A": "Describing the process and effort first delays the conclusion and makes the reader work to find the point.",
+      "B": "'There are many factors to consider' is a hedge that postpones any actual recommendation indefinitely.",
+      "D": "Announcing that the memo 'will discuss' the process is throat-clearing that states the topic instead of the takeaway."
+    },
+    "reference": "English › Executive summary: bottom line up front"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "Choose the action-oriented request that states exactly what is needed, from whom, and by when, with a clear imperative.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "It would be great if someone could maybe look at the firewall logs at some point."
+      },
+      {
+        "id": "B",
+        "text": "Priya, please send the reviewed firewall logs to me by Friday at 5 p.m."
+      },
+      {
+        "id": "C",
+        "text": "The firewall logs are something that really ought to be examined fairly soon, I think."
+      },
+      {
+        "id": "D",
+        "text": "I was wondering whether the firewall logs might possibly be reviewable this week."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "An action-oriented request names the responsible person, uses a clear imperative for the specific deliverable, and fixes a concrete deadline. Specifying who, what, and when removes ambiguity and makes follow-up possible.",
+    "optionNotes": {
+      "A": "'Someone could maybe... at some point' leaves the owner, the action, and the timing all undefined, so nothing is actually requested.",
+      "C": "'Ought to be examined fairly soon, I think' is a passive observation with no assigned owner and no firm deadline.",
+      "D": "'I was wondering whether... might possibly be reviewable' is so hedged that it reads as musing rather than a request."
+    },
+    "reference": "English › Action-oriented requests: who, what, when"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "Select the most diplomatically tactful way to report that a partner team's delivery is causing a delay, without assigning blame aggressively.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Your team's late delivery is the reason this project is now behind, plain and simple."
+      },
+      {
+        "id": "B",
+        "text": "We've hit a scheduling snag, and I'd like to flag that the integration timeline now depends on receiving the API specs we discussed."
+      },
+      {
+        "id": "C",
+        "text": "Nothing is moving on our end, and frankly it's entirely out of our hands at this point."
+      },
+      {
+        "id": "D",
+        "text": "I don't want to point fingers, but it's pretty obvious whose fault the delay is here."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Diplomatic tact describes the situation and the dependency factually, focusing on what is needed to move forward rather than on fault. Framing the issue around a shared timeline invites collaboration instead of triggering defensiveness.",
+    "optionNotes": {
+      "A": "Declaring the other team's delivery 'the reason this project is now behind, plain and simple' is an accusatory tone that invites a defensive response.",
+      "C": "Saying it is 'entirely out of our hands' evades shared ownership and implicitly shifts all blame outward.",
+      "D": "The disclaimer 'I don't want to point fingers' followed by doing exactly that is passive-aggressive and reads as blame."
+    },
+    "reference": "English › Diplomatic tact: reporting a problem"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Choose the clearest plain-language rewrite of the bureaucratic sentence: 'Utilization of the aforementioned system shall be effectuated by all personnel prior to the termination of the fiscal period.'",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "All personnel shall undertake utilization of the said system in advance of fiscal period termination."
+      },
+      {
+        "id": "B",
+        "text": "Everyone must start using the system before the end of the fiscal period."
+      },
+      {
+        "id": "C",
+        "text": "It is requested that usage of the system be commenced by staff ahead of the relevant period's conclusion."
+      },
+      {
+        "id": "D",
+        "text": "The system, as referenced above, is to be utilized by personnel pre-termination of the period."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A plain-language rewrite replaces inflated diction with everyday words: 'use' for 'utilization/effectuate,' 'everyone' for 'all personnel,' and 'before the end of the fiscal period' for 'prior to the termination of the fiscal period.' The meaning is preserved while readability improves.",
+    "optionNotes": {
+      "A": "'Undertake utilization,' 'the said system,' and 'fiscal period termination' keep the same bureaucratic jargon rather than simplifying it.",
+      "C": "'It is requested that usage be commenced' and 'the relevant period's conclusion' remain wordy and passive.",
+      "D": "'As referenced above,' 'utilized,' and the coinage 'pre-termination' preserve the stilted register instead of plain wording."
+    },
+    "reference": "English › Plain language: rewrite bureaucratic prose"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "EASY",
+    "prompt": "Select the sentence that softens a directive into a courteous request appropriate for a peer, without becoming so indirect that the ask disappears.",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Send me the budget figures now."
+      },
+      {
+        "id": "B",
+        "text": "Could you please share the budget figures by tomorrow?"
+      },
+      {
+        "id": "C",
+        "text": "You need to get me the budget figures immediately."
+      },
+      {
+        "id": "D",
+        "text": "If it's not too much trouble, and only if you happen to have a free moment sometime, the figures."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A courteous peer request pairs a polite modal question with 'please' and still names the specific item and a clear timeframe. This balances politeness with clarity so the recipient knows exactly what is being asked.",
+    "optionNotes": {
+      "A": "A bare imperative ending in 'now' reads as a command rather than a request among peers.",
+      "C": "'You need to' plus 'immediately' is demanding and presumes authority over a colleague.",
+      "D": "Excessive hedging buries the request so deeply that it never clearly states what is wanted or when, and the fragment never forms a complete request."
+    },
+    "reference": "English › Courteous requests: polite modals with clear asks"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "EASY",
+    "prompt": "You must email twelve colleagues to confirm attendance for a security briefing on Thursday. Which email subject line is most effective?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Important - please read"
+      },
+      {
+        "id": "B",
+        "text": "Action needed: confirm attendance for Thursday security briefing"
+      },
+      {
+        "id": "C",
+        "text": "Meeting"
+      },
+      {
+        "id": "D",
+        "text": "Hi everyone, I wanted to ask you all something quick"
+      }
+    ],
+    "correctId": "B",
+    "rationale": "An effective subject line is specific, front-loads the required action, and names the topic and timing so the recipient can triage and respond without opening the message. Stating the action, the event, and the day delivers all of that at a glance.",
+    "optionNotes": {
+      "A": "Vague urgency words convey no topic and no action; the reader still has to open the message to learn what is wanted, which defeats the purpose of a subject line.",
+      "C": "A single generic word omits the action requested, the specific event, and the date, giving the reader nothing to act on or prioritize.",
+      "D": "This reads like an opening sentence rather than a subject line; it is conversational, withholds the actual topic, and wastes the scannable space with filler."
+    },
+    "reference": "English › Effective subject lines"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "You are writing a weekly project status update for leadership. Which opening structure best serves a busy senior reader?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Lead with the bottom line: \"Status: on track. One risk (vendor delay) needs a decision by Friday. Details below.\""
+      },
+      {
+        "id": "B",
+        "text": "Begin with a chronological narrative of everything the team did each day this week, then state the overall status at the end."
+      },
+      {
+        "id": "C",
+        "text": "Open with an apology for the length of the update and a note that you will try to be brief this time."
+      },
+      {
+        "id": "D",
+        "text": "Start with a list of every minor task completed, leaving the reader to infer whether the project is on track."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A status update for senior readers should be structured top-down: state the overall status and any decision needed first, then provide supporting detail. This lets the reader grasp the situation and the required action immediately, before deciding how deeply to read.",
+    "optionNotes": {
+      "B": "Burying the overall status at the end forces the reader through a day-by-day account before they learn whether anything is wrong, the opposite of a top-down structure.",
+      "C": "Opening with an apology and meta-commentary about length adds no information and delays the substance the reader actually needs.",
+      "D": "An undigested task list shifts the analytical work onto the reader, who must infer the status themselves rather than being told it directly."
+    },
+    "reference": "English › Structuring a status update"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Which sentence removes the ambiguity about who is responsible and by when, so the recipient cannot misread the assignment?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The report should probably be finalized at some point soon."
+      },
+      {
+        "id": "B",
+        "text": "Someone needs to send the report over before too long."
+      },
+      {
+        "id": "C",
+        "text": "Please finalize and send the report to me by 17:00 on Tuesday, 30 June."
+      },
+      {
+        "id": "D",
+        "text": "It would be good if the report could be wrapped up reasonably quickly."
+      }
+    ],
+    "correctId": "C",
+    "rationale": "Removing ambiguity means naming the specific actor, the exact action, and a concrete deadline. Directing a named recipient to finalize and send the report by a stated date and time leaves no room for differing interpretations.",
+    "optionNotes": {
+      "A": "Hedges like \"should probably,\" \"at some point,\" and \"soon\" leave both the responsibility and the timing undefined.",
+      "B": "\"Someone\" assigns the task to no one in particular, and \"before too long\" sets no measurable deadline.",
+      "D": "A conditional wish with \"reasonably quickly\" neither identifies who must act nor fixes a verifiable due date."
+    },
+    "reference": "English › Removing ambiguity"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "A counterpart has not replied to your earlier request after one week. Which follow-up message is most appropriately polite and professional?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "I'm following up on my request from last Monday. Would you be able to let me know the status by end of week? Happy to provide anything that would help."
+      },
+      {
+        "id": "B",
+        "text": "This is the second time I've had to write. Please respond immediately."
+      },
+      {
+        "id": "C",
+        "text": "I assume you've been ignoring my email, so I'll ask one more time."
+      },
+      {
+        "id": "D",
+        "text": "Did you get my email??? I really need an answer right now."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "A polite follow-up references the original message neutrally, gives the recipient the benefit of the doubt, proposes a reasonable timeframe, and offers help. This preserves the working relationship while still prompting a response.",
+    "optionNotes": {
+      "B": "Foregrounding the writer's inconvenience and demanding an immediate reply is accusatory and pressuring rather than courteous.",
+      "C": "Assuming the recipient deliberately ignored the message imputes bad faith and is likely to provoke defensiveness rather than cooperation.",
+      "D": "Multiple question marks and \"right now\" read as impatient and informal, undermining the professional register a follow-up should maintain."
+    },
+    "reference": "English › Polite follow-ups"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "You sent a partner agency an outdated figure in yesterday's briefing. Which message best acknowledges the error professionally?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Correction to yesterday's briefing: the staffing figure should read 38, not 43. I've attached the corrected version and apologize for the confusion."
+      },
+      {
+        "id": "B",
+        "text": "There may have been a small issue with one of the numbers, but it probably doesn't matter much."
+      },
+      {
+        "id": "C",
+        "text": "The figure was wrong because the database export I was given was out of date, so this really wasn't my fault."
+      },
+      {
+        "id": "D",
+        "text": "I am profoundly and deeply sorry for this catastrophic and unforgivable mistake, which I will never live down."
+      }
+    ],
+    "correctId": "A",
+    "rationale": "Professionally acknowledging an error means naming the specific mistake, stating the correct information, providing the fix, and offering a brief, proportionate apology. This restores accuracy and trust without drama or evasion.",
+    "optionNotes": {
+      "B": "Minimizing the error as \"a small issue\" that \"probably doesn't matter\" fails to state the correct figure and leaves the recipient unsure what to rely on.",
+      "C": "Leading with blame on the data source reads as deflecting responsibility rather than owning and fixing the error.",
+      "D": "An overwrought, self-flagellating apology is disproportionate, draws attention to the writer's feelings, and still omits the corrected information."
+    },
+    "reference": "English › Professionally acknowledging an error"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "You are emailing a senior official at a foreign ministry whom you have not met, in a culture that values formality and indirectness. Which opening strikes the most appropriate cross-cultural courtesy?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Hey there! Hope you're having an awesome week. Quick favor to ask."
+      },
+      {
+        "id": "B",
+        "text": "Dear Director-General, I hope this message finds you well. I am writing to respectfully request your guidance on a matter of mutual interest."
+      },
+      {
+        "id": "C",
+        "text": "To whom it may concern, I need the following items handled as soon as possible."
+      },
+      {
+        "id": "D",
+        "text": "Hi! Just cutting to the chase here since I know you're busy — here's what I need from you."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Cross-cultural courtesy toward a senior official in a formal, indirect culture calls for a respectful title, a warm but measured greeting, and an indirect, deferential framing of the request. This signals respect for hierarchy and relationship before substance.",
+    "optionNotes": {
+      "A": "Casual greetings and slang are too familiar for a first contact with a senior official and disregard the formality the culture expects.",
+      "C": "Using an impersonal \"to whom it may concern\" for a named senior official, then issuing demands, reads as brusque and inattentive to rank.",
+      "D": "\"Cutting to the chase\" with an immediate list of demands is precisely the directness that an indirect, hierarchy-conscious culture finds discourteous in a first approach."
+    },
+    "reference": "English › Cross-cultural courtesy"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "HARD",
+    "prompt": "You must brief a non-technical ambassador on why email was down for two hours. Which explanation matches an audience-appropriate level of detail?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "The mail server's TLS certificate expired, so the MTA rejected SMTP handshakes on port 587 until we reissued the cert and reloaded Postfix."
+      },
+      {
+        "id": "B",
+        "text": "Email was unavailable for about two hours this morning because of an expired security credential. It has been renewed, service is fully restored, and we are adding an automatic renewal reminder to prevent a recurrence."
+      },
+      {
+        "id": "C",
+        "text": "There was a problem and now it's fixed."
+      },
+      {
+        "id": "D",
+        "text": "We had an issue with the cert chain and the OCSP stapling, plus some DNS caching weirdness, but I won't bore you with the packet captures."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Matching detail to a non-technical executive means explaining the impact, the cause in plain terms, the current status, and the preventive step, without jargon the reader cannot use. This gives the ambassador exactly what they need to understand and trust the outcome.",
+    "optionNotes": {
+      "A": "Protocol names, ports, and software internals exceed what a non-technical reader can interpret and obscure the impact and resolution they actually care about.",
+      "C": "Stripping out the cause, the duration, and the preventive measure leaves the executive with no real understanding or assurance.",
+      "D": "Listing technical terms only to say you won't explain them still burdens the reader with jargon while withholding the clear summary they need."
+    },
+    "reference": "English › Audience-appropriate level of detail"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "EASY",
+    "prompt": "At the end of a message, you need a colleague to approve a budget line. Which closing provides the clearest call to action?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Let me know your thoughts whenever."
+      },
+      {
+        "id": "B",
+        "text": "Please reply with your approval of the €4,000 line item by Thursday 26 June so I can submit the purchase order."
+      },
+      {
+        "id": "C",
+        "text": "Hopefully we can move this forward at some point."
+      },
+      {
+        "id": "D",
+        "text": "Anyway, that's where things stand for now."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "A clear call to action specifies exactly what the reader must do, the precise item involved, the deadline, and why it matters. Requesting a named approval by a stated date so a purchase order can proceed leaves no doubt about the next step.",
+    "optionNotes": {
+      "A": "\"Your thoughts whenever\" requests no specific decision and sets no deadline, so the reader has no defined action to take.",
+      "C": "A vague hope to \"move this forward at some point\" names neither the action required nor a date, so nothing will reliably happen.",
+      "D": "Merely summarizing the current state gives the reader no request at all, leaving the needed approval unprompted."
+    },
+    "reference": "English › Clear call to action"
+  },
+  {
+    "section": "ENGLISH_EXPRESSION",
+    "topic": "Professional Communication",
+    "difficulty": "MEDIUM",
+    "prompt": "Which sentence in an internal policy notice uses the most neutral and inclusive language?",
+    "scenario": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Each employee should submit his timesheet to the man manning the front desk before he leaves."
+      },
+      {
+        "id": "B",
+        "text": "Every staff member should submit their timesheet to the person staffing the front desk before leaving."
+      },
+      {
+        "id": "C",
+        "text": "Every guy on the team needs to hand his timesheet to the front-desk girl before heading out."
+      },
+      {
+        "id": "D",
+        "text": "Each man should give his timesheet to whoever mans the desk before he goes."
+      }
+    ],
+    "correctId": "B",
+    "rationale": "Neutral, inclusive wording avoids assuming a person's gender, using singular \"they\" for an unspecified individual and gender-neutral role terms such as \"staff member\" and \"the person staffing the desk.\" This includes everyone without singling out a gender.",
+    "optionNotes": {
+      "A": "Defaulting to \"his\" for every employee and \"the man manning\" the desk presumes the people involved are male and excludes others.",
+      "C": "\"Every guy\" and \"the front-desk girl\" are informal and gendered, treating roles as inherently male or female.",
+      "D": "\"Each man,\" \"his,\" and \"mans the desk\" repeatedly default to masculine terms for people whose gender is unspecified."
+    },
+    "reference": "English › Neutral and inclusive language"
+  }
+]
