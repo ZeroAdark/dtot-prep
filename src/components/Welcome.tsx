@@ -11,6 +11,8 @@ import {
   UserPlus,
   Users,
   Activity,
+  Github,
+  Linkedin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -292,6 +294,35 @@ export function Welcome({ stats: initialStats }: { stats: UserStats }) {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t pt-6 text-sm text-muted-foreground">
+        <span>
+          Created by{" "}
+          <span className="font-medium text-foreground">Adrian Ortiz Lafita</span>
+        </span>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/ZeroAdark"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            aria-label="Adrian Ortiz Lafita on GitHub"
+          >
+            <Github className="h-4 w-4" aria-hidden="true" />
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/adrian-ortiz-lafita-83989a236/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            aria-label="Adrian Ortiz Lafita on LinkedIn"
+          >
+            <Linkedin className="h-4 w-4" aria-hidden="true" />
+            LinkedIn
+          </a>
+        </div>
       </div>
     </div>
   );
