@@ -10,6 +10,7 @@ import {
 import { pct } from "./utils";
 import { displayOptions, fromJson, toJson } from "./serialize";
 import { selectQuestions, HistoryMap } from "./selection";
+import { buildResponseUpdate, type ResponsePatch } from "./response-patch";
 
 // ── Config snapshot stored on TestSession.config ─────────────────────────────
 interface SectionConfig {
@@ -275,12 +276,9 @@ async function computeElapsed(sessionId: string): Promise<number> {
 
 // ── Saving answers (auto-grades on write, hidden until submit) ────────────────
 
-export async function saveResponse(args: {
+export async function saveResponse(args: ResponsePatch & {
   sessionId: string;
   questionId: string;
-  selectedOptionId: string | null;
-  flagged?: boolean;
-  timeSpentSec?: number;
 }) {
   const existing = await prisma.userResponse.findUnique({
     where: {
@@ -302,26 +300,14 @@ export async function saveResponse(args: {
     return existing;
   }
 
-  const question = await prisma.question.findUnique({
-    where: { id: args.questionId },
-  });
-  const isCorrect =
-    args.selectedOptionId != null && question != null
-      ? args.selectedOptionId === question.correctId
+  const question =
+    args.selectedOptionId !== undefined
+      ? await prisma.question.findUnique({ where: { id: args.questionId } })
       : null;
 
   return prisma.userResponse.update({
     where: { id: existing.id },
-    data: {
-      selectedOptionId: args.selectedOptionId,
-      isCorrect,
-      flagged: args.flagged ?? existing.flagged,
-      timeSpentSec:
-        args.timeSpentSec != null
-          ? existing.timeSpentSec + args.timeSpentSec
-          : existing.timeSpentSec,
-      answeredAt: args.selectedOptionId != null ? new Date() : null,
-    },
+    data: buildResponseUpdate(existing, question?.correctId ?? null, args),
   });
 }
 

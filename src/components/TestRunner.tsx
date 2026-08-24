@@ -45,6 +45,7 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
   const [submitting, setSubmitting] = useState(false);
   const [pendingConfirm, setPendingConfirm] = useState<ConfirmConfig | null>(null);
   const pendingSaves = useRef(0);
+  const saveQueue = useRef<Promise<void>>(Promise.resolve());
 
   const active: ClientSection | undefined = useMemo(
     () => session.sections.find((s) => s.status === "IN_PROGRESS"),
@@ -113,24 +114,31 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
     session.timed && !!active && !session.finished,
   );
 
-  async function persist(
+  function persist(
     questionId: string,
     patch: { selectedOptionId?: string | null; flagged?: boolean },
   ) {
     pendingSaves.current += 1;
     setSaving(true);
-    try {
-      await fetch("/api/responses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId: session.id, questionId, ...patch }),
-      });
-    } catch {
-      /* offline — optimistic value remains; will reconcile on next refetch */
-    } finally {
-      pendingSaves.current -= 1;
-      if (pendingSaves.current <= 0) setSaving(false);
-    }
+
+    // Keep response writes in click order. This prevents a slower, older save
+    // from overwriting a newer selection or flag state.
+    const save = async () => {
+      try {
+        await fetch("/api/responses", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId: session.id, questionId, ...patch }),
+        });
+      } catch {
+        /* offline — optimistic value remains; will reconcile on next refetch */
+      } finally {
+        pendingSaves.current -= 1;
+        if (pendingSaves.current <= 0) setSaving(false);
+      }
+    };
+
+    saveQueue.current = saveQueue.current.then(save);
   }
 
   function updateQuestion(
@@ -163,6 +171,9 @@ export function TestRunner({ initial }: { initial: ClientSession }) {
   }
 
   async function patchSession(body: Record<string, unknown>) {
+    // Submission locks the section, so every answer/flag write must reach the
+    // server first or the last interaction can be dropped under network delay.
+    await saveQueue.current;
     const res = await fetch(`/api/tests/${session.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

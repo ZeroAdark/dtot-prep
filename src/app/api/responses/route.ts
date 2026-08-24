@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUserId } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { saveResponse } from "@/lib/engine";
+import { parseResponsePatch } from "@/lib/response-patch";
 import { sameOrigin } from "@/lib/request-guard";
 
 // POST /api/responses
@@ -28,12 +29,11 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const patch = parseResponsePatch(body);
     await saveResponse({
       sessionId,
       questionId,
-      selectedOptionId: body.selectedOptionId ?? null,
-      flagged: body.flagged,
-      timeSpentSec: body.timeSpentSec,
+      ...patch,
     });
     return NextResponse.json({ ok: true });
   } catch (e) {
